@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PGP.Application.Example;
 using PGP.Application.Infrastructure;
+using PGP.Persistence;
 using System.Reflection;
 
 namespace PGP
@@ -24,6 +26,9 @@ namespace PGP
             services.AddMediatR(typeof(GetAllQueryHandler).GetTypeInfo().Assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
+            services.AddDbContext<IPGPDbContext, PGPDbContext>(options => options
+                .UseSqlServer(Configuration.GetConnectionString("PGPDatabase")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
