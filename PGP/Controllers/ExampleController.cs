@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Example;
 using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class ExampleController : BaseController
     {
