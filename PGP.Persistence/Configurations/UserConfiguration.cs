@@ -33,15 +33,18 @@ namespace RIS.Persistence.Configuration
 
             builder.HasMany(p => p.Comments)
                 .WithOne(p => p.CreatedByUser)
-                .HasForeignKey(p => p.CreatedByUserId);
+                .HasForeignKey(p => p.CreatedByUserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(p => p.Likes)
                 .WithOne(p => p.User)
-                .HasForeignKey(p => p.UserId);
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(p => p.Pets)
-                .WithOne(p => p.CreatedByUser)
-                .HasForeignKey(p => p.CreatedByUserId);
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -17,11 +17,11 @@ namespace PGP.Domain.Entities
         public DateTime DateAdded { get; set; }
         public State State { get; set; }
 
-        public int TypeId { get; set; }
-        public Type Type { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
-        public int CreatedByUserId { get; set; }
-        public User CreatedByUser { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Like> Likes { get; set; }

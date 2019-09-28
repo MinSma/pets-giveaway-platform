@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PGP.Persistence;
 
 namespace PGP.Persistence.Migrations
 {
     [DbContext(typeof(PGPDbContext))]
-    partial class PGPDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190928200618_AddLikeEntity")]
+    partial class AddLikeEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,26 +35,6 @@ namespace PGP.Persistence.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("PGP.Domain.Entities.Comment", b =>
-                {
-                    b.Property<int>("CreatedByUserId");
-
-                    b.Property<int>("PetId");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("Id");
-
-                    b.Property<string>("Text")
-                        .IsRequired();
-
-                    b.HasKey("CreatedByUserId", "PetId");
-
-                    b.HasIndex("PetId");
-
-                    b.ToTable("Comments");
-                });
-
             modelBuilder.Entity("PGP.Domain.Entities.Like", b =>
                 {
                     b.Property<int>("PetId");
@@ -65,7 +47,7 @@ namespace PGP.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Likes");
+                    b.ToTable("Like");
                 });
 
             modelBuilder.Entity("PGP.Domain.Entities.Pet", b =>
@@ -180,28 +162,13 @@ namespace PGP.Persistence.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PGP.Domain.Entities.Comment", b =>
-                {
-                    b.HasOne("PGP.Domain.Entities.User", "CreatedByUser")
-                        .WithMany("Comments")
-                        .HasForeignKey("CreatedByUserId")
-                        .HasConstraintName("FK_Comment_CreatedByUser")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("PGP.Domain.Entities.Pet", "Pet")
-                        .WithMany("Comments")
-                        .HasForeignKey("PetId")
-                        .HasConstraintName("FK_Comment_Pet")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("PGP.Domain.Entities.Like", b =>
                 {
                     b.HasOne("PGP.Domain.Entities.Pet", "Pet")
                         .WithMany("Likes")
                         .HasForeignKey("PetId")
                         .HasConstraintName("FK_Like_Pet")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("PGP.Domain.Entities.User", "User")
                         .WithMany("Likes")

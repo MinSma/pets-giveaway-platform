@@ -5,6 +5,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190928183431_AddCascadeDeleteBehaviorToPet.cs" />
+    <Compile Remove="Migrations\20190928183431_AddCascadeDeleteBehaviorToPet.Designer.cs" />
+    <Compile Remove="Migrations\20190928185936_AddCascadeDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928185936_AddCascadeDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928190643_AddCascadeDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928190643_AddCascadeDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928190930_AddCascadeDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928190930_AddCascadeDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928191116_AddCascadeDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928191116_AddCascadeDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928191409_AddCascadeDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928191409_AddCascadeDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928191636_AddCascadeDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928191636_AddCascadeDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928191815_AddCascadeDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928191815_AddCascadeDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928191938_AddDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928191938_AddDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928193413_AddDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928193413_AddDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928193750_AddDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928193750_AddDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928193939_AddDeleteBehavior.cs" />
+    <Compile Remove="Migrations\20190928193939_AddDeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20190928200217_AddLikeEntity.cs" />
+    <Compile Remove="Migrations\20190928200217_AddLikeEntity.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">

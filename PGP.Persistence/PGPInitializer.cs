@@ -1,6 +1,6 @@
 ﻿using PGP.Domain.Entities;
 using System.Linq;
-using Type = PGP.Domain.Entities.Type;
+using Category = PGP.Domain.Entities.Category;
 
 namespace PGP.Persistence
 {
@@ -21,7 +21,7 @@ namespace PGP.Persistence
                 SeedRoles(context);
             }
 
-            if (!context.Types.Any())
+            if (!context.Categories.Any())
             {
                 SeedTypes(context);
             }
@@ -45,12 +45,12 @@ namespace PGP.Persistence
         {
             var types = new[]
             {
-                new Type { Title = "Dogs" },
-                new Type { Title = "Cats" },
-                new Type { Title = "Others" }
+                new Category { Title = "Dogs" },
+                new Category { Title = "Cats" },
+                new Category { Title = "Others" }
             };
 
-            context.Types.AddRange(types);
+            context.Categories.AddRange(types);
 
             context.SaveChanges();
         }

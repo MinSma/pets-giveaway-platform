@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PGP.Persistence.Configurations
 {
-    public class TypeConfiguration : IEntityTypeConfiguration<Type>
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
-        public void Configure(EntityTypeBuilder<Type> builder)
+        public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property(p => p.Title)
                 .HasMaxLength(25);
 
             builder.HasMany(p => p.Pets)
-                .WithOne(p => p.Type)
-                .HasForeignKey(p => p.TypeId);
+                .WithOne(p => p.Category)
+                .HasForeignKey(p => p.CategoryId);
         }
     }
 }

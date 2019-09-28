@@ -20,24 +20,27 @@ namespace PGP.Persistence.Configurations
             builder.Property(p => p.State)
                 .IsRequired();
 
-            builder.Property(p => p.TypeId)
+            builder.Property(p => p.CategoryId)
                 .IsRequired();
 
-            builder.HasOne(p => p.Type)
+            builder.HasOne(p => p.Category)
                 .WithMany(p => p.Pets)
-                .HasForeignKey(p => p.TypeId);
+                .HasForeignKey(p => p.CategoryId);
 
-            builder.HasOne(p => p.CreatedByUser)
+            builder.HasOne(p => p.User)
                 .WithMany(p => p.Pets)
-                .HasForeignKey(p => p.CreatedByUserId);
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(p => p.Comments)
                 .WithOne(p => p.Pet)
-                .HasForeignKey(p => p.PetId);
+                .HasForeignKey(p => p.PetId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(p => p.Likes)
                 .WithOne(p => p.Pet)
-                .HasForeignKey(p => p.PetId);
+                .HasForeignKey(p => p.PetId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(p => p.Photos)
                 .WithOne(p => p.Pet)

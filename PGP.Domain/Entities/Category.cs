@@ -2,7 +2,7 @@
 
 namespace PGP.Domain.Entities
 {
-    public class Type
+    public class Category
     {
         public int Id { get; set; }
         public string Title { get; set; }

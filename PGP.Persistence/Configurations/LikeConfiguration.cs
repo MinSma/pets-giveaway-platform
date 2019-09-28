@@ -8,6 +8,8 @@ namespace PGP.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Like> builder)
         {
+            builder.HasKey(e => new { e.PetId, e.UserId });
+
             builder.Property(p => p.PetId)
                 .IsRequired();
 
@@ -16,11 +18,15 @@ namespace PGP.Persistence.Configurations
 
             builder.HasOne(p => p.Pet)
                 .WithMany(p => p.Likes)
-                .HasForeignKey(p => p.PetId);
+                .HasForeignKey(p => p.PetId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("FK_Like_Pet");
 
             builder.HasOne(p => p.User)
                 .WithMany(p => p.Likes)
-                .HasForeignKey(p => p.UserId);
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("FK_Like_User");
         }
     }
 }

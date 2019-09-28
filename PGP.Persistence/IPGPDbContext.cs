@@ -7,11 +7,13 @@ namespace PGP.Persistence
 {
     public interface IPGPDbContext
     {
-        DbSet<User> Users { get; set; }
-        DbSet<Role> Roles { get; set; }
+        DbSet<Category> Categories { get; set; }
+        DbSet<Comment> Comments { get; set; }
+        DbSet<Like> Likes { get; set; }
         DbSet<Pet> Pets { get; set; }
-        DbSet<Type> Types { get; set; }
         DbSet<Photo> Photos { get; set; }
+        DbSet<Role> Roles { get; set; }
+        DbSet<User> Users { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

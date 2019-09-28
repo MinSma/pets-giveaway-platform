@@ -73,15 +73,15 @@ namespace PGP.Persistence.Migrations
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     State = table.Column<int>(nullable: false),
-                    TypeId = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Pets_Types_TypeId",
-                        column: x => x.TypeId,
+                        name: "FK_Pets_Types_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "Types",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -90,46 +90,18 @@ namespace PGP.Persistence.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Photos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Url = table.Column<string>(maxLength: 60, nullable: false),
-                    DateAdded = table.Column<DateTime>(nullable: false),
-                    IsMain = table.Column<bool>(nullable: false),
-                    PublicId = table.Column<string>(maxLength: 60, nullable: false),
-                    PetId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Photos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Photos_Pets_PetId",
-                        column: x => x.PetId,
-                        principalTable: "Pets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pets_TypeId",
+                name: "IX_Pets_CategoryId",
                 table: "Pets",
-                column: "TypeId");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pets_UserId",
                 table: "Pets",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Photos_PetId",
-                table: "Photos",
-                column: "PetId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
@@ -139,9 +111,6 @@ namespace PGP.Persistence.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Photos");
-
             migrationBuilder.DropTable(
                 name: "Pets");
 
