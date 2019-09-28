@@ -31,9 +31,17 @@ namespace RIS.Persistence.Configuration
                 .WithMany(p => p.Users)
                 .HasForeignKey(p => p.RoleId);
 
-            builder.HasMany(p => p.Pets)
+            builder.HasMany(p => p.Comments)
+                .WithOne(p => p.CreatedByUser)
+                .HasForeignKey(p => p.CreatedByUserId);
+
+            builder.HasMany(p => p.Likes)
                 .WithOne(p => p.User)
                 .HasForeignKey(p => p.UserId);
+
+            builder.HasMany(p => p.Pets)
+                .WithOne(p => p.CreatedByUser)
+                .HasForeignKey(p => p.CreatedByUserId);
         }
     }
 }

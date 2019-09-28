@@ -20,9 +20,11 @@ namespace PGP.Domain.Entities
         public int TypeId { get; set; }
         public Type Type { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public int CreatedByUserId { get; set; }
+        public User CreatedByUser { get; set; }
 
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Like> Likes { get; set; }
         public ICollection<Photo> Photos { get; set; }
     }
 }

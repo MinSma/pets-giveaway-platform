@@ -4,7 +4,7 @@ using PGP.Domain.Entities;
 
 namespace PGP.Persistence.Configurations
 {
-    public class AnimalConfiguration : IEntityTypeConfiguration<Pet>
+    public class PetConfiguration : IEntityTypeConfiguration<Pet>
     {
         public void Configure(EntityTypeBuilder<Pet> builder)
         {
@@ -27,9 +27,17 @@ namespace PGP.Persistence.Configurations
                 .WithMany(p => p.Pets)
                 .HasForeignKey(p => p.TypeId);
 
-            builder.HasOne(p => p.User)
+            builder.HasOne(p => p.CreatedByUser)
                 .WithMany(p => p.Pets)
-                .HasForeignKey(p => p.UserId);
+                .HasForeignKey(p => p.CreatedByUserId);
+
+            builder.HasMany(p => p.Comments)
+                .WithOne(p => p.Pet)
+                .HasForeignKey(p => p.PetId);
+
+            builder.HasMany(p => p.Likes)
+                .WithOne(p => p.Pet)
+                .HasForeignKey(p => p.PetId);
 
             builder.HasMany(p => p.Photos)
                 .WithOne(p => p.Pet)

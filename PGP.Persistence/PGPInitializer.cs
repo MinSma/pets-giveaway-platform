@@ -1,5 +1,4 @@
 ﻿using PGP.Domain.Entities;
-using System.Collections.Generic;
 using System.Linq;
 using Type = PGP.Domain.Entities.Type;
 
@@ -7,8 +6,6 @@ namespace PGP.Persistence
 {
     public class PGPInitializer
     {
-        private readonly Dictionary<int, Role> Roles = new Dictionary<int, Role>();
-
         public static void Initialize(PGPDbContext context)
         {
             var initializer = new PGPInitializer();

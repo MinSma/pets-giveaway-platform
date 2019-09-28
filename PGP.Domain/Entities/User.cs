@@ -14,6 +14,8 @@ namespace PGP.Domain.Entities
         public int RoleId { get; set; }
         public Role Role { get; set; }
 
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Like> Likes { get; set; }
         public ICollection<Pet> Pets { get; set; }
     }
 }
