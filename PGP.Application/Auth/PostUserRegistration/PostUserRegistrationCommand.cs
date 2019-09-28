@@ -2,7 +2,7 @@
 
 namespace PGP.Application.Auth.PostUserRegistration
 {
-    public class PostUserRegistrationCommand : IRequest<bool>
+    public class PostUserRegistrationCommand : IRequest<Unit>
     {
         public string Email { get; set; }
         public string Password { get; set; }

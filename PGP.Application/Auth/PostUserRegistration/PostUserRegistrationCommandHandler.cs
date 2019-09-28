@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PGP.Application.Auth.PostUserRegistration
 {
-    public class PostUserRegistrationCommandHandler : IRequestHandler<PostUserRegistrationCommand, bool>
+    public class PostUserRegistrationCommandHandler : IRequestHandler<PostUserRegistrationCommand, Unit>
     {
         private readonly IPGPDbContext _context;
 
@@ -18,7 +18,7 @@ namespace PGP.Application.Auth.PostUserRegistration
             _context = context;
         }
 
-        public async Task<bool> Handle(PostUserRegistrationCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(PostUserRegistrationCommand request, CancellationToken cancellationToken)
         {
             var userExists = await _context.Users.AnyAsync(x => x.Email.ToLower().Equals(request.Email.ToLower()));
 
@@ -40,7 +40,7 @@ namespace PGP.Application.Auth.PostUserRegistration
             await _context.Users.AddAsync(user, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return true;
+            return Unit.Value;
         }
     }
 }
