@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using PGP.Application.Example;
 using PGP.Application.Helpers;
 using PGP.Application.Infrastructure;
+using PGP.Application.Pets.Queries.GetAllPets;
 using PGP.Persistence;
 using System.Reflection;
 using System.Text;
@@ -28,7 +28,7 @@ namespace PGP
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(typeof(GetAllQueryHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(GetAllPetsQuery).GetTypeInfo().Assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 

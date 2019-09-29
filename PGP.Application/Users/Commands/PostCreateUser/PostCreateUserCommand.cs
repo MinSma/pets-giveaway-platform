@@ -11,4 +11,3 @@ namespace PGP.Application.Users.Commands.PostCreateUser
         public string PhoneNumber { get; set; }
     }
 }
-}
