@@ -1,4 +1,7 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using PGP.Persistence;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -6,9 +9,23 @@ namespace PGP.Application.Categories.Queries.GetCategoryById
 {
     public class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery, GetCategoryByIdQueryResponse>
     {
-        public Task<GetCategoryByIdQueryResponse> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+        private readonly IPGPDbContext _context;
+
+        public GetCategoryByIdQueryHandler(IPGPDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<GetCategoryByIdQueryResponse> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+        {
+            return await _context.Categories
+                .AsNoTracking()
+                .Select(x => new GetCategoryByIdQueryResponse
+                {
+                    Id = x.Id,
+                    Title = x.Title
+                })
+                .FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

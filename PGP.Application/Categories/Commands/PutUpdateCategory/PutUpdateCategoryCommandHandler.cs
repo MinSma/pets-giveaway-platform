@@ -1,4 +1,7 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using PGP.Persistence;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -6,9 +9,28 @@ namespace PGP.Application.Categories.Commands.PutUpdateCategory
 {
     public class PutUpdateCategoryCommandHandler : IRequestHandler<PutUpdateCategoryCommand, Unit>
     {
-        public Task<Unit> Handle(PutUpdateCategoryCommand request, CancellationToken cancellationToken)
+        private readonly IPGPDbContext _context;
+
+        public PutUpdateCategoryCommandHandler(IPGPDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<Unit> Handle(PutUpdateCategoryCommand request, CancellationToken cancellationToken)
+        {
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+
+            if (category == null)
+            {
+                throw new InvalidOperationException($"Category id {request.Id} not exists.");
+            }
+
+            category.Title = request.Title;
+
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
         }
     }
 }
