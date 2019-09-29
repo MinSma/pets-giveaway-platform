@@ -35,18 +35,22 @@ namespace PGP.Persistence.Migrations
 
             modelBuilder.Entity("PGP.Domain.Entities.Comment", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt");
+
                     b.Property<int>("CreatedByUserId");
 
                     b.Property<int>("PetId");
 
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<int>("Id");
-
                     b.Property<string>("Text")
                         .IsRequired();
 
-                    b.HasKey("CreatedByUserId", "PetId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
 
                     b.HasIndex("PetId");
 
@@ -58,8 +62,6 @@ namespace PGP.Persistence.Migrations
                     b.Property<int>("PetId");
 
                     b.Property<int>("UserId");
-
-                    b.Property<int>("Id");
 
                     b.HasKey("PetId", "UserId");
 
@@ -185,13 +187,11 @@ namespace PGP.Persistence.Migrations
                     b.HasOne("PGP.Domain.Entities.User", "CreatedByUser")
                         .WithMany("Comments")
                         .HasForeignKey("CreatedByUserId")
-                        .HasConstraintName("FK_Comment_CreatedByUser")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("PGP.Domain.Entities.Pet", "Pet")
                         .WithMany("Comments")
                         .HasForeignKey("PetId")
-                        .HasConstraintName("FK_Comment_Pet")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -220,7 +220,7 @@ namespace PGP.Persistence.Migrations
                     b.HasOne("PGP.Domain.Entities.User", "User")
                         .WithMany("Pets")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PGP.Domain.Entities.Photo", b =>

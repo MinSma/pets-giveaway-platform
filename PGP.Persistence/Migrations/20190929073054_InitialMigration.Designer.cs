@@ -10,8 +10,8 @@ using PGP.Persistence;
 namespace PGP.Persistence.Migrations
 {
     [DbContext(typeof(PGPDbContext))]
-    [Migration("20190928195901_AddPhotoEntity")]
-    partial class AddPhotoEntity
+    [Migration("20190929073054_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,44 @@ namespace PGP.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Types");
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("PGP.Domain.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<int>("CreatedByUserId");
+
+                    b.Property<int>("PetId");
+
+                    b.Property<string>("Text")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("PetId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("PGP.Domain.Entities.Like", b =>
+                {
+                    b.Property<int>("PetId");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("PetId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("PGP.Domain.Entities.Pet", b =>
@@ -97,7 +134,7 @@ namespace PGP.Persistence.Migrations
 
                     b.HasIndex("PetId");
 
-                    b.ToTable("Photo");
+                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("PGP.Domain.Entities.Role", b =>
@@ -147,6 +184,34 @@ namespace PGP.Persistence.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("PGP.Domain.Entities.Comment", b =>
+                {
+                    b.HasOne("PGP.Domain.Entities.User", "CreatedByUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("PGP.Domain.Entities.Pet", "Pet")
+                        .WithMany("Comments")
+                        .HasForeignKey("PetId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PGP.Domain.Entities.Like", b =>
+                {
+                    b.HasOne("PGP.Domain.Entities.Pet", "Pet")
+                        .WithMany("Likes")
+                        .HasForeignKey("PetId")
+                        .HasConstraintName("FK_Like_Pet")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PGP.Domain.Entities.User", "User")
+                        .WithMany("Likes")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_Like_User")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("PGP.Domain.Entities.Pet", b =>
                 {
                     b.HasOne("PGP.Domain.Entities.Category", "Category")
@@ -157,7 +222,7 @@ namespace PGP.Persistence.Migrations
                     b.HasOne("PGP.Domain.Entities.User", "User")
                         .WithMany("Pets")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PGP.Domain.Entities.Photo", b =>

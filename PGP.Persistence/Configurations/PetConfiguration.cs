@@ -29,8 +29,7 @@ namespace PGP.Persistence.Configurations
 
             builder.HasOne(p => p.User)
                 .WithMany(p => p.Pets)
-                .HasForeignKey(p => p.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(p => p.UserId);
 
             builder.HasMany(p => p.Comments)
                 .WithOne(p => p.Pet)

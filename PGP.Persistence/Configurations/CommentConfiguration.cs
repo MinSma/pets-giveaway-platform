@@ -9,8 +9,6 @@ namespace PGP.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
-            builder.HasKey(e => new { e.CreatedByUserId, e.PetId });
-
             builder.Property(p => p.Text)
                 .IsRequired();
 
@@ -26,14 +24,12 @@ namespace PGP.Persistence.Configurations
             builder.HasOne(p => p.CreatedByUser)
                 .WithMany(p => p.Comments)
                 .HasForeignKey(p => p.CreatedByUserId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("FK_Comment_CreatedByUser");
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(p => p.Pet)
                 .WithMany(p => p.Comments)
                 .HasForeignKey(p => p.PetId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("FK_Comment_Pet");
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -31,6 +31,12 @@
     <Compile Remove="Migrations\20190928193939_AddDeleteBehavior.Designer.cs" />
     <Compile Remove="Migrations\20190928200217_AddLikeEntity.cs" />
     <Compile Remove="Migrations\20190928200217_AddLikeEntity.Designer.cs" />
+    <Compile Remove="Migrations\20190929072318_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190929072318_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190929072750_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190929072750_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190929072949_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190929072949_InitialMigration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
