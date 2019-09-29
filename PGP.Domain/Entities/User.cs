@@ -17,5 +17,6 @@ namespace PGP.Domain.Entities
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Like> Likes { get; set; }
         public ICollection<Pet> Pets { get; set; }
+        public ICollection<Photo> Photos { get; set; }
     }
 }

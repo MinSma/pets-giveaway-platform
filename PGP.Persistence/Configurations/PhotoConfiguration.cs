@@ -22,12 +22,15 @@ namespace PGP.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(60);
 
-            builder.Property(p => p.PetId)
-                .IsRequired();
-
             builder.HasOne(p => p.Pet)
                 .WithMany(p => p.Photos)
-                .HasForeignKey(p => p.PetId);
+                .HasForeignKey(p => p.PetId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(p => p.User)
+                .WithMany(p => p.Photos)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

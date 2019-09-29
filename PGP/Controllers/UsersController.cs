@@ -29,7 +29,7 @@ namespace PGP.WebUI.Controllers
             return Ok(await Mediator.Send(query));
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> Create([FromBody] PostCreateUserCommand command)
@@ -47,9 +47,17 @@ namespace PGP.WebUI.Controllers
 
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Login([FromBody] PostUserLoginCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            try
+            {
+                return Ok(await Mediator.Send(command));
+            }
+            catch(InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
