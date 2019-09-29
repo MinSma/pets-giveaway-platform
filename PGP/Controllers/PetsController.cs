@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Pets.Commands.DeletePet;
 using PGP.Application.Pets.Commands.PostCreatePet;
 using PGP.Application.Pets.Commands.PutUpdatePet;
@@ -12,33 +13,47 @@ namespace PGP.WebUI.Controllers
     public class PetsController : BaseController
     {
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAll([FromQuery] GetAllPetsQuery query)
         {
             return Ok(await Mediator.Send(query));
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetById([FromQuery] GetPetByIdQuery query)
         {
             return Ok(await Mediator.Send(query));
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> Create([FromBody] PostCreatePetCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            await Mediator.Send(command);
+
+            return NoContent();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Update([FromBody] PutUpdatePetCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            await Mediator.Send(command);
+            
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Delete([FromQuery] DeletePetCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            await Mediator.Send(command);
+
+            return NoContent();
         }
     }
 }
