@@ -37,9 +37,6 @@ namespace PGP
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            var cloudinarySettingsSection = Configuration.GetSection("CloudinarySettings");
-            services.Configure<CloudinarySettings>(cloudinarySettingsSection);
-
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 

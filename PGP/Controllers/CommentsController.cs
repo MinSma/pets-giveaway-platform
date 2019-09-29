@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Comments.Commands.DeleteComment;
 using PGP.Application.Comments.Commands.PostCreateComment;
 using PGP.Application.Comments.Commands.PutUpdateComment;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class CommentsController : BaseController
     {

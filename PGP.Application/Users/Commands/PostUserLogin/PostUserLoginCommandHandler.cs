@@ -44,7 +44,7 @@ namespace PGP.Application.Users.PostUserLogin
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[] {
-                    new Claim(ClaimTypes.Email, authorize.Email),
+                    new Claim(ClaimTypes.NameIdentifier, authorize.Id.ToString()),
                     new Claim(ClaimTypes.Role, authorize.Role.Title)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(60),

@@ -14,6 +14,6 @@ namespace PGP.Application.Likes.Queries.GetAllLikedPetsByUserId
         public bool? IsSterilized { get; set; }
         public DateTime DateAdded { get; set; }
         public State State { get; set; }
-        public string MainPhotoUrl { get; set; }
+        public string PhotoCode { get; set; }
     }
 }

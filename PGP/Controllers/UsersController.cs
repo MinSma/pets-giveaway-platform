@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Exceptions;
 using PGP.Application.Users.Commands.DeleteUser;
@@ -7,7 +8,6 @@ using PGP.Application.Users.Commands.PutUpdateUser;
 using PGP.Application.Users.PostUserLogin;
 using PGP.Application.Users.Queries.GetAllUsers;
 using PGP.Application.Users.Queries.GetUserById;
-using System;
 using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
@@ -62,7 +62,7 @@ namespace PGP.WebUI.Controllers
             {
                 return Ok(await Mediator.Send(command));
             }
-            catch(UnauthorizedException ex)
+            catch (UnauthorizedException ex)
             {
                 return Unauthorized(ex.Message);
             }
@@ -85,6 +85,7 @@ namespace PGP.WebUI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

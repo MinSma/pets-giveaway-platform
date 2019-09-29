@@ -33,6 +33,7 @@ namespace PGP.Application.Pets.Commands.PutUpdatePet
             pet.Height = request.Height;
             pet.IsSterilized = request.IsSterilized;
             pet.Description = request.Description;
+            pet.PhotoCode = request.PhotoCode;
             pet.CategoryId = request.CategoryId;
 
             await _context.SaveChangesAsync(cancellationToken);

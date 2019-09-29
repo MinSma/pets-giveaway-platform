@@ -16,6 +16,7 @@ namespace PGP.Domain.Entities
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
         public State State { get; set; }
+        public string PhotoCode { get; set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
@@ -25,6 +26,5 @@ namespace PGP.Domain.Entities
 
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Like> Likes { get; set; }
-        public ICollection<Photo> Photos { get; set; }
     }
 }

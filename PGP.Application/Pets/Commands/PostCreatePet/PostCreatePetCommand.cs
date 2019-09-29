@@ -14,6 +14,7 @@ namespace PGP.Application.Pets.Commands.PostCreatePet
         public double? Height { get; set; }
         public bool? IsSterilized { get; set; }
         public string Description { get; set; }
+        public string PhotoCode { get; set; }
         public int CategoryId { get; set; }
     }
 }

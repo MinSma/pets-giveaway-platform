@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Exceptions;
 using PGP.Application.Pets.Commands.DeletePet;
@@ -11,9 +12,11 @@ using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class PetsController : BaseController
     {
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAll()
@@ -21,6 +24,7 @@ namespace PGP.WebUI.Controllers
             return Ok(await Mediator.Send(new GetAllPetsQuery()));
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}/comments")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAllCommentsByPetId(int id)
@@ -28,6 +32,7 @@ namespace PGP.WebUI.Controllers
             return Ok(await Mediator.Send(new GetAllCommentsByPetIdQuery { Id = id }));
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

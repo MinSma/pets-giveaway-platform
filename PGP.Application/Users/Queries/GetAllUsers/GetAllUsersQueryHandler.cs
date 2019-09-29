@@ -27,7 +27,8 @@ namespace PGP.Application.Users.Queries.GetAllUsers
                     Email = x.Email,
                     PhoneNumber = x.PhoneNumber,
                     FirstName = x.FirstName,
-                    LastName = x.LastName
+                    LastName = x.LastName,
+                    PhotoCode = x.PhotoCode
                 })
                 .ToListAsync(cancellationToken);
         }

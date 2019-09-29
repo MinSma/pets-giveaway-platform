@@ -10,6 +10,7 @@ namespace PGP.Domain.Entities
         public string PhoneNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string PhotoCode { get; set; }
 
         public int RoleId { get; set; }
         public Role Role { get; set; }
@@ -17,6 +18,5 @@ namespace PGP.Domain.Entities
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Like> Likes { get; set; }
         public ICollection<Pet> Pets { get; set; }
-        public ICollection<Photo> Photos { get; set; }
     }
 }

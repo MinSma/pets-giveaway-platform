@@ -9,5 +9,6 @@ namespace PGP.Application.Users.Commands.PutUpdateUser
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
+        public string PhotoCode { get; set; }
     }
 }

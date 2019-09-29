@@ -40,11 +40,6 @@ namespace PGP.Persistence.Configurations
                 .WithOne(p => p.Pet)
                 .HasForeignKey(p => p.PetId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(p => p.Photos)
-                .WithOne(p => p.Pet)
-                .HasForeignKey(p => p.PetId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
 
     }

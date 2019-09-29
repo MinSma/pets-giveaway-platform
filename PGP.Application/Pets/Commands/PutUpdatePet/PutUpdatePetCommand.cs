@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using PGP.Domain.Enums;
-using System;
 
 namespace PGP.Application.Pets.Commands.PutUpdatePet
 {
@@ -14,6 +13,7 @@ namespace PGP.Application.Pets.Commands.PutUpdatePet
         public double? Height { get; set; }
         public bool? IsSterilized { get; set; }
         public string Description { get; set; }
+        public string PhotoCode { get; set; }
         public int CategoryId { get; set; }
     }
 }

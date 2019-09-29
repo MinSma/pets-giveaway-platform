@@ -11,7 +11,6 @@ namespace PGP.Persistence
         DbSet<Comment> Comments { get; set; }
         DbSet<Like> Likes { get; set; }
         DbSet<Pet> Pets { get; set; }
-        DbSet<Photo> Photos { get; set; }
         DbSet<Role> Roles { get; set; }
         DbSet<User> Users { get; set; }
 

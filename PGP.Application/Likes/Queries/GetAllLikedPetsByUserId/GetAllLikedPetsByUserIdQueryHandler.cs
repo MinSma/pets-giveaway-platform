@@ -21,7 +21,6 @@ namespace PGP.Application.Likes.Queries.GetAllLikedPetsByUserId
         {
             return await _context.Likes
                 .Include(x => x.Pet)
-                .Include(x => x.Pet.Photos)
                 .Where(x => x.UserId == request.UserId)
                 .Select(x => new GetAllLikedPetsByUserIdQueryResponse
                 {
@@ -33,7 +32,7 @@ namespace PGP.Application.Likes.Queries.GetAllLikedPetsByUserId
                     IsSterilized = x.Pet.IsSterilized,
                     DateAdded = x.Pet.DateAdded,
                     State = x.Pet.State,
-                    MainPhotoUrl = x.Pet.Photos.FirstOrDefault(p => p.IsMain).Url
+                    PhotoCode = x.Pet.PhotoCode
                 })
                 .ToListAsync(cancellationToken);
         }

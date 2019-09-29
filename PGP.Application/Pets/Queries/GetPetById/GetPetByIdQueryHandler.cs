@@ -21,7 +21,6 @@ namespace PGP.Application.Pets.Queries.GetPetById
         {
             var pet = await _context.Pets
                 .AsNoTracking()
-                .Include(x => x.Photos)
                 .Include(x => x.Comments)
                 .Where(x => x.Id == request.Id)
                 .Select(x => new GetPetByIdQueryResponse
@@ -35,8 +34,8 @@ namespace PGP.Application.Pets.Queries.GetPetById
                     IsSterilized = x.IsSterilized,
                     Description = x.Description,
                     DateAdded = x.DateAdded,
+                    PhotoCode = x.PhotoCode,
                     State = x.State,
-                    Photos = x.Photos,
                     Comments = x.Comments
                 })
                 .FirstOrDefaultAsync(cancellationToken);

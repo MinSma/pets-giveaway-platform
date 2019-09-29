@@ -45,11 +45,6 @@ namespace RIS.Persistence.Configuration
                 .WithOne(p => p.User)
                 .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(p => p.Photos)
-                .WithOne(p => p.User)
-                .HasForeignKey(p => p.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

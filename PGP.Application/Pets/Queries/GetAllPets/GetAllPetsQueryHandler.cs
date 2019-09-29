@@ -21,7 +21,6 @@ namespace PGP.Application.Pets.Queries.GetAllPets
         {
             return await _context.Pets
                 .AsNoTracking()
-                .Include(x => x.Photos)
                 .Select(x => new GetAllPetsQueryResponse
                 {
                     Id = x.Id,
@@ -34,7 +33,7 @@ namespace PGP.Application.Pets.Queries.GetAllPets
                     Description = x.Description,
                     DateAdded = x.DateAdded,
                     State = x.State,
-                    MainPhotoUrl = x.Photos.FirstOrDefault(p => p.IsMain).Url
+                    PhotoCode = x.PhotoCode
                 })
                 .ToListAsync(cancellationToken);
         }

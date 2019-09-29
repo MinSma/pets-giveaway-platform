@@ -35,7 +35,8 @@ namespace PGP.Application.Users.Commands.PostCreateUser
                 Email = request.Email,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                RoleId = 1
+                RoleId = 1,
+                PhotoCode = request.PhotoCode
             };
 
             await _context.Users.AddAsync(user, cancellationToken);

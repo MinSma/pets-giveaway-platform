@@ -31,6 +31,7 @@ namespace PGP.Application.Pets.Commands.PostCreatePet
                 DateAdded = DateTime.Now,
                 State = State.NotGivenAway,
                 CategoryId = request.CategoryId,
+                PhotoCode = request.PhotoCode,
                 UserId = 4
             };
 
