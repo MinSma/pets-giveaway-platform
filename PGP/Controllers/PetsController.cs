@@ -4,6 +4,7 @@ using PGP.Application.Exceptions;
 using PGP.Application.Pets.Commands.DeletePet;
 using PGP.Application.Pets.Commands.PostCreatePet;
 using PGP.Application.Pets.Commands.PutUpdatePet;
+using PGP.Application.Pets.Queries.GetAllCommentsByPetId;
 using PGP.Application.Pets.Queries.GetAllPets;
 using PGP.Application.Pets.Queries.GetPetById;
 using System.Threading.Tasks;
@@ -18,6 +19,13 @@ namespace PGP.WebUI.Controllers
         public async Task<ActionResult> GetAll()
         {
             return Ok(await Mediator.Send(new GetAllPetsQuery()));
+        }
+
+        [HttpGet("{id}/comments")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetAllCommentsByPetId(int id)
+        {
+            return Ok(await Mediator.Send(new GetAllCommentsByPetIdQuery { Id = id }));
         }
 
         [HttpGet("{id}")]

@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
 {
-    [Route("api/users/{userId}/[controller]")]
+    [Route("api/users/{userId}/")]
     public class LikesController : BaseController
     {
-        [HttpGet]
+        [HttpGet("likes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAllLikedPetsByUserId(int userId)
         {
             return Ok(await Mediator.Send(new GetAllLikedPetsByUserIdQuery { UserId = userId }));
         }
 
-        [HttpPost]
+        [HttpPost("pets/{petId}/likes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> Create(int userId, int petId)
@@ -35,7 +35,7 @@ namespace PGP.WebUI.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("pets/{petId}/likes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Delete(int userId, int petId)
