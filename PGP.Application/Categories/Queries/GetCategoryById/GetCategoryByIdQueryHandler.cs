@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Exceptions;
 using PGP.Persistence;
 using System.Linq;
 using System.Threading;
@@ -18,7 +19,7 @@ namespace PGP.Application.Categories.Queries.GetCategoryById
 
         public async Task<GetCategoryByIdQueryResponse> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _context.Categories
+            var category = await _context.Categories
                 .AsNoTracking()
                 .Select(x => new GetCategoryByIdQueryResponse
                 {
@@ -26,6 +27,13 @@ namespace PGP.Application.Categories.Queries.GetCategoryById
                     Title = x.Title
                 })
                 .FirstOrDefaultAsync(cancellationToken);
+
+            if (category == null)
+            {
+                throw new NotFoundException($"Category id {request.Id} not exists.");
+            }
+
+            return category;
         }
     }
 }

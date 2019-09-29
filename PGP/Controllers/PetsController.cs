@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PGP.Application.Exceptions;
 using PGP.Application.Pets.Commands.DeletePet;
 using PGP.Application.Pets.Commands.PostCreatePet;
 using PGP.Application.Pets.Commands.PutUpdatePet;
@@ -14,17 +15,24 @@ namespace PGP.WebUI.Controllers
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> GetAll([FromQuery] GetAllPetsQuery query)
+        public async Task<ActionResult> GetAll()
         {
-            return Ok(await Mediator.Send(query));
+            return Ok(await Mediator.Send(new GetAllPetsQuery()));
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> GetById([FromQuery] GetPetByIdQuery query)
+        public async Task<ActionResult> GetById(int id)
         {
-            return Ok(await Mediator.Send(query));
+            try
+            {
+                return Ok(await Mediator.Send(new GetPetByIdQuery { Id = id }));
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost]
@@ -41,19 +49,33 @@ namespace PGP.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Update([FromBody] PutUpdatePetCommand command)
         {
-            await Mediator.Send(command);
-            
-            return Ok();
+            try
+            {
+                await Mediator.Send(command);
+
+                return Ok();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> Delete([FromQuery] DeletePetCommand command)
+        public async Task<ActionResult> Delete(int id)
         {
-            await Mediator.Send(command);
+            try
+            {
+                await Mediator.Send(new DeletePetCommand { Id = id });
 
-            return Ok();
+                return Ok();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Exceptions;
 using PGP.Persistence;
 using System;
 using System.Threading;
@@ -23,7 +24,7 @@ namespace PGP.Application.Categories.Commands.DeleteCategory
 
             if (category == null)
             {
-                throw new InvalidOperationException($"Category id {request.Id} not exists.");
+                throw new NotFoundException($"Category id {request.Id} not exists.");
             }
 
             _context.Categories.Remove(category);

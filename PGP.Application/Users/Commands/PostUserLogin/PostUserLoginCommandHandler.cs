@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using PGP.Application.Exceptions;
 using PGP.Application.Helpers;
 using PGP.Persistence;
 using System;
@@ -34,7 +35,7 @@ namespace PGP.Application.Users.PostUserLogin
 
             if (authorize == null)
             {
-                throw new InvalidOperationException("User not exists.");
+                throw new UnauthorizedException("Login failed.");
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();

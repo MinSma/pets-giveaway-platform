@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Exceptions;
 using PGP.Persistence;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,7 +23,7 @@ namespace PGP.Application.Categories.Commands.PutUpdateCategory
 
             if (category == null)
             {
-                throw new InvalidOperationException($"Category id {request.Id} not exists.");
+                throw new NotFoundException($"Category id {request.Id} not exists.");
             }
 
             category.Title = request.Title;

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Exceptions;
 using PGP.Application.Helpers;
 using PGP.Domain.Entities;
 using PGP.Persistence;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,7 +25,7 @@ namespace PGP.Application.Users.Commands.PostCreateUser
 
             if (userExists)
             {
-                throw new InvalidOperationException($"User with email: {request.Email} already exists.");
+                throw new ConflictException($"User with email: {request.Email} already exists.");
             }
 
             var user = new User

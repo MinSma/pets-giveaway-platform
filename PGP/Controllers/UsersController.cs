@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PGP.Application.Exceptions;
 using PGP.Application.Users.Commands.DeleteUser;
 using PGP.Application.Users.Commands.PostCreateUser;
 using PGP.Application.Users.Commands.PutUpdateUser;
@@ -26,7 +27,14 @@ namespace PGP.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetById([FromQuery] GetUserByIdQuery query)
         {
-            return Ok(await Mediator.Send(query));
+            try
+            {
+                return Ok(await Mediator.Send(query));
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost("register")]
@@ -39,7 +47,7 @@ namespace PGP.WebUI.Controllers
                 await Mediator.Send(command);
                 return Ok();
             }
-            catch (InvalidOperationException ex)
+            catch (ConflictException ex)
             {
                 return Conflict(ex.Message);
             }
@@ -47,16 +55,16 @@ namespace PGP.WebUI.Controllers
 
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> Login([FromBody] PostUserLoginCommand command)
         {
             try
             {
                 return Ok(await Mediator.Send(command));
             }
-            catch(InvalidOperationException ex)
+            catch(UnauthorizedException ex)
             {
-                return NotFound(ex.Message);
+                return Unauthorized(ex.Message);
             }
         }
 
@@ -65,9 +73,16 @@ namespace PGP.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Update([FromBody] PutUpdateUserCommand command)
         {
-            await Mediator.Send(command);
+            try
+            {
+                await Mediator.Send(command);
 
-            return Ok();
+                return Ok();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -75,9 +90,16 @@ namespace PGP.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Delete([FromQuery] DeleteUserCommand command)
         {
-            await Mediator.Send(command);
+            try
+            {
+                await Mediator.Send(command);
 
-            return Ok();
+                return Ok();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

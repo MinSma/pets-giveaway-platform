@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Exceptions;
 using PGP.Domain.Entities;
 using PGP.Persistence;
 using System;
@@ -24,7 +25,7 @@ namespace PGP.Application.Categories.Commands.PostCreateCategory
 
             if (categoryWithNameExist)
             {
-                throw new InvalidOperationException($"Category with name {request.Title} already exists.");
+                throw new ConflictException($"Category with name {request.Title} already exists.");
             }
 
             await _context.Categories.AddAsync(new Category
