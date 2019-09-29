@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using PGP.Persistence;
 using System;
 
-
 namespace PGP
 {
     public class Program
