@@ -6,15 +6,14 @@ using PGP.Application.Helpers;
 using PGP.Persistence;
 using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PGP.Application.Auth.PostUserLogin
+namespace PGP.Application.Users.PostUserLogin
 {
-    public class PostUserLoginCommandHandler : IRequestHandler<PostUserLoginCommand, string>
+    public class PostUserLoginCommandHandler : IRequestHandler<PostUserLoginCommand, PostUserLoginCommandResponse>
     {
         private readonly IPGPDbContext _context;
         private readonly AppSettings _appSettings;
@@ -25,7 +24,7 @@ namespace PGP.Application.Auth.PostUserLogin
             _appSettings = appsettings.Value;
         }
 
-        public async Task<string> Handle(PostUserLoginCommand request, CancellationToken cancellationToken)
+        public async Task<PostUserLoginCommandResponse> Handle(PostUserLoginCommand request, CancellationToken cancellationToken)
         {
             var hashedPassword = AuthHelper.GetPasswordHash(request.Password);
 
@@ -53,7 +52,10 @@ namespace PGP.Application.Auth.PostUserLogin
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return tokenHandler.WriteToken(token);
+            return new PostUserLoginCommandResponse
+            {
+                JwtToken = tokenHandler.WriteToken(token)
+            };
         }
     }
 }

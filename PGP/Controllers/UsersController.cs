@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Users.Commands.DeleteUser;
 using PGP.Application.Users.Commands.PostCreateUser;
 using PGP.Application.Users.Commands.PutUpdateUser;
+using PGP.Application.Users.PostUserLogin;
 using PGP.Application.Users.Queries.GetAllUsers;
 using PGP.Application.Users.Queries.GetUserById;
+using System;
 using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
@@ -29,11 +31,25 @@ namespace PGP.WebUI.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> Create([FromBody] PostCreateUserCommand command)
         {
-            await Mediator.Send(command);
+            try
+            {
+                await Mediator.Send(command);
+                return Ok();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+        }
 
-            return Ok();
+        [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> Login([FromBody] PostUserLoginCommand command)
+        {
+            return Ok(await Mediator.Send(command));
         }
 
         [HttpPut("{id}")]
