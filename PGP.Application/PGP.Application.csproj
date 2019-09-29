@@ -17,8 +17,4 @@
     <ProjectReference Include="..\PGP.Persistence\PGP.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Users\Commands\" />
-  </ItemGroup>
-
 </Project>
