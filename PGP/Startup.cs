@@ -77,12 +77,7 @@ namespace PGP
 
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
 
             app.UseSpa(spa =>
             {
