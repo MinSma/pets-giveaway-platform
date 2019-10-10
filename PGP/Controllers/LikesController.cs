@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Exceptions;
-using PGP.Application.Likes.Commands.DeleteLikeCommand;
-using PGP.Application.Likes.Commands.PostLikeCreateCommand;
+using PGP.Application.Likes.Commands.DeleteLike;
+using PGP.Application.Likes.Commands.CreateLike;
 using PGP.Application.Likes.Queries.GetAllLikedPetsByUserId;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -26,21 +26,21 @@ namespace PGP.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> Create(int userId, int petId)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)
-                || User.FindFirst(ClaimTypes.Role).Value != "Admin")
-            {
-                return Unauthorized();
-            }
+            //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)
+            //    || User.FindFirst(ClaimTypes.Role).Value != "Admin")
+            //{
+            //    return Unauthorized();
+            //}
 
             try
             {
-                await Mediator.Send(new PostLikeCreateCommand { UserId = userId, PetId = petId });
+                await Mediator.Send(new CreateLikeCommand { UserId = userId, PetId = petId });
 
                 return Ok();
             }
             catch (ConflictException ex)
             {
-                return Conflict(ex);
+                return Conflict(ex.Message);
             }
         }
 
@@ -49,11 +49,11 @@ namespace PGP.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Delete(int userId, int petId)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) 
-                || User.FindFirst(ClaimTypes.Role).Value != "Admin")
-            {
-                return Unauthorized();
-            }
+            //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) 
+            //    || User.FindFirst(ClaimTypes.Role).Value != "Admin")
+            //{
+            //    return Unauthorized();
+            //}
 
             try
             {

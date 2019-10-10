@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Categories.Commands.DeleteCategory;
-using PGP.Application.Categories.Commands.PostCreateCategory;
-using PGP.Application.Categories.Commands.PutUpdateCategory;
+using PGP.Application.Categories.Commands.CreateCategory;
+using PGP.Application.Categories.Commands.UpdateCategory;
 using PGP.Application.Categories.Queries.GetAllCategories;
 using PGP.Application.Categories.Queries.GetCategoryById;
 using PGP.Application.Exceptions;
@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     public class CategoriesController : BaseController
     {
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAll()
@@ -23,7 +23,7 @@ namespace PGP.WebUI.Controllers
             return Ok(await Mediator.Send(new GetAllCategoriesQuery()));
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -39,10 +39,10 @@ namespace PGP.WebUI.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> Create([FromBody] PostCreateCategoryCommand command)
+        public async Task<ActionResult> Create([FromBody] CreateCategoryCommand command)
         {
             try
             {
@@ -56,11 +56,11 @@ namespace PGP.WebUI.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> Update([FromBody] PutUpdateCategoryCommand command)
+        public async Task<ActionResult> Update([FromBody] UpdateCategoryCommand command)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace PGP.WebUI.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

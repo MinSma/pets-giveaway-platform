@@ -24,6 +24,7 @@ namespace PGP.Application.Likes.Queries.GetAllLikedPetsByUserId
                 .Where(x => x.UserId == request.UserId)
                 .Select(x => new GetAllLikedPetsByUserIdQueryResponse
                 {
+                    Id = x.Pet.Id,
                     Name = x.Pet.Name,
                     Age = x.Pet.Age,
                     Gender = x.Pet.Gender,

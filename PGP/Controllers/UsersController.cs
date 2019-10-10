@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Exceptions;
 using PGP.Application.Users.Commands.DeleteUser;
-using PGP.Application.Users.Commands.PostCreateUser;
-using PGP.Application.Users.Commands.PutUpdateUser;
-using PGP.Application.Users.PostUserLogin;
+using PGP.Application.Users.Commands.CreateUser;
+using PGP.Application.Users.Commands.UpdateUser;
+using PGP.Application.Users.UserLogin;
 using PGP.Application.Users.Queries.GetAllUsers;
 using PGP.Application.Users.Queries.GetUserById;
 using System.Threading.Tasks;
@@ -40,7 +40,7 @@ namespace PGP.WebUI.Controllers
         [HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<ActionResult> Create([FromBody] PostCreateUserCommand command)
+        public async Task<ActionResult> Create([FromBody] CreateUserCommand command)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace PGP.WebUI.Controllers
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult> Login([FromBody] PostUserLoginCommand command)
+        public async Task<ActionResult> Login([FromBody] UserLoginCommand command)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace PGP.WebUI.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> Update([FromBody] PutUpdateUserCommand command)
+        public async Task<ActionResult> Update([FromBody] UpdateUserCommand command)
         {
             try
             {

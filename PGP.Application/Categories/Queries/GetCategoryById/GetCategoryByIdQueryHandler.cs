@@ -21,6 +21,7 @@ namespace PGP.Application.Categories.Queries.GetCategoryById
         {
             var category = await _context.Categories
                 .AsNoTracking()
+                .Where(x => x.Id == request.Id)
                 .Select(x => new GetCategoryByIdQueryResponse
                 {
                     Id = x.Id,
