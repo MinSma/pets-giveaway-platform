@@ -7,11 +7,11 @@ namespace PGP.WebUI.Services
     {
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
             Role = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Role);
         }
 
-        public string UserId { get; }
+        public int UserId { get; }
         public string Role { get; set; }
     }
 }
