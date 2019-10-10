@@ -12,6 +12,7 @@ using PGP.Application.Helpers;
 using PGP.Application.Infrastructure;
 using PGP.Application.Pets.Queries.GetAllPets;
 using PGP.Persistence;
+using PGP.WebUI.Services;
 using System.Reflection;
 using System.Text;
 
@@ -60,6 +61,10 @@ namespace PGP
                     ValidateAudience = false
                 };
             });
+
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
