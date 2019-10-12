@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     public class CategoriesController : BaseController
     {
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAll()
@@ -23,7 +23,7 @@ namespace PGP.WebUI.Controllers
             return Ok(await Mediator.Send(new GetAllCategoriesQuery()));
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -39,7 +39,6 @@ namespace PGP.WebUI.Controllers
             }
         }
 
-        //[Authorize(Roles = "Admin")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> Create([FromBody] CreateCategoryCommand command)
@@ -56,7 +55,6 @@ namespace PGP.WebUI.Controllers
             }
         }
 
-        //[Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -74,7 +72,6 @@ namespace PGP.WebUI.Controllers
             }
         }
 
-        //[Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

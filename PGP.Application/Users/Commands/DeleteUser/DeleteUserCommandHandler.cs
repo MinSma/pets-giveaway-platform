@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Common.Interfaces;
 using PGP.Application.Exceptions;
 using PGP.Persistence;
 using System.Threading;
@@ -10,16 +12,23 @@ namespace PGP.Application.Users.Commands.DeleteUser
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, Unit>
     {
         private readonly IPGPDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public DeleteUserCommandHandler(IPGPDbContext context)
+        public DeleteUserCommandHandler(IPGPDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+
+            if (_currentUserService.UserId != user.Id && !_currentUserService.Role.Equals("Admin"))
+            {
+                throw new UnauthorizedException("You can't do this action.");
+            }
 
             if (user == null)
             {
