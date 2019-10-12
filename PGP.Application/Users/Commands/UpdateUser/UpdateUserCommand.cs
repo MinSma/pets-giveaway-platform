@@ -2,7 +2,7 @@
 
 namespace PGP.Application.Users.Commands.UpdateUser
 {
-    public class UpdateUserCommand : IRequest<Unit>
+    public class UpdateUserCommand : IRequest
     {
         public int Id { get; set; }
         public string Password { get; set; }

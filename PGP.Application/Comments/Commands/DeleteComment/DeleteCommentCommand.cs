@@ -2,7 +2,7 @@
 
 namespace PGP.Application.Comments.Commands.DeleteComment
 {
-    public class DeleteCommentCommand : IRequest<Unit>
+    public class DeleteCommentCommand : IRequest
     {
         public int Id { get; set; }
     }

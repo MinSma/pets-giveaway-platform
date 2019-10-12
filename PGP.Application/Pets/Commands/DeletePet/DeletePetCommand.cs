@@ -2,7 +2,7 @@
 
 namespace PGP.Application.Pets.Commands.DeletePet
 {
-    public class DeletePetCommand : IRequest<Unit>
+    public class DeletePetCommand : IRequest
     {
         public int Id { get; set; }
         public int UserId { get; set; }

@@ -2,7 +2,7 @@
 
 namespace PGP.Application.Comments.Commands.UpdateComment
 {
-    public class UpdateCommentCommand : IRequest<Unit>
+    public class UpdateCommentCommand : IRequest
     {
         public int Id { get; set; }
         public string Text { get; set; }

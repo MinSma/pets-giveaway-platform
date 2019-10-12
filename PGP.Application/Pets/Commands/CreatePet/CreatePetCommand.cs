@@ -4,7 +4,7 @@ using System;
 
 namespace PGP.Application.Pets.Commands.CreatePet
 {
-    public class CreatePetCommand : IRequest<Unit>
+    public class CreatePetCommand : IRequest
     {
         public int UserId { get; set; }
         public string Name { get; set; }
