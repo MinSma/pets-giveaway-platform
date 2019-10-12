@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Common.Interfaces;
 using PGP.Application.Exceptions;
 using PGP.Persistence;
 using System.Threading;
@@ -10,10 +11,12 @@ namespace PGP.Application.Pets.Commands.UpdatePet
     public class UpdatePetCommandHandler : IRequestHandler<UpdatePetCommand, Unit>
     {
         private readonly IPGPDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public UpdatePetCommandHandler(IPGPDbContext context)
+        public UpdatePetCommandHandler(IPGPDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Unit> Handle(UpdatePetCommand request, CancellationToken cancellationToken)
@@ -24,6 +27,11 @@ namespace PGP.Application.Pets.Commands.UpdatePet
             if (pet == null)
             {
                 throw new NotFoundException($"Pet id {request.Id} not exists.");
+            }
+
+            if (_currentUserService.UserId != pet.UserId && !_currentUserService.Role.Equals("Admin"))
+            {
+                throw new UnauthorizedException("You can't do this action.");
             }
 
             pet.Name = request.Name;

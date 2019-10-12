@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using PGP.Application.Common.Interfaces;
+using PGP.Application.Exceptions;
 using PGP.Domain.Entities;
 using PGP.Domain.Enums;
 using PGP.Persistence;
@@ -11,14 +13,21 @@ namespace PGP.Application.Pets.Commands.CreatePet
     public class CreatePetCommandHandler : IRequestHandler<CreatePetCommand, Unit>
     {
         private readonly IPGPDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public CreatePetCommandHandler(IPGPDbContext context)
+        public CreatePetCommandHandler(IPGPDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Unit> Handle(CreatePetCommand request, CancellationToken cancellationToken)
         {
+            if (_currentUserService.UserId != request.UserId)
+            {
+                throw new UnauthorizedException("You can't do this action.");
+            }
+
             Pet pet = new Pet
             {
                 Name = request.Name,

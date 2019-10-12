@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Common.Interfaces;
 using PGP.Application.Exceptions;
 using PGP.Domain.Entities;
 using PGP.Persistence;
@@ -11,14 +12,21 @@ namespace PGP.Application.Likes.Commands.CreateLike
     public class CreateLikeCommandHandler : IRequestHandler<CreateLikeCommand, Unit>
     {
         private readonly IPGPDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public CreateLikeCommandHandler(IPGPDbContext context)
+        public CreateLikeCommandHandler(IPGPDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Unit> Handle(CreateLikeCommand request, CancellationToken cancellationToken)
         {
+            if (_currentUserService.UserId != request.UserId)
+            {
+                throw new UnauthorizedException("You can't do this action.");
+            }
+
             var like = await _context.Likes
                 .FirstOrDefaultAsync(x => x.UserId == request.UserId && x.PetId == request.PetId,
                 cancellationToken);

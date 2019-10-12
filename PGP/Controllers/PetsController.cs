@@ -17,7 +17,7 @@ namespace PGP.WebUI.Controllers
     [Route("api/[controller]")]
     public class PetsController : BaseController
     {
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAll()
@@ -25,7 +25,7 @@ namespace PGP.WebUI.Controllers
             return Ok(await Mediator.Send(new GetAllPetsQuery()));
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("{id}/comments")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAllCommentsByPetId(int id)
@@ -33,7 +33,7 @@ namespace PGP.WebUI.Controllers
             return Ok(await Mediator.Send(new GetAllCommentsByPetIdQuery { Id = id }));
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -51,35 +51,45 @@ namespace PGP.WebUI.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> Create([FromBody] CreatePetCommand command)
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            try
+            {
+                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            command.UserId = userId;
+                command.UserId = userId;
 
-            await Mediator.Send(command);
+                await Mediator.Send(command);
 
-            return Ok();
+                return Ok();
+            }
+            catch (UnauthorizedException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> Update([FromBody] UpdatePetCommand command)
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult> Update(int id, [FromBody] UpdatePetCommand command)
         {
             try
             {
-                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-                var role = User.FindFirst(ClaimTypes.Role).Value;
-
-                if (userId != command.UserId && !role.Equals("Admin"))
+                if (command.Id == 0)
                 {
-                    return Unauthorized();
+                    command.Id = id;
                 }
 
                 await Mediator.Send(command);
 
                 return Ok();
+            }
+            catch (UnauthorizedException ex)
+            {
+                return Unauthorized(ex.Message);
             }
             catch (NotFoundException ex)
             {
@@ -90,16 +100,18 @@ namespace PGP.WebUI.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> Delete(int id)
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            var role = User.FindFirst(ClaimTypes.Role).Value;
-
             try
             {
-                await Mediator.Send(new DeletePetCommand { Id = id, UserId = userId, Role = role });
+                await Mediator.Send(new DeletePetCommand { Id = id });
 
                 return Ok();
+            }
+            catch (UnauthorizedException ex)
+            {
+                return Unauthorized(ex.Message);
             }
             catch (NotFoundException ex)
             {

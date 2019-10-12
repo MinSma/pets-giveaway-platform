@@ -1,4 +1,4 @@
-﻿using PGP.Domain.Entities;
+﻿using PGP.Application.Users;
 using System;
 
 namespace PGP.Application.Pets.Queries.GetAllCommentsByPetId
@@ -8,6 +8,6 @@ namespace PGP.Application.Pets.Queries.GetAllCommentsByPetId
         public int Id { get; set; }
         public string Text { get; set; }
         public DateTime CreatedAt { get; set; }
-        public User CreatedByUser { get; set; }
+        public UserDto CreatedByUser { get; set; }
     }
 }
