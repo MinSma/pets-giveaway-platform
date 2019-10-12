@@ -1,4 +1,4 @@
-﻿namespace PGP.WebUI.Services
+﻿namespace PGP.Application.Common.Interfaces
 {
     public interface ICurrentUserService
     {

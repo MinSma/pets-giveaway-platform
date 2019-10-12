@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using PGP.Application.Common.Interfaces;
 using System.Security.Claims;
 
 namespace PGP.WebUI.Services

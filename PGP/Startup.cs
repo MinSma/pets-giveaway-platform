@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using PGP.Application.Common.Interfaces;
 using PGP.Application.Helpers;
 using PGP.Application.Infrastructure;
 using PGP.Application.Pets.Queries.GetAllPets;

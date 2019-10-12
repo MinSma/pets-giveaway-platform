@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Common.Interfaces;
 using PGP.Application.Exceptions;
 using PGP.Domain.Entities;
 using PGP.Persistence;
