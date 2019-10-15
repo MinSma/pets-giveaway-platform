@@ -5,11 +5,17 @@ VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.WebUI", "PGP\PGP.WebUI.csproj", "{58FB32DA-C233-4A29-AF50-92EDAE68A36C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Application", "PGP.Application\PGP.Application.csproj", "{9DD12413-C9BE-465A-986F-5E6F5281E5BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.Application", "PGP.Application\PGP.Application.csproj", "{9DD12413-C9BE-465A-986F-5E6F5281E5BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Domain", "PGP.Domain\PGP.Domain.csproj", "{46039D88-A44D-4AC8-815A-61FE6499DA5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.Domain", "PGP.Domain\PGP.Domain.csproj", "{46039D88-A44D-4AC8-815A-61FE6499DA5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Persistence", "PGP.Persistence\PGP.Persistence.csproj", "{F1549872-6A9B-48AC-B0FB-8EC1B050CB19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.Persistence", "PGP.Persistence\PGP.Persistence.csproj", "{F1549872-6A9B-48AC-B0FB-8EC1B050CB19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F492FE40-A42A-4E97-8EB9-5BEB0178B45E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Application.UnitTests", "PGP.Application.UnitTests\PGP.Application.UnitTests.csproj", "{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.WebUI.IntegrationTests", "PGP.WebUI.IntegrationTests\PGP.WebUI.IntegrationTests.csproj", "{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +39,21 @@ Global
 		{F1549872-6A9B-48AC-B0FB-8EC1B050CB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1549872-6A9B-48AC-B0FB-8EC1B050CB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1549872-6A9B-48AC-B0FB-8EC1B050CB19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA} = {F492FE40-A42A-4E97-8EB9-5BEB0178B45E}
+		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0} = {F492FE40-A42A-4E97-8EB9-5BEB0178B45E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E271204-2B0F-4D2A-AC37-EDD41005A2C3}
