@@ -41,6 +41,7 @@ namespace PGP.WebUI.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> Create([FromBody] CreateCategoryCommand command)
         {
             try
@@ -57,11 +58,17 @@ namespace PGP.WebUI.Controllers
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> Update([FromBody] UpdateCategoryCommand command)
+        public async Task<ActionResult> Update(int id, [FromBody] UpdateCategoryCommand command)
         {
             try
             {
+                if (command.Id == 0)
+                {
+                    command.Id = id;
+                }
+
                 await Mediator.Send(command);
 
                 return Ok();
@@ -69,6 +76,10 @@ namespace PGP.WebUI.Controllers
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (ConflictException ex)
+            {
+                return Conflict(ex.Message);
             }
         }
 

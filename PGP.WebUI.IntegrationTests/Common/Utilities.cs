@@ -31,26 +31,71 @@ namespace PGP.WebUI.IntegrationTests.Common
                 Title = "Dogs"
             };
 
-            var role = new Role
+            var category2 = new Category
+            {
+                Title = "Cats"
+            };
+
+            var adminRole = new Role
             {
                 Title = "Admin"
             };
 
+            var moderatorRole = new Role
+            {
+                Title = "Moderator"
+            };
+
+            var userRole = new Role
+            {
+                Title = "User"
+            };
+
+
             context.Categories.Add(category);
-            context.Roles.Add(role);
+            context.Categories.Add(category2);
+            
+            context.Roles.Add(adminRole);
+            context.Roles.Add(moderatorRole);
+            context.Roles.Add(userRole);
+            
             context.SaveChanges();
+
+            var admin = new User
+            {
+                Email = "admin@admin.com",
+                Password = "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8",
+                PhoneNumber = "8654123694",
+                FirstName = "Admin",
+                LastName = "Adminas",
+                PhotoCode = "",
+                RoleId = adminRole.Id
+            };
+
+            var moderator = new User
+            {
+                Email = "moderator@email.com",
+                Password = "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8",
+                PhoneNumber = "8654123694",
+                FirstName = "Moderator",
+                LastName = "Moderatorius",
+                PhotoCode = "",
+                RoleId = moderatorRole.Id
+            };
 
             var user = new User
             {
-                Email = "email@email.com",
+                Email = "petras@petrauskas.com",
                 Password = "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8",
                 PhoneNumber = "8654123694",
-                FirstName = "Vardas",
-                LastName = "Pavarde",
+                FirstName = "Petras",
+                LastName = "Petrauskas",
                 PhotoCode = "",
-                RoleId = role.Id
+                RoleId = userRole.Id
             };
 
+            context.Add(admin);
+            context.Add(moderator);
             context.Add(user);
             context.SaveChanges();
 

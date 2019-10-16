@@ -26,6 +26,14 @@ namespace PGP.Application.Categories.Commands.UpdateCategory
                 throw new NotFoundException($"Category id {request.Id} not exists.");
             }
 
+            var categoryWithNameExist = await _context.Categories
+                .AnyAsync(x => x.Title.ToLower().Equals(request.Title.ToLower()));
+
+            if (categoryWithNameExist)
+            {
+                throw new ConflictException($"Category with name {request.Title} already exists.");
+            }
+
             category.Title = request.Title;
 
             await _context.SaveChangesAsync(cancellationToken);
