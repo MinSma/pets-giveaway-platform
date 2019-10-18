@@ -25,14 +25,14 @@ namespace PGP.Application.Users.Commands.DeleteUser
             var user = await _context.Users
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-            if (_currentUserService.UserId != user.Id && !_currentUserService.Role.Equals("Admin"))
-            {
-                throw new UnauthorizedException("You can't do this action.");
-            }
-
             if (user == null)
             {
                 throw new NotFoundException($"User id {request.Id} not exists.");
+            }
+
+            if (_currentUserService.UserId != user.Id && !_currentUserService.Role.Equals("Admin"))
+            {
+                throw new UnauthorizedException("You can't do this action.");
             }
 
             _context.Users.Remove(user);

@@ -13,9 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.Persistence", "PGP.Pers
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F492FE40-A42A-4E97-8EB9-5BEB0178B45E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.Application.UnitTests", "PGP.Application.UnitTests\PGP.Application.UnitTests.csproj", "{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGP.WebUI.IntegrationTests", "PGP.WebUI.IntegrationTests\PGP.WebUI.IntegrationTests.csproj", "{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.WebUI.IntegrationTests", "PGP.WebUI.IntegrationTests\PGP.WebUI.IntegrationTests.csproj", "{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{F1549872-6A9B-48AC-B0FB-8EC1B050CB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1549872-6A9B-48AC-B0FB-8EC1B050CB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1549872-6A9B-48AC-B0FB-8EC1B050CB19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,7 +46,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{206C47B7-DFDB-454F-99DF-95D7E51AE3CA} = {F492FE40-A42A-4E97-8EB9-5BEB0178B45E}
 		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0} = {F492FE40-A42A-4E97-8EB9-5BEB0178B45E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

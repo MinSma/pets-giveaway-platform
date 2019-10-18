@@ -21,8 +21,4 @@
     <ProjectReference Include="..\PGP.Persistence\PGP.Persistence.csproj" />
     <ProjectReference Include="..\PGP\PGP.WebUI.csproj" />  </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Users\" />
-  </ItemGroup>
-
 </Project>

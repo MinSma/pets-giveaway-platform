@@ -76,6 +76,8 @@ namespace PGP.WebUI.IntegrationTests.Common
                     command.Email = "petras@petrauskas.com";
                     command.Password = "password";
                     break;
+                default:
+                    throw new Exception("Specified Role not exists");
             }
 
             var content = Utilities.GetRequestContent(command);
