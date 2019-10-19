@@ -5,7 +5,6 @@ using PGP.Application.Exceptions;
 using PGP.Application.Likes.Commands.DeleteLike;
 using PGP.Application.Likes.Commands.CreateLike;
 using PGP.Application.Likes.Queries.GetAllLikedPetsByUserId;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
@@ -25,6 +24,7 @@ namespace PGP.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Create(int userId, int petId)
         {
             try
