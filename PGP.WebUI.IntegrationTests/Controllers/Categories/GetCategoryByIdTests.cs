@@ -16,7 +16,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
         }
 
         [Fact]
-        public async Task GivenId_ReturnCategoryViewModel()
+        public async Task GivenId_ReturnCategoryModel()
         {
             var client = await _factory.GetAnonymousClient();
             var id = 1;

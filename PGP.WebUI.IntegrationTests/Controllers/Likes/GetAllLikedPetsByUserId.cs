@@ -1,5 +1,4 @@
-﻿using PGP.Application.Categories.Queries.GetAllCategories;
-using PGP.Application.Likes.Queries.GetAllLikedPetsByUserId;
+﻿using PGP.Application.Likes.Queries.GetAllLikedPetsByUserId;
 using PGP.WebUI.IntegrationTests.Common;
 using System.Collections.Generic;
 using System.Net;
