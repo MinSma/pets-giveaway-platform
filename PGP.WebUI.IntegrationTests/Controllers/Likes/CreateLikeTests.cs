@@ -81,5 +81,18 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
+
+        [Fact]
+        public async Task GivenUserIdAndPetIdAlreadyHasConnection_ReturnConflictStatusCode()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync("User");
+
+            var validUserId = 3;
+            var validPetId = 1;
+
+            var response = await client.PostAsync($"/api/users/{validUserId}/pets/{validPetId}/likes", null);
+
+            Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
+        }
     }
 }
