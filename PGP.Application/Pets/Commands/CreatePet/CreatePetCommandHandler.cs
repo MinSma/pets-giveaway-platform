@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using PGP.Application.Common.Interfaces;
 using PGP.Application.Exceptions;
 using PGP.Domain.Entities;
@@ -26,6 +27,13 @@ namespace PGP.Application.Pets.Commands.CreatePet
             if (_currentUserService.UserId != request.UserId)
             {
                 throw new UnauthorizedException("You can't do this action.");
+            }
+
+            var categoryExists = await _context.Categories.AnyAsync(x => x.Id == request.CategoryId);
+
+            if (!categoryExists)
+            {
+                throw new NotFoundException($"User was not found with specified id = {request.CategoryId}");
             }
 
             Pet pet = new Pet

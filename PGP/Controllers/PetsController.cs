@@ -60,14 +60,11 @@ namespace PGP.WebUI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Create([FromBody] CreatePetCommand command)
         {
             try
             {
-                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
-                command.UserId = userId;
-
                 await Mediator.Send(command);
 
                 return Ok();
@@ -76,6 +73,10 @@ namespace PGP.WebUI.Controllers
             {
                 return Unauthorized(ex.Message);
             }
+            catch(NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            } 
         }
 
         [HttpPut("{id}")]
