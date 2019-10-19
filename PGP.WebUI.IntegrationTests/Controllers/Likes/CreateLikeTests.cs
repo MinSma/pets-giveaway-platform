@@ -70,7 +70,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
         }
 
         [Fact]
-        public async Task GivenUserIsAuthorizedValidUserIdAndPetIdSecondTimeInARow_ReturnConflictStatusCode()
+        public async Task GivenUserIsAuthorizedValidUserIdAndPetId_ReturnOkStatusCode()
         {
             var client = await _factory.GetAuthenticatedClientAsync();
 
