@@ -113,7 +113,7 @@ namespace PGP.WebUI.IntegrationTests.Common
                 State = Domain.Enums.State.NotGivenAway,
                 PhotoCode = "",
                 CategoryId = category.Id,
-                UserId = user.Id
+                UserId = moderator.Id
             };
 
             context.Pets.Add(pet);

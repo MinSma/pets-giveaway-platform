@@ -29,9 +29,16 @@ namespace PGP.Application.Pets.Commands.UpdatePet
                 throw new NotFoundException($"Pet id {request.Id} not exists.");
             }
 
-            if (_currentUserService.UserId != pet.UserId && !_currentUserService.Role.Equals("Admin"))
+            if (_currentUserService.UserId != request.UserId && !_currentUserService.Role.Equals("Admin"))
             {
                 throw new UnauthorizedException("You can't do this action.");
+            }
+
+            var categoryExists = await _context.Categories.AnyAsync(x => x.Id == request.CategoryId);
+
+            if (!categoryExists)
+            {
+                throw new NotFoundException($"User was not found with specified id = {request.CategoryId}");
             }
 
             pet.Name = request.Name;
