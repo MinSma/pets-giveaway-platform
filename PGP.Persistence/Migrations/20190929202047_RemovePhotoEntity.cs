@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PGP.Persistence.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public partial class RemovePhotoEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

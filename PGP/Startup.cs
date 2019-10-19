@@ -13,11 +13,13 @@ using PGP.Application.Infrastructure;
 using PGP.Application.Pets.Queries.GetAllPets;
 using PGP.Persistence;
 using PGP.WebUI.Services;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text;
 
 namespace PGP
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)

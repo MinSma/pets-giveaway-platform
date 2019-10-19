@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PGP.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PGP.Persistence
 {
+    [ExcludeFromCodeCoverage]
     public class PGPDbContext : DbContext, IPGPDbContext
     {
         public PGPDbContext(DbContextOptions<PGPDbContext> options)

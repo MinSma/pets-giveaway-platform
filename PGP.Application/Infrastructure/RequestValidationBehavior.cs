@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using ValidationException = PGP.Application.Exceptions.ValidationException;
 
 namespace PGP.Application.Infrastructure
 {
+    [ExcludeFromCodeCoverage]
     public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {

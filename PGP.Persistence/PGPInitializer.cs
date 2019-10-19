@@ -1,11 +1,13 @@
 ﻿using PGP.Domain.Entities;
 using PGP.Domain.Enums;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Category = PGP.Domain.Entities.Category;
 
 namespace PGP.Persistence
 {
+    [ExcludeFromCodeCoverage]
     public class PGPInitializer
     {
         public static void Initialize(PGPDbContext context)

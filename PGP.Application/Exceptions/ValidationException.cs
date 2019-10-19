@@ -1,10 +1,12 @@
 ﻿using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace PGP.Application.Exceptions
 {
+    [ExcludeFromCodeCoverage]
     public class ValidationException : Exception
     {
         public ValidationException()

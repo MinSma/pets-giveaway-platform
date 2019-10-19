@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PGP.Persistence.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public partial class AddPhotosToUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
