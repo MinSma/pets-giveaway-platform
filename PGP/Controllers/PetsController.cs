@@ -28,9 +28,17 @@ namespace PGP.WebUI.Controllers
         [AllowAnonymous]
         [HttpGet("{id}/comments")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetAllCommentsByPetId(int id)
         {
-            return Ok(await Mediator.Send(new GetAllCommentsByPetIdQuery { Id = id }));
+            try
+            {
+                return Ok(await Mediator.Send(new GetAllCommentsByPetIdQuery { Id = id }));
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [AllowAnonymous]

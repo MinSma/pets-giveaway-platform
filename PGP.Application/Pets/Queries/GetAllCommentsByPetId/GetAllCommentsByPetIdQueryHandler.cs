@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Exceptions;
 using PGP.Application.Users;
 using PGP.Persistence;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace PGP.Application.Pets.Queries.GetAllCommentsByPetId
 
         public async Task<List<GetAllCommentsByPetIdQueryResponse>> Handle(GetAllCommentsByPetIdQuery request, CancellationToken cancellationToken)
         {
+            var petExists = await _context.Pets.AnyAsync(x => x.Id == request.Id);
+
+            if (!petExists)
+            {
+                throw new NotFoundException($"Pet was not found with specified id = {request.Id}");
+            }
+
             return await _context.Comments
                 .Include(x => x.CreatedByUser)
                 .Where(x => x.PetId == request.Id)
