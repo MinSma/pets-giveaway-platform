@@ -143,7 +143,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 Description = "Something about",
                 PhotoCode = "",
                 CategoryId = 10,
-                UserId = 3
+                UserId = 2
             };
 
             var content = Utilities.GetRequestContent(command);
@@ -171,7 +171,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 Description = "Something about",
                 PhotoCode = "",
                 CategoryId = 1,
-                UserId = 3
+                UserId = 2
             };
 
             var content = Utilities.GetRequestContent(command);
