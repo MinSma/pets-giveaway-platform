@@ -83,6 +83,17 @@ namespace PGP.WebUI.IntegrationTests.Common
                 RoleId = moderatorRole.Id
             };
 
+            var moderator2 = new User
+            {
+                Email = "moderator2@email.com",
+                Password = "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8",
+                PhoneNumber = "8654123694",
+                FirstName = "Moderator2",
+                LastName = "Moderatorius2",
+                PhotoCode = "",
+                RoleId = moderatorRole.Id
+            };
+
             var user = new User
             {
                 Email = "petras@petrauskas.com",
@@ -97,6 +108,7 @@ namespace PGP.WebUI.IntegrationTests.Common
             context.Users.Add(admin);
             context.Users.Add(moderator);
             context.Users.Add(user);
+            context.Users.Add(moderator2);
             
             context.SaveChanges();
 
@@ -116,7 +128,25 @@ namespace PGP.WebUI.IntegrationTests.Common
                 UserId = moderator.Id
             };
 
+            var pet2 = new Pet
+            {
+                Name = "Ciau",
+                Age = 5,
+                Gender = Domain.Enums.Gender.Male,
+                Weight = null,
+                Height = null,
+                IsSterilized = true,
+                Description = "Something about",
+                DateAdded = DateTime.Now,
+                State = Domain.Enums.State.NotGivenAway,
+                PhotoCode = "",
+                CategoryId = category.Id,
+                UserId = moderator2.Id
+            };
+
             context.Pets.Add(pet);
+            context.Pets.Add(pet2);
+            
             context.SaveChanges();
 
             context.Comments.Add(new Comment

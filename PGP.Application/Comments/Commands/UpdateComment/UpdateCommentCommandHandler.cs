@@ -21,17 +21,17 @@ namespace PGP.Application.Comments.Commands.UpdateComment
 
         public async Task<Unit> Handle(UpdateCommentCommand request, CancellationToken cancellationToken)
         {
+            if (_currentUserService.UserId != request.UserId && !_currentUserService.Role.Equals("Admin"))
+            {
+                throw new UnauthorizedException("You can't do this action.");
+            }
+
             var comment = await _context.Comments
-                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+                .FirstOrDefaultAsync(x => x.Id == request.Id && x.CreatedByUserId == request.UserId, cancellationToken);
 
             if (comment == null)
             {
                 throw new NotFoundException($"Comment id {request.Id} not exists.");
-            }
-
-            if (_currentUserService.UserId != comment.CreatedByUserId && !_currentUserService.Role.Equals("Admin"))
-            {
-                throw new UnauthorizedException("You can't do this action.");
             }
 
             comment.Text = request.Text;

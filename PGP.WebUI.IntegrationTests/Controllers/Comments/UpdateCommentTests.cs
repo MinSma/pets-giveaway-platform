@@ -22,7 +22,8 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
 
             var command = new UpdateCommentCommand
             {
-                Text = "Comment text"
+                Text = "Comment text",
+                UserId = 2
             };
 
             var content = Utilities.GetRequestContent(command);
@@ -41,7 +42,8 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
 
             var command = new UpdateCommentCommand
             {
-                Text = "Comment text"
+                Text = "Comment text",
+                UserId = 4
             };
 
             var content = Utilities.GetRequestContent(command);
@@ -60,7 +62,8 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
 
             var command = new UpdateCommentCommand
             {
-                Text = "Comment text"
+                Text = "Comment text",
+                UserId = 2
             };
 
             var content = Utilities.GetRequestContent(command);
@@ -73,13 +76,14 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
         }
 
         [Fact]
-        public async Task GivenValidData_ReturnNotFoundStatusCode()
+        public async Task GivenValidData_ReturnOkStatusCode()
         {
-            var client = await _factory.GetAuthenticatedClientAsync();
+            var client = await _factory.GetAuthenticatedClientAsync("User");
 
             var command = new UpdateCommentCommand
             {
-                Text = "Comment text"
+                Text = "Comment text",
+                UserId = 3
             };
 
             var content = Utilities.GetRequestContent(command);

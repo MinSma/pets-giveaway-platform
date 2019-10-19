@@ -39,6 +39,18 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
         }
 
         [Fact]
+        public async Task GivenUserIsNotAuthorOfPetAndAdmin_ReturnNotFoundStatusCode()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync("Moderator");
+
+            var validPetId = 2;
+
+            var response = await client.DeleteAsync($"/api/pets/{validPetId}");
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        }
+
+        [Fact]
         public async Task GivenInvalidPetId_ReturnNotFoundStatusCode()
         {
             var client = await _factory.GetAuthenticatedClientAsync("Moderator");

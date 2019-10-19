@@ -65,5 +65,31 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
+
+        [Fact]
+        public async Task GivenValidPetIdIsNotLiked_ReturnNotFoundStatusCode()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync("User");
+
+            var validUserId = 3;
+            var validPetId = 2;
+
+            var response = await client.DeleteAsync($"/api/users/{validUserId}/pets/{validPetId}/likes");
+
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task GivenValidPetIdAndValidUserId_ReturnOkStatusCode()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync("User");
+
+            var validUserId = 3;
+            var validPetId = 1;
+
+            var response = await client.DeleteAsync($"/api/users/{validUserId}/pets/{validPetId}/likes");
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
     }
 }

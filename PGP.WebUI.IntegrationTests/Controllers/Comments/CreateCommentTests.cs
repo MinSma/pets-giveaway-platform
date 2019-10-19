@@ -35,6 +35,25 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
         }
 
         [Fact]
+        public async Task GivenUserTryingCreateCommentInsteadOfOtherUser_ReturnsUnauthorizedStatusCode()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync("Moderator");
+
+            var command = new CreateCommentCommand
+            {
+                PetId = 1,
+                UserId = 4,
+                Text = "Comment text"
+            };
+
+            var content = Utilities.GetRequestContent(command);
+
+            var response = await client.PostAsync("/api/comments", content);
+
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        }
+
+        [Fact]
         public async Task GivenNotExistingUserId_ReturnNotFoundStatusCode()
         {
             var client = await _factory.GetAuthenticatedClientAsync("User");

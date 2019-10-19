@@ -21,4 +21,10 @@
     <ProjectReference Include="..\PGP.Persistence\PGP.Persistence.csproj" />
     <ProjectReference Include="..\PGP\PGP.WebUI.csproj" />  </ItemGroup>
 
+  <ItemGroup>
+    <None Update=".tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </None>
+  </ItemGroup>
+
 </Project>

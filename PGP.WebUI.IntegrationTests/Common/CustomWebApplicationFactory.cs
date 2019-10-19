@@ -38,14 +38,7 @@ namespace PGP.WebUI.IntegrationTests.Common
 
                     context.Database.EnsureCreated();
 
-                    try
-                    {
-                        Utilities.InitializeDbForTests(context);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                    Utilities.InitializeDbForTests(context);
                 }
             })
             .UseEnvironment("Test");

@@ -48,5 +48,22 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
 
             Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
         }
+
+        [Fact]
+        public async Task GivenValidaData_ReturnsOkStatusCode()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync();
+
+            var command = new CreateCategoryCommand
+            {
+                Title = "Snakes"
+            };
+
+            var content = Utilities.GetRequestContent(command);
+
+            var response = await client.PostAsync($"/api/categories", content);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
     }
 }

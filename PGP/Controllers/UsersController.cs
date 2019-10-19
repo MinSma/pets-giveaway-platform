@@ -108,10 +108,6 @@ namespace PGP.WebUI.Controllers
 
                 return Ok();
             }
-            catch (UnauthorizedException ex)
-            {
-                return Unauthorized(ex.Message);
-            }
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
