@@ -94,9 +94,10 @@ namespace PGP.WebUI.IntegrationTests.Common
                 RoleId = userRole.Id
             };
 
-            context.Add(admin);
-            context.Add(moderator);
-            context.Add(user);
+            context.Users.Add(admin);
+            context.Users.Add(moderator);
+            context.Users.Add(user);
+            
             context.SaveChanges();
 
             var pet = new Pet
@@ -115,10 +116,10 @@ namespace PGP.WebUI.IntegrationTests.Common
                 UserId = user.Id
             };
 
-            context.Add(pet);
+            context.Pets.Add(pet);
             context.SaveChanges();
 
-            context.Add(new Comment
+            context.Comments.Add(new Comment
             {
                 PetId = pet.Id,
                 CreatedByUserId = user.Id,
@@ -126,7 +127,15 @@ namespace PGP.WebUI.IntegrationTests.Common
                 Text = "Comment text"
             });
 
-            context.Add(new Like
+            context.Comments.Add(new Comment
+            {
+                PetId = pet.Id,
+                CreatedByUserId = user.Id,
+                CreatedAt = DateTime.Now,
+                Text = "Comment text 2"
+            });
+
+            context.Likes.Add(new Like
             {
                 PetId = pet.Id,
                 UserId = user.Id

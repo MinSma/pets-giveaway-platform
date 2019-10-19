@@ -16,14 +16,14 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
         {
             _factory = factory;
         }
-        
+
         [Fact]
         public async Task GivenNotAutenticatedUser_ReturnUnauthorizedStatusCode()
         {
             var client = await _factory.GetAnonymousClient();
-            
+
             var validUserId = 1;
-            
+
             var response = await client.GetAsync($"/api/users/{validUserId}/likes");
 
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
@@ -37,10 +37,10 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
             var invalidUserId = 10;
 
             var response = await client.GetAsync($"/api/users/{invalidUserId}/likes");
-            
-            var result = await Utilities.GetResponseContent<List<GetAllCategoriesQueryResponse>>(response);
 
-            Assert.IsType<List<GetAllCategoriesQueryResponse>>(result);
+            var result = await Utilities.GetResponseContent<List<GetAllLikedPetsByUserIdQueryResponse>>(response);
+
+            Assert.IsType<List<GetAllLikedPetsByUserIdQueryResponse>>(result);
             Assert.Empty(result);
         }
 
@@ -53,9 +53,9 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
 
             var response = await client.GetAsync($"/api/users/{valid}/likes");
 
-            var result = await Utilities.GetResponseContent<List<GetAllCategoriesQueryResponse>>(response);
+            var result = await Utilities.GetResponseContent<List<GetAllLikedPetsByUserIdQueryResponse>>(response);
 
-            Assert.IsType<List<GetAllCategoriesQueryResponse>>(result);
+            Assert.IsType<List<GetAllLikedPetsByUserIdQueryResponse>>(result);
             Assert.NotEmpty(result);
         }
     }

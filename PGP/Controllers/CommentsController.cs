@@ -41,6 +41,7 @@ namespace PGP.WebUI.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> Create([FromBody] CreateCommentCommand command)
         {
@@ -51,6 +52,10 @@ namespace PGP.WebUI.Controllers
             catch (UnauthorizedException ex)
             {
                 return Unauthorized(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
         }
 

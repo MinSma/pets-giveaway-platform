@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PGP.Application.Categories.Queries.GetAllCategories
 {
-    public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, List<GetAllCategoriesQueryResponse>>
+    public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, List<GetAllCategoriesByUserIdQueryResponse>>
     {
         private readonly IPGPDbContext _context;
 
@@ -17,11 +17,11 @@ namespace PGP.Application.Categories.Queries.GetAllCategories
             _context = context;
         }
 
-        public async Task<List<GetAllCategoriesQueryResponse>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
+        public async Task<List<GetAllCategoriesByUserIdQueryResponse>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
         {
             return await _context.Categories
                 .AsNoTracking()
-                .Select(x => new GetAllCategoriesQueryResponse
+                .Select(x => new GetAllCategoriesByUserIdQueryResponse
                 {
                     Id = x.Id,
                     Title = x.Title
