@@ -22,9 +22,9 @@ namespace PGP.WebUI.Controllers
 
         [HttpPost("pets/{petId}/likes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<ActionResult> Create(int userId, int petId)
         {
             try
@@ -32,6 +32,14 @@ namespace PGP.WebUI.Controllers
                 await Mediator.Send(new CreateLikeCommand { UserId = userId, PetId = petId });
 
                 return Ok();
+            }
+            catch (UnauthorizedException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (ConflictException ex)
             {
@@ -50,6 +58,10 @@ namespace PGP.WebUI.Controllers
                 await Mediator.Send(new DeleteLikeCommand { UserId = userId, PetId = petId });
 
                 return Ok();
+            }
+            catch (UnauthorizedException ex)
+            {
+                return Unauthorized(ex.Message);
             }
             catch (NotFoundException ex)
             {

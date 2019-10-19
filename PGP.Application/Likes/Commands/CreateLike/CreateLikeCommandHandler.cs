@@ -22,16 +22,16 @@ namespace PGP.Application.Likes.Commands.CreateLike
 
         public async Task<Unit> Handle(CreateLikeCommand request, CancellationToken cancellationToken)
         {
-            if (_currentUserService.UserId != request.UserId)
-            {
-                throw new UnauthorizedException("You can't do this action.");
-            }
-
             var userExists = await _context.Users.AnyAsync(x => x.Id == request.UserId);
 
             if (!userExists)
             {
                 throw new NotFoundException($"User was not found with specified id = {request.UserId}");
+            }
+
+            if (_currentUserService.UserId != request.UserId)
+            {
+                throw new UnauthorizedException("You can't do this action.");
             }
 
             var petExists = await _context.Pets.AnyAsync(x => x.Id == request.PetId);

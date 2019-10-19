@@ -31,16 +31,42 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
         }
 
         [Fact]
-        public async Task GivenUserIsAuthorizedValidUserIdAndPetId_ReturnOkStatusCode()
+        public async Task GivenUserWhichIsNotAuthorizedUserIdAndPetId_ReturnUnauthrorizedStatusCode()
         {
             var client = await _factory.GetAuthenticatedClientAsync();
 
-            var validUserId = 1;
+            var validUserId = 2;
             var validPetId = 1;
 
             var response = await client.PostAsync($"/api/users/{validUserId}/pets/{validPetId}/likes", null);
 
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task GivenInvalidUserId_ReturnNotFoundStatusCode()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync();
+
+            var invalidUserId = 10;
+            var validPetId = 1;
+
+            var response = await client.PostAsync($"/api/users/{invalidUserId}/pets/{validPetId}/likes", null);
+
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task GivenInvalidPetId_ReturnNotFoundStatusCode()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync();
+
+            var validUserId = 1;
+            var invalidPetId = 10;
+
+            var response = await client.PostAsync($"/api/users/{validUserId}/pets/{invalidPetId}/likes", null);
+
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
 
         [Fact]
@@ -53,7 +79,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
 
             var response = await client.PostAsync($"/api/users/{validUserId}/pets/{validPetId}/likes", null);
 
-            Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }
