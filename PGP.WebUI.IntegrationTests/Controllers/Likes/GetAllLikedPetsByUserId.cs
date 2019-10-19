@@ -43,5 +43,20 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
             Assert.IsType<List<GetAllCategoriesQueryResponse>>(result);
             Assert.Empty(result);
         }
+
+        [Fact]
+        public async Task GivenValidUserId_ReturnNotEmptyList()
+        {
+            var client = await _factory.GetAuthenticatedClientAsync("User");
+
+            var valid = 3;
+
+            var response = await client.GetAsync($"/api/users/{valid}/likes");
+
+            var result = await Utilities.GetResponseContent<List<GetAllCategoriesQueryResponse>>(response);
+
+            Assert.IsType<List<GetAllCategoriesQueryResponse>>(result);
+            Assert.NotEmpty(result);
+        }
     }
 }
