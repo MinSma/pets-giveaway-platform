@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PGP.WebUI.IntegrationTests.Common
 {
-    public class Utilities
+    public static class ClientUtilities
     {
         public static StringContent GetRequestContent(object obj)
         {

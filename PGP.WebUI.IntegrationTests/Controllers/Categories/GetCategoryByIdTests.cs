@@ -24,7 +24,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
 
             response.EnsureSuccessStatusCode();
 
-            var result = await Utilities.GetResponseContent<GetCategoryByIdQueryResponse>(response);
+            var result = await ClientUtilities.GetResponseContent<GetCategoryByIdQueryResponse>(response);
 
             Assert.IsType<GetCategoryByIdQueryResponse>(result);
             Assert.Equal(id, result.Id);

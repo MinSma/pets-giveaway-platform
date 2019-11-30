@@ -35,7 +35,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 1
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/pets", content);
 
@@ -61,7 +61,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 10
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/pets", content);
 
@@ -87,7 +87,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 1
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/pets", content);
 
@@ -113,7 +113,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 1
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/pets", content);
 

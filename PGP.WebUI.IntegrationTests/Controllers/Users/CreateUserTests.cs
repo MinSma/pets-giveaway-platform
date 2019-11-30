@@ -29,7 +29,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 LastName = "Pavard"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/users/register", content);
 
@@ -50,7 +50,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 LastName = "Pavard"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/users/register", content);
 

@@ -28,7 +28,7 @@ namespace PGP.Application.Users.UserLogin
         public async Task<UserLoginCommandResponse> Handle(UserLoginCommand request, CancellationToken cancellationToken)
         {
             var hashedPassword = AuthHelper.GetPasswordHash(request.Password);
-
+             
             var authorize = await _context.Users
                 .Include(x => x.Role)
                 .FirstOrDefaultAsync(x => x.Email.Equals(request.Email) && x.Password.Equals(hashedPassword));

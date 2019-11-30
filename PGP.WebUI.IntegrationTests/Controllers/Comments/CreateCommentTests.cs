@@ -27,7 +27,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 Text = "Comment text"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/comments", content);
 
@@ -46,7 +46,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 Text = "Comment text"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/comments", content);
 
@@ -65,7 +65,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 Text = "Comment text"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/comments", content);
 
@@ -84,7 +84,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 Text = "Comment text"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/comments", content);
 
@@ -103,7 +103,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 Text = "Comment text"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync("/api/comments", content);
 

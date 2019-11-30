@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PGP.Application.Exceptions;
-using PGP.Application.Pets.Commands.DeletePet;
 using PGP.Application.Pets.Commands.CreatePet;
+using PGP.Application.Pets.Commands.DeletePet;
 using PGP.Application.Pets.Commands.UpdatePet;
 using PGP.Application.Pets.Queries.GetAllCommentsByPetId;
 using PGP.Application.Pets.Queries.GetAllPets;
 using PGP.Application.Pets.Queries.GetPetById;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PGP.WebUI.Controllers
@@ -73,10 +72,10 @@ namespace PGP.WebUI.Controllers
             {
                 return Unauthorized(ex.Message);
             }
-            catch(NotFoundException ex)
+            catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
-            } 
+            }
         }
 
         [HttpPut("{id}")]
@@ -102,7 +101,7 @@ namespace PGP.WebUI.Controllers
             }
             catch (NotFoundException ex)
             {
-                return NotFound(ex.Message); 
+                return NotFound(ex.Message);
             }
         }
 

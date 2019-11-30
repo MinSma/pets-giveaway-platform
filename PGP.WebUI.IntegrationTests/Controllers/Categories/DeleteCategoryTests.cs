@@ -39,7 +39,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
         }
 
         [Fact]
-        public async Task GivenId_ReturnsSuccessStatusCode()
+        public async Task GivenValidId_ReturnsSuccessStatusCode()
         {
             var client = await _factory.GetAuthenticatedClientAsync();
 

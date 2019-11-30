@@ -27,7 +27,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
                 Title = "Snakes"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/categories/{validId}", content);
 
@@ -46,7 +46,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
                 Title = "Snakes"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/categories/{validId}", content);
 
@@ -65,7 +65,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
                 Title = "Snakes"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/categories/{validId}", content);
 
@@ -84,7 +84,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
                 Title = "Cats"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/categories/{validId}", content);
 
@@ -103,7 +103,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
                 Title = "Snakes"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/categories/{invalidId}", content);
 

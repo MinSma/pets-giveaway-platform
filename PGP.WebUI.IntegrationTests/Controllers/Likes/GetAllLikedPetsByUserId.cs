@@ -37,7 +37,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
 
             var response = await client.GetAsync($"/api/users/{invalidUserId}/likes");
 
-            var result = await Utilities.GetResponseContent<List<GetAllLikedPetsByUserIdQueryResponse>>(response);
+            var result = await ClientUtilities.GetResponseContent<List<GetAllLikedPetsByUserIdQueryResponse>>(response);
 
             Assert.IsType<List<GetAllLikedPetsByUserIdQueryResponse>>(result);
             Assert.Empty(result);
@@ -52,7 +52,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
 
             var response = await client.GetAsync($"/api/users/{valid}/likes");
 
-            var result = await Utilities.GetResponseContent<List<GetAllLikedPetsByUserIdQueryResponse>>(response);
+            var result = await ClientUtilities.GetResponseContent<List<GetAllLikedPetsByUserIdQueryResponse>>(response);
 
             Assert.IsType<List<GetAllLikedPetsByUserIdQueryResponse>>(result);
             Assert.NotEmpty(result);

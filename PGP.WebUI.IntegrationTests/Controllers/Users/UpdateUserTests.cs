@@ -29,7 +29,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 LastName = "Pavard"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/users/{validId}", content);
 
@@ -50,7 +50,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 LastName = "Pavard"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/users/{validId}", content);
 
@@ -71,7 +71,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 LastName = "Pavard"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/users/{validId}", content);
 
@@ -92,7 +92,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 LastName = "Pavard"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PutAsync($"/api/users/{invalidId}", content);
 

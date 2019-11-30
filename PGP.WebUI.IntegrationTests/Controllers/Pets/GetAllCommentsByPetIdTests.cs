@@ -39,7 +39,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
 
             response.EnsureSuccessStatusCode();
 
-            var result = await Utilities.GetResponseContent<List<GetAllCommentsByPetIdQueryResponse>>(response);
+            var result = await ClientUtilities.GetResponseContent<List<GetAllCommentsByPetIdQueryResponse>>(response);
 
             Assert.IsType<List<GetAllCommentsByPetIdQueryResponse>>(result);
             Assert.NotEmpty(result);

@@ -43,7 +43,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
             
             var response = await client.GetAsync("/api/comments");
 
-            var result = await Utilities.GetResponseContent<List<GetAllCommentsQueryResponse>>(response);
+            var result = await ClientUtilities.GetResponseContent<List<GetAllCommentsQueryResponse>>(response);
 
             Assert.IsType<List<GetAllCommentsQueryResponse>>(result);
             Assert.NotEmpty(result);

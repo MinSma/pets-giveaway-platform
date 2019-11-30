@@ -27,11 +27,11 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 Password = "password"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/users/login", content);
 
-            var responseContent = await Utilities.GetResponseContent<UserLoginCommandResponse>(response);
+            var responseContent = await ClientUtilities.GetResponseContent<UserLoginCommandResponse>(response);
 
             Assert.IsType<UserLoginCommandResponse>(responseContent);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -48,11 +48,11 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 Password = "password"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/users/login", content);
 
-            var responseContent = await Utilities.GetResponseContent<UserLoginCommandResponse>(response);
+            var responseContent = await ClientUtilities.GetResponseContent<UserLoginCommandResponse>(response);
 
             Assert.IsType<UserLoginCommandResponse>(responseContent);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -69,11 +69,11 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 Password = "password"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/users/login", content);
 
-            var responseContent = await Utilities.GetResponseContent<UserLoginCommandResponse>(response);
+            var responseContent = await ClientUtilities.GetResponseContent<UserLoginCommandResponse>(response);
 
             Assert.IsType<UserLoginCommandResponse>(responseContent);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -98,7 +98,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
                 Password = "password"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/users/login", content);
 

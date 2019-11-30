@@ -60,7 +60,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
 
             var response = await client.GetAsync($"/api/comments/{validId}");
 
-            var result = await Utilities.GetResponseContent<GetCommentByIdQueryResponse>(response);
+            var result = await ClientUtilities.GetResponseContent<GetCommentByIdQueryResponse>(response);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.IsType<GetCommentByIdQueryResponse>(result);

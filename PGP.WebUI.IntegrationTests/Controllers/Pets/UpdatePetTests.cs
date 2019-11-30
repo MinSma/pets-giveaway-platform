@@ -34,7 +34,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 3
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var validPetId = 1;
 
@@ -62,7 +62,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 3
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var validPetId = 1;
 
@@ -90,7 +90,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 4
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var validPetId = 1;
 
@@ -118,7 +118,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 3
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var invalidPetId = 10;
 
@@ -146,7 +146,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 2
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var validPetId = 1;
 
@@ -174,7 +174,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Pets
                 UserId = 2
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var validPetId = 1;
 

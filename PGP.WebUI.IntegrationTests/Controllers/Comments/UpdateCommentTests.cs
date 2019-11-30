@@ -26,7 +26,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 UserId = 2
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var validId = 1;
 
@@ -46,7 +46,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 UserId = 4
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var validId = 1;
 
@@ -66,7 +66,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 UserId = 2
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var invalidId = 10;
 
@@ -86,7 +86,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Comments
                 UserId = 3
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var validId = 1;
 

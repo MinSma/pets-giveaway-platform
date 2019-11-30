@@ -23,7 +23,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Likes
             var validUserId = 1;
             var validPetId = 1;
 
-            var content = Utilities.GetRequestContent(null);
+            var content = ClientUtilities.GetRequestContent(null);
 
             var response = await client.PostAsync($"/api/users/{validUserId}/pets/{validPetId}/likes", content);
 

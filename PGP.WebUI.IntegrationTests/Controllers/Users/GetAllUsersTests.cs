@@ -23,7 +23,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Users
 
             response.EnsureSuccessStatusCode();
 
-            var result = await Utilities.GetResponseContent<List<GetAllUsersQueryResponse>>(response);
+            var result = await ClientUtilities.GetResponseContent<List<GetAllUsersQueryResponse>>(response);
 
             Assert.IsType<List<GetAllUsersQueryResponse>>(result);
             Assert.NotEmpty(result);

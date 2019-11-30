@@ -24,7 +24,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Roles
 
             response.EnsureSuccessStatusCode();
 
-            var result = await Utilities.GetResponseContent<List<GetAllRolesQueryResponse>>(response);
+            var result = await ClientUtilities.GetResponseContent<List<GetAllRolesQueryResponse>>(response);
 
             Assert.IsType<List<GetAllRolesQueryResponse>>(result);
             Assert.NotEmpty(result);

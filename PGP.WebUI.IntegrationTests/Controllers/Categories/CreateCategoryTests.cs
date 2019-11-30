@@ -25,7 +25,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
                 Title = "Snakes"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/categories", content);
 
@@ -42,7 +42,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
                 Title = "Dogs"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/categories", content);
 
@@ -50,7 +50,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
         }
 
         [Fact]
-        public async Task GivenValidaData_ReturnsOkStatusCode()
+        public async Task GivenValidData_ReturnsOkStatusCode()
         {
             var client = await _factory.GetAuthenticatedClientAsync();
 
@@ -59,7 +59,7 @@ namespace PGP.WebUI.IntegrationTests.Controllers.Categories
                 Title = "Snakes"
             };
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/categories", content);
 

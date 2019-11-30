@@ -38,7 +38,7 @@ namespace PGP.WebUI.IntegrationTests.Common
 
                     context.Database.EnsureCreated();
 
-                    Utilities.InitializeDbForTests(context);
+                    ClientUtilities.InitializeDbForTests(context);
                 }
             })
             .UseEnvironment("Test");
@@ -73,11 +73,11 @@ namespace PGP.WebUI.IntegrationTests.Common
                     throw new Exception("Specified Role not exists");
             }
 
-            var content = Utilities.GetRequestContent(command);
+            var content = ClientUtilities.GetRequestContent(command);
 
             var response = await client.PostAsync($"/api/users/login", content);
 
-            var responseContent = await Utilities.GetResponseContent<UserLoginCommandResponse>(response);
+            var responseContent = await ClientUtilities.GetResponseContent<UserLoginCommandResponse>(response);
 
             client.SetBearerToken(responseContent.JwtToken);
 
