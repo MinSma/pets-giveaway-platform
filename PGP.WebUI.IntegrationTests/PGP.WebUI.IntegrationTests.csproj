@@ -19,7 +19,8 @@
   <ItemGroup>
     <ProjectReference Include="..\PGP.Application\PGP.Application.csproj" />
     <ProjectReference Include="..\PGP.Persistence\PGP.Persistence.csproj" />
-    <ProjectReference Include="..\PGP\PGP.WebUI.csproj" />  </ItemGroup>
+    <ProjectReference Include="..\PGP.WebUI\PGP.WebUI.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update=".tt">
