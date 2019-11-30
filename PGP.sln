@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.WebUI", "PGP\PGP.WebUI.csproj", "{58FB32DA-C233-4A29-AF50-92EDAE68A36C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.Application", "PGP.Application\PGP.Application.csproj", "{9DD12413-C9BE-465A-986F-5E6F5281E5BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.Domain", "PGP.Domain\PGP.Domain.csproj", "{46039D88-A44D-4AC8-815A-61FE6499DA5F}"
@@ -20,16 +18,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		rules.ruleset = rules.ruleset
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PGP.WebUI", "PGP.WebUI\PGP.WebUI.csproj", "{7AF36BA4-70B3-4B5E-9888-6A2F495D3789}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{58FB32DA-C233-4A29-AF50-92EDAE68A36C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58FB32DA-C233-4A29-AF50-92EDAE68A36C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58FB32DA-C233-4A29-AF50-92EDAE68A36C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58FB32DA-C233-4A29-AF50-92EDAE68A36C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9DD12413-C9BE-465A-986F-5E6F5281E5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9DD12413-C9BE-465A-986F-5E6F5281E5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DD12413-C9BE-465A-986F-5E6F5281E5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -46,6 +42,10 @@ Global
 		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FB6862F-F38C-4C44-ACA4-8AA3497D4DE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF36BA4-70B3-4B5E-9888-6A2F495D3789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF36BA4-70B3-4B5E-9888-6A2F495D3789}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF36BA4-70B3-4B5E-9888-6A2F495D3789}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF36BA4-70B3-4B5E-9888-6A2F495D3789}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
