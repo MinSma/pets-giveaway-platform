@@ -2,6 +2,7 @@ import { Button, FilePicker, TextInput } from 'evergreen-ui';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
+import { fileToBase64 } from '../../utils';
 
 interface IRegisterFormProps {
     email: string;
@@ -39,14 +40,6 @@ const RegisterPage: React.FC = () => {
     const onSubmit = async (values: IRegisterFormProps) => {
         console.warn(values);
     };
-
-    const toBase64 = (file: File) =>
-        new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        });
 
     return (
         <Formik validationSchema={formValidationSchema} initialValues={initialValues} onSubmit={onSubmit}>
@@ -138,7 +131,7 @@ const RegisterPage: React.FC = () => {
                                     <FilePicker
                                         multiple={false}
                                         onChange={async (files: File[]) => {
-                                            const fileInBase64 = await toBase64(files[0]);
+                                            const fileInBase64 = await fileToBase64(files[0]);
                                             setFieldValue('photoCode', fileInBase64);
                                         }}
                                         placeholder="Select the photo here!"
