@@ -1,19 +1,22 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import useReactRouter from 'use-react-router';
+import { routes } from '../utils/routes';
 
 const Header: React.FC = () => {
     const [collapseToggle, setCollapseToggle] = useState<boolean>(true);
+    const { history } = useReactRouter();
 
     return (
         <header className={`topnav ${collapseToggle ? '' : 'responsive'}`}>
-            <a href="#">Home</a>
-            <a href="#" className="float-right">
+            <a className="cursor-pointer" onClick={() => history.push(routes.HOME())}>
+                Home
+            </a>
+            <a className="float-right cursor-pointer" onClick={() => history.push(routes.LOGIN_PAGE())}>
                 Login
             </a>
-            <a href="#" className="float-right">
-                Register
-            </a>
+            <a className="float-right cursor-pointer">Register</a>
             <a href="#" className="icon" onClick={() => setCollapseToggle(!collapseToggle)}>
                 <FontAwesomeIcon icon={faBars} />
             </a>

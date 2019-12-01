@@ -4,6 +4,14 @@ body {
     margin: 0;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.main-background-color {
+    background-color: #6747c7;
+}
+
 .wrapper {
     height: 100%;
     display: flex;
