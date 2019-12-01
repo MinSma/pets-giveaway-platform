@@ -8,6 +8,12 @@ const Header: React.FC = () => {
     return (
         <header className={`topnav ${collapseToggle ? '' : 'responsive'}`}>
             <a href="#">Home</a>
+            <a href="#" className="float-right">
+                Login
+            </a>
+            <a href="#" className="float-right">
+                Register
+            </a>
             <a href="#" className="icon" onClick={() => setCollapseToggle(!collapseToggle)}>
                 <FontAwesomeIcon icon={faBars} />
             </a>
