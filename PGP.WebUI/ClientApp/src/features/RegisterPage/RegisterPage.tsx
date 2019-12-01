@@ -54,7 +54,7 @@ const RegisterPage: React.FC = () => {
                 const { errors, handleChange, submitCount, setFieldValue } = props;
                 return (
                     <div className="container main-background-color">
-                        <Form>
+                        <Form className="p-3">
                             <div className="form-row">
                                 <div className="col-6 mx-auto">
                                     <TextInput
@@ -68,7 +68,7 @@ const RegisterPage: React.FC = () => {
                                     <ErrorMessage name="email" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <div className="col-6 mx-auto">
                                     <TextInput
                                         type="password"
@@ -81,7 +81,7 @@ const RegisterPage: React.FC = () => {
                                     <ErrorMessage name="password" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <div className="col-6 mx-auto">
                                     <TextInput
                                         type="password"
@@ -94,7 +94,7 @@ const RegisterPage: React.FC = () => {
                                     <ErrorMessage name="confirmPassword" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <div className="col-6 mx-auto">
                                     <TextInput
                                         type="text"
@@ -107,7 +107,7 @@ const RegisterPage: React.FC = () => {
                                     <ErrorMessage name="firstName" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <div className="col-6 mx-auto">
                                     <TextInput
                                         type="text"
@@ -120,7 +120,7 @@ const RegisterPage: React.FC = () => {
                                     <ErrorMessage name="lastName" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <div className="col-6 mx-auto">
                                     <TextInput
                                         type="phone"
@@ -133,7 +133,7 @@ const RegisterPage: React.FC = () => {
                                     <ErrorMessage name="phoneNumber" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <div className="col-6 mx-auto">
                                     <FilePicker
                                         multiple={false}
@@ -146,7 +146,7 @@ const RegisterPage: React.FC = () => {
                                     <ErrorMessage name="photoCode" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <Button type="submit" className="mx-auto">
                                     Submit
                                 </Button>

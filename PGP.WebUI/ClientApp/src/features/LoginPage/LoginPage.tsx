@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
                 const { errors, handleChange, submitCount } = props;
                 return (
                     <div className="container main-background-color">
-                        <Form>
+                        <Form className="p-3">
                             <div className="form-row">
                                 <div className="col-6 mx-auto">
                                     <TextInput
@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
                                     <ErrorMessage name="email" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <div className="col-6 mx-auto">
                                     <TextInput
                                         type="password"
@@ -58,7 +58,7 @@ const LoginPage: React.FC = () => {
                                     <ErrorMessage name="password" className="text-danger" component="small" />
                                 </div>
                             </div>
-                            <div className="form-row">
+                            <div className="form-row mt-2">
                                 <Button type="submit" className="mx-auto">
                                     Submit
                                 </Button>
