@@ -1,9 +1,10 @@
 import React from 'react';
+import Header from './Header';
 
 const Layout: React.FC = props => {
     return (
         <div className="wrapper">
-            <header>Header</header>
+            <Header />
             <main>{props.children}</main>
             <footer>Footer</footer>
         </div>
