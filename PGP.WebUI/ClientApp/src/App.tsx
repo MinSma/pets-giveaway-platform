@@ -10,6 +10,7 @@ const App: React.FC = () => {
                 <Switch>
                     <Route exact {...routePaths.HOME} />
                     <Route exact {...routePaths.LOGIN_PAGE} />
+                    <Route exact {...routePaths.REGISTER_PAGE} />
                 </Switch>
             </Layout>
         </Router>

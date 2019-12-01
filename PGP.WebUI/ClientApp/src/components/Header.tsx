@@ -16,7 +16,9 @@ const Header: React.FC = () => {
             <a className="float-right cursor-pointer" onClick={() => history.push(routes.LOGIN_PAGE())}>
                 Login
             </a>
-            <a className="float-right cursor-pointer">Register</a>
+            <a className="float-right cursor-pointer" onClick={() => history.push(routes.REGISTER_PAGE())}>
+                Register
+            </a>
             <a href="#" className="icon" onClick={() => setCollapseToggle(!collapseToggle)}>
                 <FontAwesomeIcon icon={faBars} />
             </a>

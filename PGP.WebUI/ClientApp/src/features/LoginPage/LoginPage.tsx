@@ -35,6 +35,7 @@ const LoginPage: React.FC = () => {
                             <div className="form-row">
                                 <div className="col-6 mx-auto">
                                     <TextInput
+                                        type="email"
                                         className="w-100"
                                         name="email"
                                         placeholder="Email"
@@ -47,6 +48,7 @@ const LoginPage: React.FC = () => {
                             <div className="form-row">
                                 <div className="col-6 mx-auto">
                                     <TextInput
+                                        type="password"
                                         className="w-100"
                                         name="password"
                                         placeholder="Password"
