@@ -1,11 +1,14 @@
 import React from 'react';
-import LoginPage from './components/LoginPage/LoginPage';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Layout } from './components';
 
 const App: React.FC = () => {
     return (
-        <div className="App">
-            <LoginPage />
-        </div>
+        <Router>
+            <Layout>
+                <Switch></Switch>
+            </Layout>
+        </Router>
     );
 };
 
