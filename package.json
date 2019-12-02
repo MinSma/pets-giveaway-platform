@@ -1,0 +1,6 @@
+{
+  "path": "./PGP.WebUI/ClientApp",
+  "scripts": {
+    "start": "cd %npm_package_path% && cd ../ && dotnet watch run"
+  }
+}
