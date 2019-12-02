@@ -11,6 +11,7 @@ const App: React.FC = () => {
                     <Route exact {...routePaths.HOME} />
                     <Route exact {...routePaths.LOGIN_PAGE} />
                     <Route exact {...routePaths.REGISTER_PAGE} />
+                    <Route exact {...routePaths.PET_PAGE} />
                 </Switch>
             </Layout>
         </Router>
