@@ -152,6 +152,20 @@ namespace PGP.Persistence
                     State = State.NotGivenAway,
                     CategoryId = 2,
                     UserId = 4
+                },
+                new Pet
+                {
+                    Name = "Peksas",
+                    Age = 4,
+                    Gender = Gender.Male,
+                    Weight = 30,
+                    Height = 3.4,
+                    IsSterilized = true,
+                    Description = "Kažkoks aprašymas",
+                    DateAdded = DateTime.Now,
+                    State = State.NotGivenAway,
+                    CategoryId = 2,
+                    UserId = 4
                 }
             };
 

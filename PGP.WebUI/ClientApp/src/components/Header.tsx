@@ -1,5 +1,5 @@
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faBars } from '@fortawesome/free-solid-svg-icons';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import useReactRouter from 'use-react-router';
 import { routes } from '../utils/routes';
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
                 Register
             </a>
             <a href="#" className="icon" onClick={() => setCollapseToggle(!collapseToggle)}>
-                <FontAwesomeIcon icon={faBars} />
+                {/* <FontAwesomeIcon icon={faBars} /> */}
             </a>
         </header>
     );
