@@ -13,3 +13,17 @@ export const getAllPets = async () => {
         }
     });
 };
+
+export const getPetById = async (petId: number) => {
+    return await fetch(`${url}/api/pets/${petId}`, {
+        method: 'GET'
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            console.warn('getPetById failed');
+        }
+    });
+};

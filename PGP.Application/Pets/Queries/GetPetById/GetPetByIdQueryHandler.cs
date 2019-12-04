@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PGP.Application.Comments;
 using PGP.Application.Exceptions;
+using PGP.Application.Users;
 using PGP.Persistence;
 using System.Linq;
 using System.Threading;
@@ -36,7 +38,21 @@ namespace PGP.Application.Pets.Queries.GetPetById
                     DateAdded = x.DateAdded,
                     PhotoCode = x.PhotoCode,
                     State = x.State,
-                    Comments = x.Comments
+                    Comments = x.Comments.Select(c => new CommentDto
+                    {
+                        Id = c.Id,
+                        Text = c.Text,
+                        CreatedAt = c.CreatedAt,
+                        CreatedByUser = new UserDto
+                        {
+                            Id = c.CreatedByUser.Id,
+                            Email = c.CreatedByUser.Email,
+                            PhoneNumber = c.CreatedByUser.PhoneNumber,
+                            FirstName = c.CreatedByUser.FirstName,
+                            LastName = c.CreatedByUser.LastName,
+                            PhotoCode = c.CreatedByUser.PhotoCode
+                        }
+                    }).ToList()
                 })
                 .FirstOrDefaultAsync(cancellationToken);
 
