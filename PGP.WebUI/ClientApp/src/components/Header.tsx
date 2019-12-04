@@ -1,12 +1,12 @@
 //import { faBars } from '@fortawesome/free-solid-svg-icons';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import useReactRouter from 'use-react-router';
+import { useHistory } from 'react-router';
 import { routes } from '../utils/routes';
 
 const Header: React.FC = () => {
     const [collapseToggle, setCollapseToggle] = useState<boolean>(true);
-    const { history } = useReactRouter();
+    const history = useHistory();
 
     return (
         <header className={`topnav ${collapseToggle ? '' : 'responsive'}`}>

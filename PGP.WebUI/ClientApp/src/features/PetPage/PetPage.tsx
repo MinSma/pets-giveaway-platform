@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import useReactRouter from 'use-react-router';
+import { useParams } from 'react-router';
 
 const PetPage: React.FC = () => {
-    const { history } = useReactRouter();
+    const { studyId } = useParams();
 
     useEffect(() => {
-        console.warn(history);
-    }, [history]);
+        console.warn(studyId);
+    }, [studyId]);
 
     return (
         <div className="container">
