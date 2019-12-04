@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useReactRouter from 'use-react-router';
+import { useHistory } from 'react-router';
 import { getAllPets } from '../../apiClient';
 import * as enums from '../../enums';
 import { routes } from '../../utils/routes';
@@ -22,7 +22,7 @@ interface IPet {
 
 const HomePage: React.FC = () => {
     const [pets, setPets] = useState<IPet[]>([]);
-    const { history } = useReactRouter();
+    const history = useHistory();
 
     useEffect(() => {
         const init = async () => {
@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="container mt-5 mb-5">
             <div className="row">
                 {pets.map((p, i) => (
                     <div key={i} className="col-lg-3 col-md-6 col-xs-12 mt-2" onClick={() => history.push(routes.PET_PAGE(p.id))}>

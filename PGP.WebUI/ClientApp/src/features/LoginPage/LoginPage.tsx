@@ -30,7 +30,7 @@ const LoginPage: React.FC = () => {
             {props => {
                 const { errors, handleChange, submitCount } = props;
                 return (
-                    <div className="container main-background-color">
+                    <div className="container main-background-color mt-5 mb-5">
                         <Form className="p-3">
                             <div className="form-row">
                                 <div className="col-6 mx-auto">
