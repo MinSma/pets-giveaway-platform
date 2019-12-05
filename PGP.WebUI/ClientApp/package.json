@@ -15,6 +15,7 @@
     "bootstrap": "^4.4.1",
     "evergreen-ui": "^4.21.5",
     "formik": "^2.0.6",
+    "jsonwebtoken": "^8.5.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.1.2",

@@ -13,6 +13,23 @@ interface IUserRegistration {
 
 const url = 'https://localhost:5001';
 
+export const getToken = () => {
+    localStorage.getItem('jwtToken');
+};
+
+export const getTokenDecoded = () => {
+    const jwt = require('jsonwebtoken');
+    return jwt.decode(localStorage.getItem('jwtToken'));
+};
+
+export const setToken = (newToken: string) => {
+    localStorage.setItem('jwtToken', newToken);
+};
+
+export const removeToken = () => {
+    localStorage.removeItem('jwtToken');
+};
+
 export const getAllPets = async () => {
     return await fetch(`${url}/api/pets`, {
         method: 'GET'
@@ -51,7 +68,7 @@ export const userLogin = async (email: string, password: string) => {
     }).then(response => {
         if (response.ok) {
             return response.json().then((data: IUserLoginResponse) => {
-                localStorage.setItem('jwtToken', data.jwtToken);
+                setToken(data.jwtToken);
                 return true;
             });
         } else {
