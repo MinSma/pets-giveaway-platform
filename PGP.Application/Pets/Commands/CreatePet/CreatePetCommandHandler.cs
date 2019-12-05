@@ -40,6 +40,7 @@ namespace PGP.Application.Pets.Commands.CreatePet
             {
                 Name = request.Name,
                 Age = request.Age,
+                City = request.City,
                 Gender = request.Gender,
                 Weight = request.Weight,
                 Height = request.Height,

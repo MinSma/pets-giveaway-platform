@@ -8,6 +8,7 @@ interface IPet {
     id: number;
     name: string;
     age?: number | null;
+    city: string;
     gender: number;
     weight?: number | null;
     height?: number | null;
@@ -46,6 +47,7 @@ const HomePage: React.FC = () => {
                                     <div className="card-text">
                                         <div>Age: {p.age}</div>
                                         <div>Gender: {enums.Gender.parse(p.gender)}</div>
+                                        <div>City: {p.city}</div>
                                     </div>
                                 </div>
                             </div>

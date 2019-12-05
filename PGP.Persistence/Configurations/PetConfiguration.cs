@@ -11,6 +11,9 @@ namespace PGP.Persistence.Configurations
             builder.Property(p => p.Name)
                 .HasMaxLength(25);
 
+            builder.Property(p => p.City)
+                .HasMaxLength(30);
+
             builder.Property(p => p.Gender)
                 .IsRequired();
 

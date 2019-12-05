@@ -43,6 +43,7 @@ namespace PGP.Application.Pets.Commands.UpdatePet
 
             pet.Name = request.Name;
             pet.Age = request.Age;
+            pet.City = request.City;
             pet.Gender = request.Gender;
             pet.Weight = request.Weight;
             pet.Height = request.Height;

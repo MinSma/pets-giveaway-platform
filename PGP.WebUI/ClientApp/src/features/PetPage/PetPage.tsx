@@ -12,6 +12,7 @@ interface IPetProps {
     id: number;
     name: string;
     age: number | null;
+    city: string;
     gender: number;
     weight?: number | null;
     height?: number | null;

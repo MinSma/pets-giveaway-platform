@@ -26,6 +26,7 @@ namespace PGP.Application.Pets.Queries.GetAllPets
                     Id = x.Id,
                     Name = x.Name,
                     Age = x.Age,
+                    City = x.City,
                     Gender = x.Gender,
                     Weight = x.Weight,
                     Height = x.Height,
