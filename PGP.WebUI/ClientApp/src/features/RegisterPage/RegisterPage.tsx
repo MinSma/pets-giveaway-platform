@@ -21,7 +21,9 @@ const formValidationSchema = Yup.object<IRegisterFormProps>().shape({
         .email('Should be email')
         .required('Required'),
     password: Yup.string().required('Required'),
-    confirmPassword: Yup.string().required('Required'),
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords not match')
+        .required('Required'),
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
     phoneNumber: Yup.string().required('Required'),
