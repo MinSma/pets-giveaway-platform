@@ -15,7 +15,13 @@ const Header: React.FC = () => {
                 Home
             </a>
             {authToken ? (
-                <a className="float-right cursor-pointer" onClick={() => localStorage.removeItem('jwtToken')}>
+                <a
+                    className="float-right cursor-pointer"
+                    onClick={() => {
+                        localStorage.removeItem('jwtToken');
+                        history.push('/login');
+                    }}
+                >
                     Logout
                 </a>
             ) : (
