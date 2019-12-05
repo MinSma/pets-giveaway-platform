@@ -17,13 +17,13 @@ const Header: React.FC = () => {
             </a>
             {decodedToken ? (
                 <>
-                    <a>Liked pets</a>
+                    <a className="cursor-pointer">Liked pets</a>
                     {decodedToken.role === 'Admin' && (
                         <>
-                            <a>Users</a>
-                            <a>Pets</a>
-                            <a>Comments</a>
-                            <a>Categories</a>
+                            <a className="cursor-pointer">Users</a>
+                            <a className="cursor-pointer">Pets</a>
+                            <a className="cursor-pointer">Comments</a>
+                            <a className="cursor-pointer">Categories</a>
                         </>
                     )}
                     {decodedToken.role === 'Moderator' && <a>Created pets</a>}
