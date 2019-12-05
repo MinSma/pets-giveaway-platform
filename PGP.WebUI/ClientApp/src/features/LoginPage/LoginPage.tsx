@@ -1,7 +1,9 @@
 import { Button, TextInput } from 'evergreen-ui';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react';
+import { useHistory } from 'react-router';
 import * as Yup from 'yup';
+import { userLogin } from '../../apiClient';
 
 interface ILoginFormProps {
     email: string;
@@ -21,8 +23,12 @@ const initialValues: ILoginFormProps = {
 };
 
 const LoginPage: React.FC = () => {
+    let history = useHistory();
+
     const onSubmit = async (values: ILoginFormProps) => {
-        console.warn(values);
+        if (await userLogin(values.email, values.password)) {
+            history.push('/');
+        }
     };
 
     return (

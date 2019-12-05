@@ -1,3 +1,7 @@
+interface IUserLoginResponse {
+    jwtToken: string;
+}
+
 const url = 'https://localhost:5001';
 
 export const getAllPets = async () => {
@@ -21,6 +25,25 @@ export const getPetById = async (petId: number) => {
         if (response.ok) {
             return response.json().then(data => {
                 return data;
+            });
+        } else {
+            console.warn('getPetById failed');
+        }
+    });
+};
+
+export const userLogin = async (email: string, password: string) => {
+    return await fetch(`${url}/api/users/login`, {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then((data: IUserLoginResponse) => {
+                localStorage.setItem('jwtToken', data.jwtToken);
+                return true;
             });
         } else {
             console.warn('getPetById failed');
