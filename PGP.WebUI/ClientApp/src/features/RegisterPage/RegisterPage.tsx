@@ -1,7 +1,9 @@
 import { Button, FilePicker, TextInput } from 'evergreen-ui';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react';
+import { useHistory } from 'react-router';
 import * as Yup from 'yup';
+import { userRegister } from '../../apiClient';
 import { fileToBase64 } from '../../utils';
 
 interface IRegisterFormProps {
@@ -37,8 +39,12 @@ const initialValues: IRegisterFormProps = {
 };
 
 const RegisterPage: React.FC = () => {
+    let history = useHistory();
+
     const onSubmit = async (values: IRegisterFormProps) => {
-        console.warn(values);
+        if (await userRegister(values)) {
+            history.push('/login');
+        }
     };
 
     return (
