@@ -13,3 +13,14 @@ export interface IUser {
     lastName: string;
     photoCode: string;
 }
+
+export interface IPetList {
+    id: number;
+    name: string;
+    age?: number | null;
+    city: string;
+    gender: number;
+    state: number;
+    photoCode: string;
+    isLiked: boolean;
+}

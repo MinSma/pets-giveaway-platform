@@ -17,7 +17,9 @@ const Header: React.FC = () => {
             </a>
             {decodedToken ? (
                 <>
-                    <a className="cursor-pointer">Liked pets</a>
+                    <a className="cursor-pointer" onClick={() => history.push(routes.LIKED_PETS_PAGE())}>
+                        Liked pets
+                    </a>
                     {decodedToken.role === 'Admin' && (
                         <>
                             <a className="cursor-pointer">Users</a>

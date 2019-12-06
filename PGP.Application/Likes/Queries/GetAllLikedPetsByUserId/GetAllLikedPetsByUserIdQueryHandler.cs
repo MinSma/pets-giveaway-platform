@@ -29,7 +29,8 @@ namespace PGP.Application.Likes.Queries.GetAllLikedPetsByUserId
                     Age = x.Pet.Age,
                     Gender = x.Pet.Gender,
                     State = x.Pet.State,
-                    PhotoCode = x.Pet.PhotoCode
+                    PhotoCode = x.Pet.PhotoCode,
+                    IsLiked = true
                 })
                 .ToListAsync(cancellationToken);
         }

@@ -125,3 +125,20 @@ export const removeLike = async (petId: number) => {
         }
     });
 };
+
+export const getLikedPets = async () => {
+    return await fetch(`${url}/api/users/${getTokenDecoded().nameid}/likes`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            console.warn('removeLike failed');
+        }
+    });
+};
