@@ -10,15 +10,8 @@ interface IPet {
     age?: number | null;
     city: string;
     gender: number;
-    weight?: number | null;
-    height?: number | null;
-    isSterilized: boolean;
-    description: string | null;
-    dateAdded: Date;
     state: number;
     photoCode: string;
-    categoryId: number;
-    userId: number;
 }
 
 const HomePage: React.FC = () => {
@@ -48,6 +41,7 @@ const HomePage: React.FC = () => {
                                         <div>Age: {p.age}</div>
                                         <div>Gender: {enums.Gender.parse(p.gender)}</div>
                                         <div>City: {p.city}</div>
+                                        <div>{enums.State.parse(p.state)}</div>
                                     </div>
                                 </div>
                             </div>

@@ -5,7 +5,6 @@ using PGP.Application.Exceptions;
 using PGP.Application.Pets.Commands.CreatePet;
 using PGP.Application.Pets.Commands.DeletePet;
 using PGP.Application.Pets.Commands.UpdatePet;
-using PGP.Application.Pets.Queries.GetAllCommentsByPetId;
 using PGP.Application.Pets.Queries.GetAllPets;
 using PGP.Application.Pets.Queries.GetPetById;
 using System.Threading.Tasks;
@@ -22,22 +21,6 @@ namespace PGP.WebUI.Controllers
         public async Task<ActionResult> GetAll()
         {
             return Ok(await Mediator.Send(new GetAllPetsQuery()));
-        }
-
-        [AllowAnonymous]
-        [HttpGet("{id}/comments")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> GetAllCommentsByPetId(int id)
-        {
-            try
-            {
-                return Ok(await Mediator.Send(new GetAllCommentsByPetIdQuery { Id = id }));
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
         }
 
         [AllowAnonymous]

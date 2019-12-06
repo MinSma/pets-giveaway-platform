@@ -28,11 +28,6 @@ namespace PGP.Application.Pets.Queries.GetAllPets
                     Age = x.Age,
                     City = x.City,
                     Gender = x.Gender,
-                    Weight = x.Weight,
-                    Height = x.Height,
-                    IsSterilized = x.IsSterilized,
-                    Description = x.Description,
-                    DateAdded = x.DateAdded,
                     State = x.State,
                     PhotoCode = x.PhotoCode
                 })

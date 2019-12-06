@@ -28,10 +28,6 @@ namespace PGP.Application.Likes.Queries.GetAllLikedPetsByUserId
                     Name = x.Pet.Name,
                     Age = x.Pet.Age,
                     Gender = x.Pet.Gender,
-                    Weight = x.Pet.Weight,
-                    Height = x.Pet.Height,
-                    IsSterilized = x.Pet.IsSterilized,
-                    DateAdded = x.Pet.DateAdded,
                     State = x.Pet.State,
                     PhotoCode = x.Pet.PhotoCode
                 })
