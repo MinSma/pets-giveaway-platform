@@ -1,4 +1,4 @@
-import { toaster } from 'evergreen-ui';
+import { Spinner, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { getLikedPets, removeLike } from '../apiClient';
@@ -8,12 +8,15 @@ import { routes } from '../utils';
 
 const LikedPetsPage: React.FC = () => {
     const [likedPets, setLikedPets] = useState<IPetList[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const history = useHistory();
 
     useEffect(() => {
         const init = async () => {
+            setIsLoading(true);
             const response = await getLikedPets();
             setLikedPets(response);
+            setIsLoading(false);
         };
 
         init();
@@ -32,13 +35,17 @@ const LikedPetsPage: React.FC = () => {
 
     return (
         <div className="container mt-5 mb-5">
-            <div className="row">
-                {likedPets.map((p, i) => (
-                    <div key={i} className="col-lg-3 col-md-6 col-xs-12 mt-2 cursor-pointer" onClick={() => history.push(routes.PET_PAGE(p.id))}>
-                        <PetCard pet={p} handleLikeClick={handleLikeClick} />
-                    </div>
-                ))}
-            </div>
+            {isLoading ? (
+                <Spinner />
+            ) : (
+                <div className="row">
+                    {likedPets.map((p, i) => (
+                        <div key={i} className="col-lg-3 col-md-6 col-xs-12 mt-2 cursor-pointer" onClick={() => history.push(routes.PET_PAGE(p.id))}>
+                            <PetCard pet={p} handleLikeClick={handleLikeClick} />
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
