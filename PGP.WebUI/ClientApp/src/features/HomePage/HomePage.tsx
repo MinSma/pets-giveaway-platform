@@ -1,3 +1,5 @@
+import { faBirthdayCake, faCity, faSearch, faVenusMars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { getAllPets } from '../../apiClient';
@@ -38,10 +40,18 @@ const HomePage: React.FC = () => {
                                 <div className="card-body">
                                     <div className="card-title">{p.name}</div>
                                     <div className="card-text">
-                                        <div>Age: {p.age}</div>
-                                        <div>Gender: {enums.Gender.parse(p.gender)}</div>
-                                        <div>City: {p.city}</div>
-                                        <div>{enums.State.parse(p.state)}</div>
+                                        <div>
+                                            <FontAwesomeIcon icon={faBirthdayCake} /> Age: {p.age}
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon icon={faVenusMars} /> Gender: {enums.Gender.parse(p.gender)}
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon icon={faCity} /> City: {p.city}
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon icon={faSearch} /> {enums.State.parse(p.state)}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
