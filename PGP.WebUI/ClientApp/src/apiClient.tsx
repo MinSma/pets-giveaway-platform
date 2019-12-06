@@ -159,3 +159,20 @@ export const getUsers = async () => {
         }
     });
 };
+
+export const getCategories = async () => {
+    return await fetch(`${url}/api/categories`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            console.warn('getCategories failed');
+        }
+    });
+};

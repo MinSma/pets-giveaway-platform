@@ -5,6 +5,11 @@ export interface IComment {
     createdByUser: IUser;
 }
 
+export interface ICategory {
+    id: number;
+    title: string;
+}
+
 export interface IUser {
     id: number;
     email: string;

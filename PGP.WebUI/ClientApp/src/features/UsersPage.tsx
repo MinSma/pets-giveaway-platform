@@ -26,6 +26,7 @@ const UsersPage: React.FC = () => {
         <div className="container mt-5 mb-5">
             <Table>
                 <Table.Head>
+                    <Table.TextHeaderCell>Id</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Name</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Phone number</Table.TextHeaderCell>
                     <Table.TextHeaderCell>Email address</Table.TextHeaderCell>
@@ -35,6 +36,7 @@ const UsersPage: React.FC = () => {
                 <Table.Body>
                     {users.map(u => (
                         <Table.Row key={u.id} border>
+                            <Table.TextCell>{u.id}</Table.TextCell>
                             <Table.TextCell display="flex" alignItems="center">
                                 <Avatar name={u.firstName + ' ' + u.lastName} />
                                 <span className="ml-1">{u.firstName + ' ' + u.lastName}</span>
