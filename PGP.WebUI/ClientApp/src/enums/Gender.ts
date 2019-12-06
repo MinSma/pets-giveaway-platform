@@ -3,6 +3,9 @@ interface IEnum {
     text: string;
 }
 
+const Male: number = 1;
+const Female: number = 2;
+
 const dataSource: IEnum[] = [
     { id: 1, text: 'Male' },
     { id: 2, text: 'Female' }
@@ -19,6 +22,8 @@ const parse = (id: number): string => {
 };
 
 export const Gender = {
+    Male,
+    Female,
     parse,
     dataSource() {
         return dataSource;

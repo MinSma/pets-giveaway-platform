@@ -3,6 +3,9 @@ interface IEnum {
     text: string;
 }
 
+const GivenAway: number = 1;
+const NotGivenAway: number = 2;
+
 const dataSource: IEnum[] = [
     { id: 1, text: 'Found new home' },
     { id: 2, text: 'Still looking for new home' }
@@ -19,6 +22,8 @@ const parse = (id: number): string => {
 };
 
 export const State = {
+    GivenAway,
+    NotGivenAway,
     parse,
     dataSource() {
         return dataSource;

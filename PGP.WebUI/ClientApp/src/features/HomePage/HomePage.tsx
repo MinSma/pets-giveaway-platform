@@ -1,4 +1,4 @@
-import { faBirthdayCake, faCity, faSearch, faVenusMars } from '@fortawesome/free-solid-svg-icons';
+import { faBirthdayCake, faCity, faHome, faSearch, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
@@ -50,7 +50,16 @@ const HomePage: React.FC = () => {
                                             <FontAwesomeIcon icon={faCity} /> City: {p.city}
                                         </div>
                                         <div>
-                                            <FontAwesomeIcon icon={faSearch} /> {enums.State.parse(p.state)}
+                                            {p.state === enums.State.NotGivenAway && (
+                                                <>
+                                                    <FontAwesomeIcon icon={faSearch} /> {enums.State.parse(p.state)}
+                                                </>
+                                            )}
+                                            {p.state === enums.State.GivenAway && (
+                                                <>
+                                                    <FontAwesomeIcon icon={faHome} /> {enums.State.parse(p.state)}
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
