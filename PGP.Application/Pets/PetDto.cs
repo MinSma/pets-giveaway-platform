@@ -11,5 +11,6 @@ namespace PGP.Application.Pets
         public Gender Gender { get; set; }
         public State State { get; set; }
         public string PhotoCode { get; set; }
+        public bool IsLiked { get; set; }
     }
 }

@@ -37,6 +37,7 @@ namespace PGP
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
             services.AddDbContext<IPGPDbContext, PGPDbContext>(options => options
+                .UseLazyLoadingProxies()
                 .UseSqlServer(Configuration.GetConnectionString("PGPDatabase")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

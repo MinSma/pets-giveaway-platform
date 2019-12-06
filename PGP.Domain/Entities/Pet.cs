@@ -6,6 +6,12 @@ namespace PGP.Domain.Entities
 {
     public class Pet
     {
+        public Pet()
+        {
+            Comments = new HashSet<Comment>();
+            Likes = new HashSet<Like>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
@@ -20,12 +26,12 @@ namespace PGP.Domain.Entities
         public string PhotoCode { get; set; }
 
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<Like> Likes { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
     }
 }

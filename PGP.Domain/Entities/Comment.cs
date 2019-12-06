@@ -9,9 +9,9 @@ namespace PGP.Domain.Entities
         public DateTime CreatedAt { get; set; }
 
         public int CreatedByUserId { get; set; }
-        public User CreatedByUser { get; set; }
+        public virtual User CreatedByUser { get; set; }
 
         public int PetId { get; set; }
-        public Pet Pet { get; set; }
+        public virtual Pet Pet { get; set; }
     }
 }

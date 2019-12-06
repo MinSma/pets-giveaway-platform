@@ -10,8 +10,14 @@ namespace PGP.WebUI.Services
     {
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
-            Role = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Role);
+            var nameIdentifier = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            var role = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Role);
+
+            if (nameIdentifier != null && role != null)
+            {
+                UserId = int.Parse(nameIdentifier);
+                Role = role;
+            }
         }
 
         public int UserId { get; }

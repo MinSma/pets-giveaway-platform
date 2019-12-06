@@ -13,10 +13,10 @@ namespace PGP.Domain.Entities
         public string PhotoCode { get; set; }
 
         public int RoleId { get; set; }
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<Like> Likes { get; set; }
-        public ICollection<Pet> Pets { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
+        public virtual ICollection<Pet> Pets { get; set; }
     }
 }

@@ -1,8 +1,9 @@
-import { faBirthdayCake, faCity, faHome, faSearch, faVenusMars } from '@fortawesome/free-solid-svg-icons';
+import { faBirthdayCake, faCity, faHeart, faHome, faSearch, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { getAllPets } from '../../apiClient';
+import { createLike, getAllPets, getToken, removeLike } from '../../apiClient';
 import * as enums from '../../enums';
 import { routes } from '../../utils/routes';
 
@@ -14,6 +15,7 @@ interface IPet {
     gender: number;
     state: number;
     photoCode: string;
+    isLiked: boolean;
 }
 
 const HomePage: React.FC = () => {
@@ -28,6 +30,22 @@ const HomePage: React.FC = () => {
 
         init();
     }, []);
+
+    const handleLikeClick = async (e: any, petId: number, isLiked: boolean) => {
+        e.stopPropagation();
+
+        let response = null;
+
+        if (!isLiked) {
+            response = await createLike(petId);
+        } else {
+            response = await removeLike(petId);
+        }
+
+        const petIndex = pets.findIndex(p => p.id === petId);
+
+        response && setPets(Object.assign([...pets], { [petIndex]: Object.assign({}, pets[petIndex], { isLiked: !isLiked }) }));
+    };
 
     return (
         <div className="container mt-5 mb-5">
@@ -62,6 +80,19 @@ const HomePage: React.FC = () => {
                                             )}
                                         </div>
                                     </div>
+                                    {getToken() && (
+                                        <div className="mt-2">
+                                            {p.isLiked ? (
+                                                <Button onClick={(e: any) => handleLikeClick(e, p.id, p.isLiked)}>
+                                                    <FontAwesomeIcon icon={faHeart} color="red" className="mr-1" /> Liked
+                                                </Button>
+                                            ) : (
+                                                <Button onClick={(e: any) => handleLikeClick(e, p.id, p.isLiked)}>
+                                                    <FontAwesomeIcon icon={faHeart} className="mr-1" /> Like
+                                                </Button>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>

@@ -14,7 +14,7 @@ interface IUserRegistration {
 const url = 'https://localhost:5001';
 
 export const getToken = () => {
-    localStorage.getItem('jwtToken');
+    return localStorage.getItem('jwtToken');
 };
 
 export const getTokenDecoded = () => {
@@ -32,7 +32,10 @@ export const removeToken = () => {
 
 export const getAllPets = async () => {
     return await fetch(`${url}/api/pets`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
     }).then(response => {
         if (response.ok) {
             return response.json().then(data => {
@@ -89,6 +92,36 @@ export const userRegister = async (values: IUserRegistration) => {
             return true;
         } else {
             console.warn('userRegister failed');
+        }
+    });
+};
+
+export const createLike = async (petId: number) => {
+    return await fetch(`${url}/api/users/${getTokenDecoded().nameid}/pets/${petId}/likes`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            console.warn('createLike failed');
+        }
+    });
+};
+
+export const removeLike = async (petId: number) => {
+    return await fetch(`${url}/api/users/${getTokenDecoded().nameid}/pets/${petId}/likes`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            console.warn('removeLike failed');
         }
     });
 };

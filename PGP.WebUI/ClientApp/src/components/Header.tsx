@@ -21,7 +21,6 @@ const Header: React.FC = () => {
                     {decodedToken.role === 'Admin' && (
                         <>
                             <a className="cursor-pointer">Users</a>
-                            <a className="cursor-pointer">Pets</a>
                             <a className="cursor-pointer">Comments</a>
                             <a className="cursor-pointer">Categories</a>
                         </>

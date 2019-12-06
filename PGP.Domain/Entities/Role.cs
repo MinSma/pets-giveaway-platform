@@ -7,6 +7,6 @@ namespace PGP.Domain.Entities
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }
