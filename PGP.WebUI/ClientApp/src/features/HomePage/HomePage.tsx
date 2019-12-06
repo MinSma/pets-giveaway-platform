@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
         <div className="container mt-5 mb-5">
             <div className="row">
                 {pets.map((p, i) => (
-                    <div key={i} className="col-lg-3 col-md-6 col-xs-12 mt-2" onClick={() => history.push(routes.PET_PAGE(p.id))}>
+                    <div key={i} className="col-lg-3 col-md-6 col-xs-12 mt-2 cursor-pointer" onClick={() => history.push(routes.PET_PAGE(p.id))}>
                         <div className="card">
                             <div className="card-block text-center">
                                 <img src={p.photoCode} alt="Pet image" className="card-img-top card-img p-3" />
