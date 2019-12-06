@@ -1,3 +1,4 @@
+import { toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { createLike, getAllPets, removeLike } from '../apiClient';
@@ -26,8 +27,10 @@ const HomePage: React.FC = () => {
 
         if (!pets[petIndex].isLiked) {
             response = await createLike(petId);
+            toaster.success('Successfully liked pet.');
         } else {
             response = await removeLike(petId);
+            toaster.success('Successfully unliked pet.');
         }
 
         response && setPets(Object.assign([...pets], { [petIndex]: Object.assign({}, pets[petIndex], { isLiked: !pets[petIndex].isLiked }) }));

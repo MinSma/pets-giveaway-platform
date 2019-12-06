@@ -1,4 +1,4 @@
-import { Button, FilePicker, TextInput } from 'evergreen-ui';
+import { Button, FilePicker, TextInput, toaster } from 'evergreen-ui';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react';
 import { useHistory } from 'react-router';
@@ -45,6 +45,7 @@ const RegisterPage: React.FC = () => {
 
     const onSubmit = async (values: IRegisterFormProps) => {
         if (await userRegister(values)) {
+            toaster.success('Successfully registered.');
             history.push('/login');
         }
     };

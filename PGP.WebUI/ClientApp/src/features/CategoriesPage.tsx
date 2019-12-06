@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Table } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { getCategories } from '../apiClient';
-import { ICategory } from '../models';
+import { IOption } from '../models';
 
 const CategoriesPage: React.FC = () => {
-    const [categories, setCategories] = useState<ICategory[]>([]);
+    const [categories, setCategories] = useState<IOption[]>([]);
 
     useEffect(() => {
         const init = async () => {
@@ -33,7 +33,7 @@ const CategoriesPage: React.FC = () => {
                     {categories.map(u => (
                         <Table.Row key={u.id} border>
                             <Table.TextCell>{u.id}</Table.TextCell>
-                            <Table.TextCell>{u.title}</Table.TextCell>
+                            <Table.TextCell>{u.text}</Table.TextCell>
                             <Table.TextCell>
                                 <Button appearance="primary" intent="none" onClick={handleEdit}>
                                     <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>

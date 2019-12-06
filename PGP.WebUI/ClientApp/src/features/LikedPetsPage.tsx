@@ -1,3 +1,4 @@
+import { toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { getLikedPets, removeLike } from '../apiClient';
@@ -22,7 +23,11 @@ const LikedPetsPage: React.FC = () => {
         e.stopPropagation();
 
         const response = await removeLike(petId);
-        response && setLikedPets(likedPets.filter(lp => lp.id !== petId));
+
+        if (response) {
+            setLikedPets(likedPets.filter(lp => lp.id !== petId));
+            toaster.success('Successfully unliked pet.');
+        }
     };
 
     return (

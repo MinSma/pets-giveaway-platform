@@ -1,4 +1,4 @@
-import { Button, TextInput } from 'evergreen-ui';
+import { Button, TextInput, toaster } from 'evergreen-ui';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react';
 import { useHistory } from 'react-router';
@@ -27,6 +27,7 @@ const LoginPage: React.FC = () => {
 
     const onSubmit = async (values: ILoginFormProps) => {
         if (await userLogin(values.email, values.password)) {
+            toaster.success('Successfully logged in.');
             history.push('/');
         }
     };

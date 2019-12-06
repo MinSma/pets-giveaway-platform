@@ -1,3 +1,5 @@
+import { toaster } from 'evergreen-ui';
+
 interface IUserLoginResponse {
     jwtToken: string;
 }
@@ -42,7 +44,7 @@ export const getAllPets = async () => {
                 return data;
             });
         } else {
-            console.warn('getAllPets failed');
+            toaster.danger('A failure occured during pets pull from server.');
         }
     });
 };
@@ -56,7 +58,7 @@ export const getPetById = async (petId: number) => {
                 return data;
             });
         } else {
-            console.warn('getPetById failed');
+            toaster.danger('A failure occured during pet pull from server.');
         }
     });
 };
@@ -75,7 +77,7 @@ export const userLogin = async (email: string, password: string) => {
                 return true;
             });
         } else {
-            console.warn('userLogin failed');
+            toaster.danger('A failure occured during login.');
         }
     });
 };
@@ -91,7 +93,7 @@ export const userRegister = async (values: IUserRegistration) => {
         if (response.ok) {
             return true;
         } else {
-            console.warn('userRegister failed');
+            toaster.danger('A failure occured during registration.');
         }
     });
 };
@@ -106,7 +108,7 @@ export const createLike = async (petId: number) => {
         if (response.ok) {
             return true;
         } else {
-            console.warn('createLike failed');
+            toaster.danger('A failure occured during pet like.');
         }
     });
 };
@@ -121,7 +123,7 @@ export const removeLike = async (petId: number) => {
         if (response.ok) {
             return true;
         } else {
-            console.warn('removeLike failed');
+            toaster.danger('A failure occured during pet unlike.');
         }
     });
 };
@@ -138,7 +140,7 @@ export const getLikedPets = async () => {
                 return data;
             });
         } else {
-            console.warn('removeLike failed');
+            toaster.danger('A failure occured during liked pets pull from server.');
         }
     });
 };
@@ -155,7 +157,7 @@ export const getUsers = async () => {
                 return data;
             });
         } else {
-            console.warn('getUsers failed');
+            toaster.danger('A failure occured during users pull from server.');
         }
     });
 };
@@ -172,7 +174,7 @@ export const getCategories = async () => {
                 return data;
             });
         } else {
-            console.warn('getCategories failed');
+            toaster.danger('A failure occured during categories pull from server.');
         }
     });
 };
@@ -189,7 +191,7 @@ export const getComments = async () => {
                 return data;
             });
         } else {
-            console.warn('getComments failed');
+            toaster.danger('A failure occured during comments pull from server.');
         }
     });
 };
@@ -206,7 +208,7 @@ export const getAllUserCreatedPet = async () => {
                 return data;
             });
         } else {
-            console.warn('getAllUserCreatedPet failed');
+            toaster.danger('A failure occured during pets pull from server.');
         }
     });
-}
+};
