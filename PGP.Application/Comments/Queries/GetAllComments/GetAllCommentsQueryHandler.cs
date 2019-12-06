@@ -25,8 +25,8 @@ namespace PGP.Application.Comments.Queries.GetAllComments
                     Id = x.Id,
                     Text = x.Text,
                     CreatedAt = x.CreatedAt,
-                    CreatedByUserId = x.CreatedByUserId,
-                    PetId = x.PetId
+                    UserFullName = $"{x.CreatedByUser.FirstName} {x.CreatedByUser.LastName}",
+                    UserEmail = x.CreatedByUser.Email
                 })
                 .ToListAsync(cancellationToken);
         }

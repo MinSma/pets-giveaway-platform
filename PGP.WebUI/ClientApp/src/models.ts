@@ -1,8 +1,14 @@
+export type IOption = {
+    id: number;
+    text: string;
+};
+
 export interface IComment {
     id: number;
     text: string;
     createdAt: Date;
-    createdByUser: IUser;
+    userFullName: string;
+    userEmail: string;
 }
 
 export interface ICategory {

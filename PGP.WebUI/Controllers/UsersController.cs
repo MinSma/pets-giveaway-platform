@@ -9,6 +9,7 @@ using PGP.Application.Users.UserLogin;
 using PGP.Application.Users.Queries.GetAllUsers;
 using PGP.Application.Users.Queries.GetUserById;
 using System.Threading.Tasks;
+using PGP.Application.Users.Queries.GetAllUserCreatedPets;
 
 namespace PGP.WebUI.Controllers
 {
@@ -18,6 +19,13 @@ namespace PGP.WebUI.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAll([FromQuery] GetAllUsersQuery query)
+        {
+            return Ok(await Mediator.Send(query));
+        }
+
+        [HttpGet("pets")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetAllUserCreatedPets([FromQuery] GetAllUserCreatedPetsQuery query)
         {
             return Ok(await Mediator.Send(query));
         }

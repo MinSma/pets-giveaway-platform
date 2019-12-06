@@ -176,3 +176,37 @@ export const getCategories = async () => {
         }
     });
 };
+
+export const getComments = async () => {
+    return await fetch(`${url}/api/comments`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            console.warn('getComments failed');
+        }
+    });
+};
+
+export const getAllUserCreatedPet = async () => {
+    return await fetch(`${url}/api/users/pets`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            console.warn('getAllUserCreatedPet failed');
+        }
+    });
+}

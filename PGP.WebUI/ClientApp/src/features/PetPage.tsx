@@ -54,7 +54,7 @@ const PetPage: React.FC = () => {
                         <div className="col-12">
                             {pet.comments.map((c, i) => (
                                 <div key={i} className="text-center">
-                                    {c.text} {c.createdByUser.email} {c.createdAt}
+                                    {c.text} {c.userEmail} {c.createdAt}
                                 </div>
                             ))}
                         </div>

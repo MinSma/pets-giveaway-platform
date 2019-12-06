@@ -1,6 +1,8 @@
-﻿namespace PGP.Application.Categories.Queries.GetAllCategories
+﻿using PGP.Application.Models;
+
+namespace PGP.Application.Categories.Queries.GetAllCategories
 {
-    public class GetAllCategoriesByUserIdQueryResponse : CategoryDto
+    public class GetAllCategoriesByUserIdQueryResponse : Option
     {
     }
 }

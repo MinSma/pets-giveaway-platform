@@ -1,12 +1,9 @@
-interface IEnum {
-    id: number;
-    text: string;
-}
+import { IOption } from '../models';
 
 const Male: number = 1;
 const Female: number = 2;
 
-const dataSource: IEnum[] = [
+const dataSource: IOption[] = [
     { id: 1, text: 'Male' },
     { id: 2, text: 'Female' }
 ];

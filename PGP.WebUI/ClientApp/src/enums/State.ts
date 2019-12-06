@@ -1,12 +1,9 @@
-interface IEnum {
-    id: number;
-    text: string;
-}
+import { IOption } from '../models';
 
 const GivenAway: number = 1;
 const NotGivenAway: number = 2;
 
-const dataSource: IEnum[] = [
+const dataSource: IOption[] = [
     { id: 1, text: 'Found new home' },
     { id: 2, text: 'Still looking for new home' }
 ];
