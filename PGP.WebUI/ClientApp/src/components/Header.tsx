@@ -22,12 +22,22 @@ const Header: React.FC = () => {
                     </a>
                     {decodedToken.role === 'Admin' && (
                         <>
-                            <a className="cursor-pointer">Users</a>
-                            <a className="cursor-pointer">Comments</a>
-                            <a className="cursor-pointer">Categories</a>
+                            <a className="cursor-pointer" onClick={() => history.push(routes.USERS_PAGE())}>
+                                Users
+                            </a>
+                            <a className="cursor-pointer" onClick={() => history.push(routes.COMMENTS_PAGE())}>
+                                Comments
+                            </a>
+                            <a className="cursor-pointer" onClick={() => history.push(routes.CATEGORIES_PAGE())}>
+                                Categories
+                            </a>
                         </>
                     )}
-                    {(decodedToken.role === 'Moderator' || decodedToken.role === 'Admin') && <a>Pets</a>}
+                    {(decodedToken.role === 'Moderator' || decodedToken.role === 'Admin') && (
+                        <a className="cursor-pointer" onClick={() => history.push(routes.PETS_PAGE())}>
+                            Pets
+                        </a>
+                    )}
                     <a
                         className="float-right cursor-pointer"
                         onClick={() => {
