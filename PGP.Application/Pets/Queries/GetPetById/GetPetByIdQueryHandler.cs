@@ -48,8 +48,7 @@ namespace PGP.Application.Pets.Queries.GetPetById
                             Email = c.CreatedByUser.Email,
                             PhoneNumber = c.CreatedByUser.PhoneNumber,
                             FirstName = c.CreatedByUser.FirstName,
-                            LastName = c.CreatedByUser.LastName,
-                            PhotoCode = c.CreatedByUser.PhotoCode
+                            LastName = c.CreatedByUser.LastName
                         }
                     }).ToList()
                 })

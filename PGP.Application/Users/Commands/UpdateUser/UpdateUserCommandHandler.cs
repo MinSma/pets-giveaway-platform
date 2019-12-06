@@ -37,7 +37,6 @@ namespace PGP.Application.Users.Commands.UpdateUser
             user.FirstName = request.FirstName;
             user.LastName = request.LastName;
             user.PhoneNumber = request.PhoneNumber;
-            user.PhotoCode = request.PhotoCode;
 
             await _context.SaveChangesAsync(cancellationToken);
 

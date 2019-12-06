@@ -68,7 +68,6 @@ namespace PGP.WebUI.IntegrationTests.Common
                 PhoneNumber = "8654123694",
                 FirstName = "Admin",
                 LastName = "Adminas",
-                PhotoCode = "",
                 RoleId = adminRole.Id
             };
 
@@ -79,7 +78,6 @@ namespace PGP.WebUI.IntegrationTests.Common
                 PhoneNumber = "8654123694",
                 FirstName = "Moderator",
                 LastName = "Moderatorius",
-                PhotoCode = "",
                 RoleId = moderatorRole.Id
             };
 
@@ -90,7 +88,6 @@ namespace PGP.WebUI.IntegrationTests.Common
                 PhoneNumber = "8654123694",
                 FirstName = "Moderator2",
                 LastName = "Moderatorius2",
-                PhotoCode = "",
                 RoleId = moderatorRole.Id
             };
 
@@ -101,7 +98,6 @@ namespace PGP.WebUI.IntegrationTests.Common
                 PhoneNumber = "8654123694",
                 FirstName = "Petras",
                 LastName = "Petrauskas",
-                PhotoCode = "",
                 RoleId = userRole.Id
             };
 

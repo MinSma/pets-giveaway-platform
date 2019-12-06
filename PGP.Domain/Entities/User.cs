@@ -10,7 +10,6 @@ namespace PGP.Domain.Entities
         public string PhoneNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string PhotoCode { get; set; }
 
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }

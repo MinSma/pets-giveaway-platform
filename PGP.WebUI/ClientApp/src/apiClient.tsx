@@ -142,3 +142,20 @@ export const getLikedPets = async () => {
         }
     });
 };
+
+export const getUsers = async () => {
+    return await fetch(`${url}/api/users`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            console.warn('getUsers failed');
+        }
+    });
+};

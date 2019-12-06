@@ -11,7 +11,7 @@ export interface IUser {
     phoneNumber: string;
     firstName: string;
     lastName: string;
-    photoCode: string;
+    roleId: number;
 }
 
 export interface IPetList {
