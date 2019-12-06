@@ -1,9 +1,5 @@
 import { generatePath } from 'react-router';
-import HomePage from '../features/HomePage/HomePage';
-import LikedPetsPage from '../features/LikedPetsPage/LikedPetsPage';
-import LoginPage from '../features/LoginPage/LoginPage';
-import PetPage from '../features/PetPage/PetPage';
-import RegisterPage from '../features/RegisterPage/RegisterPage';
+import { CategoriesPage, CommentsPage, HomePage, LikedPetsPage, LoginPage, PetPage, PetsPage, RegisterPage, UsersPage } from '../features';
 
 export const routePaths = {
     HOME: {
@@ -22,9 +18,25 @@ export const routePaths = {
         path: '/pets/:petId',
         component: PetPage
     },
+    PETS_PAGE: {
+        path: '/pets',
+        component: PetsPage
+    },
     LIKED_PETS_PAGE: {
         path: '/likes',
         component: LikedPetsPage
+    },
+    COMMENTS_PAGE: {
+        path: '/comments',
+        component: CommentsPage
+    },
+    CATEGORIES_PAGE: {
+        path: '/categories',
+        component: CategoriesPage
+    },
+    USERS_PAGE: {
+        path: '/users',
+        component: UsersPage
     }
 };
 
@@ -33,5 +45,9 @@ export const routes = {
     LOGIN_PAGE: () => generatePath(routePaths.LOGIN_PAGE.path),
     REGISTER_PAGE: () => generatePath(routePaths.REGISTER_PAGE.path),
     PET_PAGE: (petId: number) => generatePath(routePaths.PET_PAGE.path, { petId }),
-    LIKED_PETS_PAGE: () => generatePath(routePaths.LIKED_PETS_PAGE.path)
+    PETS_PAGE: () => generatePath(routePaths.PETS_PAGE.path),
+    LIKED_PETS_PAGE: () => generatePath(routePaths.LIKED_PETS_PAGE.path),
+    COMMENTS_PAGE: () => generatePath(routePaths.COMMENTS_PAGE.path),
+    CATEGORIES_PAGE: () => generatePath(routePaths.CATEGORIES_PAGE.path),
+    USERS_PAGE: () => generatePath(routePaths.USERS_PAGE.path)
 };

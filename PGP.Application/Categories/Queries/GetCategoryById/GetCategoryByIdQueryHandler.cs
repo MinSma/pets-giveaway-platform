@@ -20,7 +20,6 @@ namespace PGP.Application.Categories.Queries.GetCategoryById
         public async Task<GetCategoryByIdQueryResponse> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
             var category = await _context.Categories
-                .AsNoTracking()
                 .Where(x => x.Id == request.Id)
                 .Select(x => new GetCategoryByIdQueryResponse
                 {

@@ -27,7 +27,7 @@ const Header: React.FC = () => {
                             <a className="cursor-pointer">Categories</a>
                         </>
                     )}
-                    {decodedToken.role === 'Moderator' && <a>Created pets</a>}
+                    {(decodedToken.role === 'Moderator' || decodedToken.role === 'Admin') && <a>Pets</a>}
                     <a
                         className="float-right cursor-pointer"
                         onClick={() => {

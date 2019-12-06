@@ -20,7 +20,6 @@ namespace PGP.Application.Users.Queries.GetAllUsers
         public async Task<List<GetAllUsersQueryResponse>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
             return await _context.Users
-                .AsNoTracking()
                 .Select(x => new GetAllUsersQueryResponse
                 {
                     Id = x.Id,

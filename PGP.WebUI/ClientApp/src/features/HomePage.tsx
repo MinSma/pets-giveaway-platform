@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { createLike, getAllPets, removeLike } from '../../apiClient';
-import { PetCard } from '../../components';
-import { IPetList } from '../../models';
-import { routes } from '../../utils/routes';
+import { createLike, getAllPets, removeLike } from '../apiClient';
+import { PetCard } from '../components';
+import { IPetList } from '../models';
+import { routes } from '../utils/routes';
 
 const HomePage: React.FC = () => {
     const [pets, setPets] = useState<IPetList[]>([]);

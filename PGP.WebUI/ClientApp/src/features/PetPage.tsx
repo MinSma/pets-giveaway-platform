@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getPetById } from '../../apiClient';
-import * as enums from '../../enums';
-import * as models from '../../models';
+import { getPetById } from '../apiClient';
+import * as enums from '../enums';
+import * as models from '../models';
 
 interface IPetPageRoute {
     petId: string | undefined;

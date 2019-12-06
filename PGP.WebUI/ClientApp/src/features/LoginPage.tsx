@@ -3,7 +3,7 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react';
 import { useHistory } from 'react-router';
 import * as Yup from 'yup';
-import { userLogin } from '../../apiClient';
+import { userLogin } from '../apiClient';
 
 interface ILoginFormProps {
     email: string;

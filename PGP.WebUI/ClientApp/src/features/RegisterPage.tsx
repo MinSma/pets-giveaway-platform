@@ -3,8 +3,8 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react';
 import { useHistory } from 'react-router';
 import * as Yup from 'yup';
-import { userRegister } from '../../apiClient';
-import { fileToBase64 } from '../../utils';
+import { userRegister } from '../apiClient';
+import { fileToBase64 } from '../utils';
 
 interface IRegisterFormProps {
     email: string;

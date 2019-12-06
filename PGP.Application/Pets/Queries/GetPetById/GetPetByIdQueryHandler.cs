@@ -22,7 +22,6 @@ namespace PGP.Application.Pets.Queries.GetPetById
         public async Task<GetPetByIdQueryResponse> Handle(GetPetByIdQuery request, CancellationToken cancellationToken)
         {
             var pet = await _context.Pets
-                .AsNoTracking()
                 .Include(x => x.Comments)
                 .Where(x => x.Id == request.Id)
                 .Select(x => new GetPetByIdQueryResponse
