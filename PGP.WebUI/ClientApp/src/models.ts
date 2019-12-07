@@ -7,6 +7,14 @@ export interface IComment {
     id: number;
     text: string;
     createdAt: Date;
+    userId: number;
+    petId: number;
+}
+
+export interface ICommentList {
+    id: number;
+    text: string;
+    createdAt: Date;
     userFullName: string;
     userEmail: string;
 }

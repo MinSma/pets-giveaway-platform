@@ -1,5 +1,5 @@
 import { toaster } from 'evergreen-ui';
-import { ICategory } from './models';
+import { ICategory, IComment } from './models';
 
 interface IUserLoginResponse {
     jwtToken: string;
@@ -276,6 +276,40 @@ export const getComments = async () => {
             });
         } else {
             toaster.danger('A failure occured during comments pull from server.');
+        }
+    });
+};
+
+export const getCommentById = async (commentId: number) => {
+    return await fetch(`${url}/api/comments/${commentId}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            toaster.danger('A failure occured during comment pull from server.');
+        }
+    });
+};
+
+export const updateComment = async (values: IComment) => {
+    return await fetch(`${url}/api/comments/${values.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(values),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during comment update.');
         }
     });
 };

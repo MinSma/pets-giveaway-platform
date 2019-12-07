@@ -7,4 +7,5 @@ export { default as LoginPage } from './LoginPage';
 export { default as PetPage } from './PetPage';
 export { default as PetsPage } from './PetsPage';
 export { default as RegisterPage } from './RegisterPage';
+export { default as UpdateCommentPage } from './UpdateCommentPage';
 export { default as UsersPage } from './UsersPage';

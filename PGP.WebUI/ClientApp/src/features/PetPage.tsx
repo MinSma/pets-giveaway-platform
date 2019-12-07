@@ -22,7 +22,7 @@ interface IPetProps {
     dateAdded: Date;
     state: number;
     photoCode: string;
-    comments: models.IComment[];
+    comments: models.ICommentList[];
 }
 
 const PetPage: React.FC = () => {

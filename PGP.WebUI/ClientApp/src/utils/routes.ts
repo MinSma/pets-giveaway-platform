@@ -9,6 +9,7 @@ import {
     PetPage,
     PetsPage,
     RegisterPage,
+    UpdateCommentPage,
     UsersPage
 } from '../features';
 
@@ -36,6 +37,10 @@ export const routePaths = {
     LIKED_PETS_PAGE: {
         path: '/likes',
         component: LikedPetsPage
+    },
+    UPDATE_COMMENT_PAGE: {
+        path: '/comments/:commentId/update',
+        component: UpdateCommentPage
     },
     COMMENTS_PAGE: {
         path: '/comments',
@@ -66,6 +71,7 @@ export const routes = {
     PET_PAGE: (petId: number) => generatePath(routePaths.PET_PAGE.path, { petId }),
     PETS_PAGE: () => generatePath(routePaths.PETS_PAGE.path),
     LIKED_PETS_PAGE: () => generatePath(routePaths.LIKED_PETS_PAGE.path),
+    UPDATE_COMMENT_PAGE: (commentId: number) => generatePath(routePaths.UPDATE_COMMENT_PAGE.path, { commentId }),
     COMMENTS_PAGE: () => generatePath(routePaths.COMMENTS_PAGE.path),
     CREATE_CATEGORY_PAGE: () => generatePath(routePaths.CREATE_CATEGORY_PAGE.path),
     UPDATE_CATEGORY_PAGE: (categoryId: number) => generatePath(routePaths.UPDATE_CATEGORY_PAGE.path, { categoryId }),

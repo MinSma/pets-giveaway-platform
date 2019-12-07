@@ -26,7 +26,7 @@ namespace PGP.Application.Comments.Queries.GetCommentById
                     Id = x.Id,
                     Text = x.Text,
                     CreatedAt = x.CreatedAt,
-                    CreatedByUserId = x.CreatedByUserId,
+                    UserId = x.CreatedByUserId,
                     PetId = x.PetId
                 })
                 .FirstOrDefaultAsync(cancellationToken);

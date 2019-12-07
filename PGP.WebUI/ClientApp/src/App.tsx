@@ -14,6 +14,7 @@ const App: React.FC = () => {
                     <Route exact {...routePaths.PET_PAGE} />
                     <Route exact {...routePaths.PETS_PAGE} />
                     <Route exact {...routePaths.LIKED_PETS_PAGE} />
+                    <Route exact {...routePaths.UPDATE_COMMENT_PAGE} />
                     <Route exact {...routePaths.COMMENTS_PAGE} />
                     <Route exact {...routePaths.CREATE_CATEGORY_PAGE} />
                     <Route exact {...routePaths.UPDATE_CATEGORY_PAGE} />
