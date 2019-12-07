@@ -4,6 +4,7 @@ import { Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { deleteCategory, getCategories } from '../apiClient';
+import { ThereIsNoResultsToShow } from '../components';
 import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import { IOption } from '../models';
 import { routes } from '../utils/routes';
@@ -53,21 +54,29 @@ const CategoriesPage: React.FC = () => {
                             <Table.TextHeaderCell>Actions</Table.TextHeaderCell>
                         </Table.Head>
                         <Table.Body>
-                            {categories.map(c => (
-                                <Table.Row key={c.id} border>
-                                    <Table.TextCell>{c.id}</Table.TextCell>
-                                    <Table.TextCell>{c.text}</Table.TextCell>
-                                    <Table.TextCell>
-                                        <Button appearance="primary" intent="none" onClick={() => history.push(routes.UPDATE_CATEGORY_PAGE(c.id))}>
-                                            <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
-                                        </Button>
-                                        <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(c.id)}>
-                                            <FontAwesomeIcon icon={faTrash} />
-                                            <span className="ml-1">Delete</span>
-                                        </Button>
-                                    </Table.TextCell>
-                                </Table.Row>
-                            ))}
+                            {categories.length > 0 ? (
+                                categories.map(c => (
+                                    <Table.Row key={c.id} border>
+                                        <Table.TextCell>{c.id}</Table.TextCell>
+                                        <Table.TextCell>{c.text}</Table.TextCell>
+                                        <Table.TextCell>
+                                            <Button
+                                                appearance="primary"
+                                                intent="none"
+                                                onClick={() => history.push(routes.UPDATE_CATEGORY_PAGE(c.id))}
+                                            >
+                                                <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
+                                            </Button>
+                                            <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(c.id)}>
+                                                <FontAwesomeIcon icon={faTrash} />
+                                                <span className="ml-1">Delete</span>
+                                            </Button>
+                                        </Table.TextCell>
+                                    </Table.Row>
+                                ))
+                            ) : (
+                                <ThereIsNoResultsToShow />
+                            )}
                         </Table.Body>
                     </Table>
                 </>

@@ -2,7 +2,7 @@ import { Spinner, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { deleteLike, getLikedPets } from '../apiClient';
-import { PetCard } from '../components';
+import { PetCard, ThereIsNoResultsToShow } from '../components';
 import { IPetList } from '../models';
 import { routes } from '../utils';
 
@@ -39,11 +39,19 @@ const LikedPetsPage: React.FC = () => {
                 <Spinner className="mx-auto" />
             ) : (
                 <div className="row">
-                    {likedPets.map((p, i) => (
-                        <div key={i} className="col-lg-3 col-md-6 col-xs-12 mt-2 cursor-pointer" onClick={() => history.push(routes.PET_PAGE(p.id))}>
-                            <PetCard pet={p} handleLikeClick={handleLikeClick} />
-                        </div>
-                    ))}
+                    {likedPets.length > 0 ? (
+                        likedPets.map((p, i) => (
+                            <div
+                                key={i}
+                                className="col-lg-3 col-md-6 col-xs-12 mt-2 cursor-pointer"
+                                onClick={() => history.push(routes.PET_PAGE(p.id))}
+                            >
+                                <PetCard pet={p} handleLikeClick={handleLikeClick} />
+                            </div>
+                        ))
+                    ) : (
+                        <ThereIsNoResultsToShow />
+                    )}
                 </div>
             )}
         </div>

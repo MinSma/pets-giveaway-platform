@@ -4,6 +4,7 @@ import { Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { deletePet, getAllUserCreatedPet, getCategories } from '../apiClient';
+import { ThereIsNoResultsToShow } from '../components';
 import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import * as enums from '../enums';
 import { IOption, IUserCreatedPet } from '../models';
@@ -68,31 +69,35 @@ const PetsPage: React.FC = () => {
                             <Table.TextHeaderCell flexBasis={200}>Actions</Table.TextHeaderCell>
                         </Table.Head>
                         <Table.Body>
-                            {userCreatedPets.map(ucp => (
-                                <Table.Row key={ucp.id} border>
-                                    <Table.TextCell>{ucp.id}</Table.TextCell>
-                                    <Table.TextCell>{ucp.name}</Table.TextCell>
-                                    <Table.TextCell>{ucp.age}</Table.TextCell>
-                                    <Table.TextCell>{ucp.city}</Table.TextCell>
-                                    <Table.TextCell>{enums.Gender.parse(ucp.gender)}</Table.TextCell>
-                                    <Table.TextCell>{enums.State.parse(ucp.state)}</Table.TextCell>
-                                    <Table.TextCell>
-                                        <img width="40%" height="40%" src={ucp.photoCode} />
-                                    </Table.TextCell>
-                                    <Table.TextCell>{ucp.weight}</Table.TextCell>
-                                    <Table.TextCell>{ucp.height}</Table.TextCell>
-                                    <Table.TextCell>{categories.find(c => c.id === ucp.categoryId)!.text}</Table.TextCell>
-                                    <Table.TextCell flexBasis={200}>
-                                        <Button appearance="primary" intent="none" onClick={() => history.push(routes.UPDATE_PET_PAGE(ucp.id))}>
-                                            <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
-                                        </Button>
-                                        <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(ucp.id)}>
-                                            <FontAwesomeIcon icon={faTrash} />
-                                            <span className="ml-1">Delete</span>
-                                        </Button>
-                                    </Table.TextCell>
-                                </Table.Row>
-                            ))}
+                            {userCreatedPets.length > 0 ? (
+                                userCreatedPets.map(ucp => (
+                                    <Table.Row key={ucp.id} border>
+                                        <Table.TextCell>{ucp.id}</Table.TextCell>
+                                        <Table.TextCell>{ucp.name}</Table.TextCell>
+                                        <Table.TextCell>{ucp.age}</Table.TextCell>
+                                        <Table.TextCell>{ucp.city}</Table.TextCell>
+                                        <Table.TextCell>{enums.Gender.parse(ucp.gender)}</Table.TextCell>
+                                        <Table.TextCell>{enums.State.parse(ucp.state)}</Table.TextCell>
+                                        <Table.TextCell>
+                                            <img width="40%" height="40%" src={ucp.photoCode} />
+                                        </Table.TextCell>
+                                        <Table.TextCell>{ucp.weight}</Table.TextCell>
+                                        <Table.TextCell>{ucp.height}</Table.TextCell>
+                                        <Table.TextCell>{categories.find(c => c.id === ucp.categoryId)!.text}</Table.TextCell>
+                                        <Table.TextCell flexBasis={200}>
+                                            <Button appearance="primary" intent="none" onClick={() => history.push(routes.UPDATE_PET_PAGE(ucp.id))}>
+                                                <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
+                                            </Button>
+                                            <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(ucp.id)}>
+                                                <FontAwesomeIcon icon={faTrash} />
+                                                <span className="ml-1">Delete</span>
+                                            </Button>
+                                        </Table.TextCell>
+                                    </Table.Row>
+                                ))
+                            ) : (
+                                <ThereIsNoResultsToShow />
+                            )}
                         </Table.Body>
                     </Table>
                 </>

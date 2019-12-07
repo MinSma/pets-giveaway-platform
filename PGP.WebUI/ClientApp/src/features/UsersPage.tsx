@@ -4,6 +4,7 @@ import { Avatar, Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { deleteUser, getUsers } from '../apiClient';
+import { ThereIsNoResultsToShow } from '../components';
 import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import * as enums from '../enums';
 import { IUser } from '../models';
@@ -53,27 +54,31 @@ const UsersPage: React.FC = () => {
                         <Table.TextHeaderCell>Actions</Table.TextHeaderCell>
                     </Table.Head>
                     <Table.Body>
-                        {users.map(u => (
-                            <Table.Row key={u.id} border>
-                                <Table.TextCell>{u.id}</Table.TextCell>
-                                <Table.TextCell display="flex" alignItems="center">
-                                    <Avatar name={u.firstName + ' ' + u.lastName} />
-                                    <span className="ml-1">{u.firstName + ' ' + u.lastName}</span>
-                                </Table.TextCell>
-                                <Table.TextCell>{u.phoneNumber}</Table.TextCell>
-                                <Table.TextCell>{u.email}</Table.TextCell>
-                                <Table.TextCell>{enums.Role.parse(u.roleId)}</Table.TextCell>
-                                <Table.TextCell>
-                                    <Button appearance="primary" intent="none" onClick={() => history.push(routes.UPDATE_USER_PAGE(u.id))}>
-                                        <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
-                                    </Button>
-                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(u.id)}>
-                                        <FontAwesomeIcon icon={faTrash} />
-                                        <span className="ml-1">Delete</span>
-                                    </Button>
-                                </Table.TextCell>
-                            </Table.Row>
-                        ))}
+                        {users.length > 0 ? (
+                            users.map(u => (
+                                <Table.Row key={u.id} border>
+                                    <Table.TextCell>{u.id}</Table.TextCell>
+                                    <Table.TextCell display="flex" alignItems="center">
+                                        <Avatar name={u.firstName + ' ' + u.lastName} />
+                                        <span className="ml-1">{u.firstName + ' ' + u.lastName}</span>
+                                    </Table.TextCell>
+                                    <Table.TextCell>{u.phoneNumber}</Table.TextCell>
+                                    <Table.TextCell>{u.email}</Table.TextCell>
+                                    <Table.TextCell>{enums.Role.parse(u.roleId)}</Table.TextCell>
+                                    <Table.TextCell>
+                                        <Button appearance="primary" intent="none" onClick={() => history.push(routes.UPDATE_USER_PAGE(u.id))}>
+                                            <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
+                                        </Button>
+                                        <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(u.id)}>
+                                            <FontAwesomeIcon icon={faTrash} />
+                                            <span className="ml-1">Delete</span>
+                                        </Button>
+                                    </Table.TextCell>
+                                </Table.Row>
+                            ))
+                        ) : (
+                            <ThereIsNoResultsToShow />
+                        )}
                     </Table.Body>
                 </Table>
             )}

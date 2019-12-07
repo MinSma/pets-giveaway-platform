@@ -4,6 +4,7 @@ import { Avatar, Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { deleteComment, getComments } from '../apiClient';
+import { ThereIsNoResultsToShow } from '../components';
 import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import { ICommentList } from '../models';
 import { dateToFormattedString } from '../utils';
@@ -52,25 +53,29 @@ const CommentsPage: React.FC = () => {
                         <Table.TextHeaderCell>Actions</Table.TextHeaderCell>
                     </Table.Head>
                     <Table.Body>
-                        {comments.map(c => (
-                            <Table.Row key={c.id} border>
-                                <Table.TextCell>{c.id}</Table.TextCell>
-                                <Table.TextCell>{c.text}</Table.TextCell>
-                                <Table.TextCell>{dateToFormattedString(c.createdAt)}</Table.TextCell>
-                                <Table.TextCell>
-                                    <Avatar name={c.userFullName} /> <span className="ml-1">{c.userEmail}</span>
-                                </Table.TextCell>
-                                <Table.TextCell>
-                                    <Button appearance="primary" intent="none" onClick={() => history.push(routes.UPDATE_COMMENT_PAGE(c.id))}>
-                                        <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
-                                    </Button>
-                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(c.id)}>
-                                        <FontAwesomeIcon icon={faTrash} />
-                                        <span className="ml-1">Delete</span>
-                                    </Button>
-                                </Table.TextCell>
-                            </Table.Row>
-                        ))}
+                        {comments.length > 0 ? (
+                            comments.map(c => (
+                                <Table.Row key={c.id} border>
+                                    <Table.TextCell>{c.id}</Table.TextCell>
+                                    <Table.TextCell>{c.text}</Table.TextCell>
+                                    <Table.TextCell>{dateToFormattedString(c.createdAt)}</Table.TextCell>
+                                    <Table.TextCell>
+                                        <Avatar name={c.userFullName} /> <span className="ml-1">{c.userEmail}</span>
+                                    </Table.TextCell>
+                                    <Table.TextCell>
+                                        <Button appearance="primary" intent="none" onClick={() => history.push(routes.UPDATE_COMMENT_PAGE(c.id))}>
+                                            <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
+                                        </Button>
+                                        <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(c.id)}>
+                                            <FontAwesomeIcon icon={faTrash} />
+                                            <span className="ml-1">Delete</span>
+                                        </Button>
+                                    </Table.TextCell>
+                                </Table.Row>
+                            ))
+                        ) : (
+                            <ThereIsNoResultsToShow />
+                        )}
                     </Table.Body>
                 </Table>
             )}
