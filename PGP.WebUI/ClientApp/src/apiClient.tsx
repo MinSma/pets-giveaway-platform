@@ -12,7 +12,6 @@ interface IUserRegistration {
     firstName: string;
     lastName: string;
     phoneNumber: string;
-    photoCode: string;
 }
 
 const url = 'https://localhost:5001';

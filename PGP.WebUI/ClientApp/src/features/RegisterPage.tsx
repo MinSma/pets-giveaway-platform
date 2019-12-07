@@ -1,10 +1,9 @@
-import { Button, FilePicker, TextInput, toaster } from 'evergreen-ui';
+import { Button, TextInput, toaster } from 'evergreen-ui';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react';
 import { useHistory } from 'react-router';
 import * as Yup from 'yup';
 import { userRegister } from '../apiClient';
-import { fileToBase64 } from '../utils';
 
 interface IRegisterFormProps {
     email: string;
@@ -13,7 +12,6 @@ interface IRegisterFormProps {
     firstName: string;
     lastName: string;
     phoneNumber: string;
-    photoCode: string;
 }
 
 const formValidationSchema = Yup.object<IRegisterFormProps>().shape({
@@ -26,8 +24,7 @@ const formValidationSchema = Yup.object<IRegisterFormProps>().shape({
         .required('Required'),
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
-    phoneNumber: Yup.string().required('Required'),
-    photoCode: Yup.string()
+    phoneNumber: Yup.string().required('Required')
 });
 
 const initialValues: IRegisterFormProps = {
@@ -36,8 +33,7 @@ const initialValues: IRegisterFormProps = {
     confirmPassword: '',
     firstName: '',
     lastName: '',
-    phoneNumber: '',
-    photoCode: ''
+    phoneNumber: ''
 };
 
 const RegisterPage: React.FC = () => {
@@ -133,19 +129,6 @@ const RegisterPage: React.FC = () => {
                                         onChange={handleChange}
                                     />
                                     <ErrorMessage name="phoneNumber" className="text-danger" component="small" />
-                                </div>
-                            </div>
-                            <div className="form-row mt-2">
-                                <div className="col-6 mx-auto">
-                                    <FilePicker
-                                        multiple={false}
-                                        onChange={async (files: File[]) => {
-                                            const fileInBase64 = await fileToBase64(files[0]);
-                                            setFieldValue('photoCode', fileInBase64);
-                                        }}
-                                        placeholder="Select the photo here!"
-                                    />
-                                    <ErrorMessage name="photoCode" className="text-danger" component="small" />
                                 </div>
                             </div>
                             <div className="form-row mt-2">
