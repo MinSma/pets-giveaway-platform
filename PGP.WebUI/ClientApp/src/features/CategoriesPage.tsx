@@ -4,13 +4,16 @@ import { Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { deleteCategory, getCategories } from '../apiClient';
+import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import { IOption } from '../models';
 import { routes } from '../utils/routes';
 
 const CategoriesPage: React.FC = () => {
     const [categories, setCategories] = useState<IOption[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const history = useHistory();
+    const confirm = useDeleteConfirmation();
 
     useEffect(() => {
         const init = async () => {
@@ -24,12 +27,14 @@ const CategoriesPage: React.FC = () => {
     }, []);
 
     const handleDelete = async (categoryId: number) => {
-        const response = await deleteCategory(categoryId);
+        confirm().then(async () => {
+            const response = await deleteCategory(categoryId);
 
-        if (response) {
-            setCategories(categories.filter(c => c.id !== categoryId));
-            toaster.success('Category was successfully deleted.');
-        }
+            if (response) {
+                setCategories(categories.filter(c => c.id !== categoryId));
+                toaster.success('Category was successfully deleted.');
+            }
+        });
     };
 
     return (

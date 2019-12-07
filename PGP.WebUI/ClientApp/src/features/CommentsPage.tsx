@@ -4,6 +4,7 @@ import { Avatar, Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { deleteComment, getComments } from '../apiClient';
+import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import { ICommentList } from '../models';
 import { dateToFormattedString } from '../utils';
 import { routes } from '../utils/routes';
@@ -11,7 +12,9 @@ import { routes } from '../utils/routes';
 const CommentsPage: React.FC = () => {
     const [comments, setComments] = useState<ICommentList[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const history = useHistory();
+    const confirm = useDeleteConfirmation();
 
     useEffect(() => {
         const init = async () => {
@@ -25,12 +28,14 @@ const CommentsPage: React.FC = () => {
     }, []);
 
     const handleDelete = async (commentId: number) => {
-        const response = await deleteComment(commentId);
+        confirm().then(async () => {
+            const response = await deleteComment(commentId);
 
-        if (response) {
-            setComments(comments.filter(c => c.id !== commentId));
-            toaster.success('Comment was successfully deleted.');
-        }
+            if (response) {
+                setComments(comments.filter(c => c.id !== commentId));
+                toaster.success('Comment was successfully deleted.');
+            }
+        });
     };
 
     return (

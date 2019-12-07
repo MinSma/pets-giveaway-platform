@@ -4,6 +4,7 @@ import { Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { deletePet, getAllUserCreatedPet, getCategories } from '../apiClient';
+import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import * as enums from '../enums';
 import { IOption, IUserCreatedPet } from '../models';
 import { routes } from '../utils/routes';
@@ -12,7 +13,9 @@ const PetsPage: React.FC = () => {
     const [userCreatedPets, setUserCreatedPets] = useState<IUserCreatedPet[]>([]);
     const [categories, setCategories] = useState<IOption[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const history = useHistory();
+    const confirm = useDeleteConfirmation();
 
     useEffect(() => {
         const init = async () => {
@@ -31,13 +34,16 @@ const PetsPage: React.FC = () => {
     }, []);
 
     const handleDelete = async (petId: number) => {
-        const response = await deletePet(petId);
+        confirm().then(async () => {
+            const response = await deletePet(petId);
 
-        if (response) {
-            setUserCreatedPets(userCreatedPets.filter(p => p.id !== petId));
-            toaster.success('Pet was successfully deleted.');
-        }
+            if (response) {
+                setUserCreatedPets(userCreatedPets.filter(p => p.id !== petId));
+                toaster.success('Pet was successfully deleted.');
+            }
+        });
     };
+
     return (
         <div className="container mt-5 mb-5">
             {isLoading ? (
