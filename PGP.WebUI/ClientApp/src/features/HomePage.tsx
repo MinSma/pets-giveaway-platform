@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
     return (
         <div className="container mt-5 mb-5">
             {isLoading ? (
-                <Spinner />
+                <Spinner className="mx-auto" />
             ) : (
                 <div className="row">
                     {pets.map((p, i) => (

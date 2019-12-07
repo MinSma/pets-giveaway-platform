@@ -41,7 +41,7 @@ const UsersPage: React.FC = () => {
     return (
         <div className="container mt-5 mb-5">
             {isLoading ? (
-                <Spinner />
+                <Spinner className="mx-auto" />
             ) : (
                 <Table>
                     <Table.Head>

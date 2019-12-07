@@ -65,7 +65,7 @@ const PetPage: React.FC = () => {
                     </div>
                 </>
             ) : (
-                <Spinner />
+                <Spinner className="mx-auto" />
             )}
         </div>
     );

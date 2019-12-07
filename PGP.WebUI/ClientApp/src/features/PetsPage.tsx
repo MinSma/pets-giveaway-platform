@@ -47,7 +47,7 @@ const PetsPage: React.FC = () => {
     return (
         <div className="container mt-5 mb-5">
             {isLoading ? (
-                <Spinner />
+                <Spinner className="mx-auto" />
             ) : (
                 <>
                     <Button appearance="primary" intent="success" onClick={() => history.push(routes.CREATE_PET_PAGE())}>
