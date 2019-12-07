@@ -2,13 +2,16 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { deleteUser, getUsers } from '../apiClient';
 import * as enums from '../enums';
 import { IUser } from '../models';
+import { routes } from '../utils/routes';
 
 const UsersPage: React.FC = () => {
     const [users, setUsers] = useState<IUser[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const history = useHistory();
 
     useEffect(() => {
         const init = async () => {
@@ -20,8 +23,6 @@ const UsersPage: React.FC = () => {
 
         init();
     }, []);
-
-    const handleEdit = async () => {};
 
     const handleDelete = async (userId: number) => {
         const response = await deleteUser(userId);
@@ -57,7 +58,7 @@ const UsersPage: React.FC = () => {
                                 <Table.TextCell>{u.email}</Table.TextCell>
                                 <Table.TextCell>{enums.Role.parse(u.roleId)}</Table.TextCell>
                                 <Table.TextCell>
-                                    <Button appearance="primary" intent="none" onClick={handleEdit}>
+                                    <Button appearance="primary" intent="none" onClick={() => history.push(routes.UPDATE_USER_PAGE(u.id))}>
                                         <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
                                     </Button>
                                     <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(u.id)}>

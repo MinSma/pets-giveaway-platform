@@ -19,6 +19,7 @@ const App: React.FC = () => {
                     <Route exact {...routePaths.CREATE_CATEGORY_PAGE} />
                     <Route exact {...routePaths.UPDATE_CATEGORY_PAGE} />
                     <Route exact {...routePaths.CATEGORIES_PAGE} />
+                    <Route exact {...routePaths.UPDATE_USER_PAGE} />
                     <Route exact {...routePaths.USERS_PAGE} />
                 </Switch>
             </Layout>

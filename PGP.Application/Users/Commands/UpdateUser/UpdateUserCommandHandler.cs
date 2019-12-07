@@ -38,6 +38,11 @@ namespace PGP.Application.Users.Commands.UpdateUser
             user.LastName = request.LastName;
             user.PhoneNumber = request.PhoneNumber;
 
+            if (_currentUserService.Role.Equals("Admin"))
+            {
+                user.RoleId = request.RoleId;
+            }
+
             await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

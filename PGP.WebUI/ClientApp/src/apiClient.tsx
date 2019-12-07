@@ -1,5 +1,5 @@
 import { toaster } from 'evergreen-ui';
-import { ICategory, IComment } from './models';
+import { ICategory, IComment, IUser } from './models';
 
 interface IUserLoginResponse {
     jwtToken: string;
@@ -159,6 +159,40 @@ export const getUsers = async () => {
             });
         } else {
             toaster.danger('A failure occured during users pull from server.');
+        }
+    });
+};
+
+export const getUserById = async (usersId: number) => {
+    return await fetch(`${url}/api/users/${usersId}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            toaster.danger('A failure occured during user pull from server.');
+        }
+    });
+};
+
+export const updateUser = async (values: IUser) => {
+    return await fetch(`${url}/api/users/${values.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(values),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during user update.');
         }
     });
 };

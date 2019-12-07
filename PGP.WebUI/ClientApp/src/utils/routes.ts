@@ -10,6 +10,7 @@ import {
     PetsPage,
     RegisterPage,
     UpdateCommentPage,
+    UpdateUserPage,
     UsersPage
 } from '../features';
 
@@ -58,6 +59,10 @@ export const routePaths = {
         path: '/categories',
         component: CategoriesPage
     },
+    UPDATE_USER_PAGE: {
+        path: '/users/:userId/edit',
+        component: UpdateUserPage
+    },
     USERS_PAGE: {
         path: '/users',
         component: UsersPage
@@ -76,5 +81,6 @@ export const routes = {
     CREATE_CATEGORY_PAGE: () => generatePath(routePaths.CREATE_CATEGORY_PAGE.path),
     UPDATE_CATEGORY_PAGE: (categoryId: number) => generatePath(routePaths.UPDATE_CATEGORY_PAGE.path, { categoryId }),
     CATEGORIES_PAGE: () => generatePath(routePaths.CATEGORIES_PAGE.path),
+    UPDATE_USER_PAGE: (userId: number) => generatePath(routePaths.UPDATE_USER_PAGE.path, { userId }),
     USERS_PAGE: () => generatePath(routePaths.USERS_PAGE.path)
 };
