@@ -29,6 +29,7 @@ namespace PGP.Application.Pets.Queries.GetPetById
                     Id = x.Id,
                     Name = x.Name,
                     Age = x.Age,
+                    City = x.City,
                     Gender = x.Gender,
                     Weight = x.Weight,
                     Height = x.Height,
@@ -37,6 +38,7 @@ namespace PGP.Application.Pets.Queries.GetPetById
                     DateAdded = x.DateAdded,
                     PhotoCode = x.PhotoCode,
                     State = x.State,
+                    CategoryId = x.CategoryId,
                     Comments = x.Comments.Select(c => new CommentDto
                     {
                         Id = c.Id,

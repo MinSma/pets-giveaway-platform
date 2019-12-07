@@ -33,7 +33,7 @@ export interface IUser {
     roleId: number;
 }
 
-export interface IPetList {
+interface IPetBase {
     id: number;
     name: string;
     age?: number | null;
@@ -41,5 +41,17 @@ export interface IPetList {
     gender: number;
     state: number;
     photoCode: string;
+}
+
+export interface IPetList extends IPetBase {
     isLiked: boolean;
+}
+
+export interface IUserCreatedPet extends IPetList {
+    weight?: number;
+    height?: number;
+    isSterilized: boolean;
+    description: string;
+    dateAdded: Date;
+    categoryId: number;
 }

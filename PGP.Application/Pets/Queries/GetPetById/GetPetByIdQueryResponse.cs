@@ -11,6 +11,7 @@ namespace PGP.Application.Pets.Queries.GetPetById
         public bool? IsSterilized { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
+        public int CategoryId { get; set; }
 
         public ICollection<CommentDto> Comments { get; set; }
     }

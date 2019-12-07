@@ -1,4 +1,5 @@
 import { toaster } from 'evergreen-ui';
+import { ICreateUpdatePetFormProps } from './features/CreateUpdatePetPage';
 import { ICategory, IComment, IUser } from './models';
 
 interface IUserLoginResponse {
@@ -60,6 +61,55 @@ export const getPetById = async (petId: number) => {
             });
         } else {
             toaster.danger('A failure occured during pet pull from server.');
+        }
+    });
+};
+
+export const createPet = async (values: ICreateUpdatePetFormProps) => {
+    return await fetch(`${url}/api/pets`, {
+        method: 'POST',
+        body: JSON.stringify({ ...values, userId: getTokenDecoded().nameid }),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during pet create.');
+        }
+    });
+};
+
+export const updatePet = async (values: ICreateUpdatePetFormProps) => {
+    return await fetch(`${url}/api/pets/${values.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(values),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during pet update.');
+        }
+    });
+};
+
+export const deletePet = async (petId: number) => {
+    return await fetch(`${url}/api/pets/${petId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during pet delete.');
         }
     });
 };
@@ -376,21 +426,6 @@ export const getAllUserCreatedPet = async () => {
             });
         } else {
             toaster.danger('A failure occured during pets pull from server.');
-        }
-    });
-};
-
-export const deletePet = async (petId: number) => {
-    return await fetch(`${url}/api/pets/${petId}`, {
-        method: 'DELETE',
-        headers: {
-            Authorization: `Bearer ${getToken()}`
-        }
-    }).then(response => {
-        if (response.ok) {
-            return true;
-        } else {
-            toaster.danger('A failure occured during pet delete.');
         }
     });
 };

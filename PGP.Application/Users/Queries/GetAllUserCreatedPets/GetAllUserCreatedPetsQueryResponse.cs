@@ -11,6 +11,6 @@ namespace PGP.Application.Users.Queries.GetAllUserCreatedPets
         public bool? IsSterilized { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
-        public Option Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }

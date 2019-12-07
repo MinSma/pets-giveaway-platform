@@ -52,7 +52,7 @@ const UpdateCommentPage: React.FC = () => {
     };
 
     return (
-        <>
+        <div className="container mt-5 mb-5">
             {isLoading ? (
                 <Spinner />
             ) : (
@@ -97,7 +97,7 @@ const UpdateCommentPage: React.FC = () => {
                     }}
                 </Formik>
             )}
-        </>
+        </div>
     );
 };
 

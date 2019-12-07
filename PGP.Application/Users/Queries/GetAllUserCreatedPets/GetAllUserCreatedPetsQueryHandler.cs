@@ -39,11 +39,7 @@ namespace PGP.Application.Users.Queries.GetAllUserCreatedPets
                     IsSterilized = x.IsSterilized,
                     Description = x.Description,
                     DateAdded = x.DateAdded,
-                    Category = new Option
-                    {
-                        Id = x.Category.Id,
-                        Text = x.Category.Title
-                    }
+                    CategoryId = x.Category.Id
                 })
                 .ToListAsync(cancellationToken);
         }

@@ -3,6 +3,7 @@ import {
     CategoriesPage,
     CommentsPage,
     CreateUpdateCategoryPage,
+    CreateUpdatePetPage,
     HomePage,
     LikedPetsPage,
     LoginPage,
@@ -26,6 +27,14 @@ export const routePaths = {
     REGISTER_PAGE: {
         path: '/register',
         component: RegisterPage
+    },
+    CREATE_PET_PAGE: {
+        path: '/pets/create',
+        component: CreateUpdatePetPage
+    },
+    UPDATE_PET_PAGE: {
+        path: '/pets/:petId/edit',
+        component: CreateUpdatePetPage
     },
     PET_PAGE: {
         path: '/pets/:petId',
@@ -73,6 +82,8 @@ export const routes = {
     HOME: () => generatePath(routePaths.HOME.path),
     LOGIN_PAGE: () => generatePath(routePaths.LOGIN_PAGE.path),
     REGISTER_PAGE: () => generatePath(routePaths.REGISTER_PAGE.path),
+    CREATE_PET_PAGE: () => generatePath(routePaths.CREATE_PET_PAGE.path),
+    UPDATE_PET_PAGE: (petId: number) => generatePath(routePaths.UPDATE_PET_PAGE.path, { petId }),
     PET_PAGE: (petId: number) => generatePath(routePaths.PET_PAGE.path, { petId }),
     PETS_PAGE: () => generatePath(routePaths.PETS_PAGE.path),
     LIKED_PETS_PAGE: () => generatePath(routePaths.LIKED_PETS_PAGE.path),
