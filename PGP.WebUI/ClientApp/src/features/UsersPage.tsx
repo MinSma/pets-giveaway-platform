@@ -1,8 +1,8 @@
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Avatar, Button, Spinner, Table } from 'evergreen-ui';
+import { Avatar, Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
-import { getUsers } from '../apiClient';
+import { deleteUser, getUsers } from '../apiClient';
 import * as enums from '../enums';
 import { IUser } from '../models';
 
@@ -23,8 +23,14 @@ const UsersPage: React.FC = () => {
 
     const handleEdit = async () => {};
 
-    const handleDelete = async () => {};
+    const handleDelete = async (userId: number) => {
+        const response = await deleteUser(userId);
 
+        if (response) {
+            setUsers(users.filter(u => u.id !== userId));
+            toaster.success('User was successfully deleted.');
+        }
+    };
     return (
         <div className="container mt-5 mb-5">
             {isLoading ? (
@@ -54,7 +60,7 @@ const UsersPage: React.FC = () => {
                                     <Button appearance="primary" intent="none" onClick={handleEdit}>
                                         <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
                                     </Button>
-                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={handleDelete}>
+                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(u.id)}>
                                         <FontAwesomeIcon icon={faTrash} />
                                         <span className="ml-1">Delete</span>
                                     </Button>

@@ -2,7 +2,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { getTokenDecoded, removeToken } from '../apiClient';
+import { deleteToken, getTokenDecoded } from '../apiClient';
 import { routes } from '../utils/routes';
 
 const Header: React.FC = () => {
@@ -41,7 +41,7 @@ const Header: React.FC = () => {
                     <a
                         className="float-right cursor-pointer"
                         onClick={() => {
-                            removeToken();
+                            deleteToken();
                             history.push('/login');
                         }}
                     >

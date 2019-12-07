@@ -28,7 +28,7 @@ export const setToken = (newToken: string) => {
     localStorage.setItem('jwtToken', newToken);
 };
 
-export const removeToken = () => {
+export const deleteToken = () => {
     localStorage.removeItem('jwtToken');
 };
 
@@ -113,7 +113,7 @@ export const createLike = async (petId: number) => {
     });
 };
 
-export const removeLike = async (petId: number) => {
+export const deleteLike = async (petId: number) => {
     return await fetch(`${url}/api/users/${getTokenDecoded().nameid}/pets/${petId}/likes`, {
         method: 'DELETE',
         headers: {
@@ -162,6 +162,23 @@ export const getUsers = async () => {
     });
 };
 
+export const deleteUser = async (userId: number) => {
+    console.warn(userId);
+
+    return await fetch(`${url}/api/users/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during user delete.');
+        }
+    });
+};
+
 export const getCategories = async () => {
     return await fetch(`${url}/api/categories`, {
         method: 'GET',
@@ -175,6 +192,21 @@ export const getCategories = async () => {
             });
         } else {
             toaster.danger('A failure occured during categories pull from server.');
+        }
+    });
+};
+
+export const deleteCategory = async (categoryId: number) => {
+    return await fetch(`${url}/api/categories/${categoryId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during category delete.');
         }
     });
 };
@@ -196,6 +228,21 @@ export const getComments = async () => {
     });
 };
 
+export const deleteComment = async (commentId: number) => {
+    return await fetch(`${url}/api/comments/${commentId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during comment delete.');
+        }
+    });
+};
+
 export const getAllUserCreatedPet = async () => {
     return await fetch(`${url}/api/users/pets`, {
         method: 'GET',
@@ -209,6 +256,21 @@ export const getAllUserCreatedPet = async () => {
             });
         } else {
             toaster.danger('A failure occured during pets pull from server.');
+        }
+    });
+};
+
+export const deletePet = async (petId: number) => {
+    return await fetch(`${url}/api/pets/${petId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during pet delete.');
         }
     });
 };

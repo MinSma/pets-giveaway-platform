@@ -1,8 +1,8 @@
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Spinner, Table } from 'evergreen-ui';
+import { Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
-import { getAllUserCreatedPet } from '../apiClient';
+import { deletePet, getAllUserCreatedPet } from '../apiClient';
 import * as enums from '../enums';
 import { IOption, IPetList } from '../models';
 
@@ -32,8 +32,14 @@ const PetsPage: React.FC = () => {
 
     const handleEdit = async () => {};
 
-    const handleDelete = async () => {};
+    const handleDelete = async (petId: number) => {
+        const response = await deletePet(petId);
 
+        if (response) {
+            setUserCreatedPets(userCreatedPets.filter(p => p.id !== petId));
+            toaster.success('Pet was successfully deleted.');
+        }
+    };
     return (
         <div className="container mt-5 mb-5">
             {isLoading ? (
@@ -72,7 +78,7 @@ const PetsPage: React.FC = () => {
                                     <Button appearance="primary" intent="none" onClick={handleEdit}>
                                         <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
                                     </Button>
-                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={handleDelete}>
+                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(ucp.id)}>
                                         <FontAwesomeIcon icon={faTrash} />
                                         <span className="ml-1">Delete</span>
                                     </Button>

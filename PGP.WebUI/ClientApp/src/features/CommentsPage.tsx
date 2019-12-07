@@ -1,8 +1,8 @@
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Avatar, Button, Spinner, Table } from 'evergreen-ui';
+import { Avatar, Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
-import { getComments } from '../apiClient';
+import { deleteComment, getComments } from '../apiClient';
 import { IComment } from '../models';
 import { dateToFormattedString } from '../utils';
 
@@ -23,7 +23,14 @@ const CommentsPage: React.FC = () => {
 
     const handleEdit = async () => {};
 
-    const handleDelete = async () => {};
+    const handleDelete = async (commentId: number) => {
+        const response = await deleteComment(commentId);
+
+        if (response) {
+            setComments(comments.filter(c => c.id !== commentId));
+            toaster.success('Comment was successfully deleted.');
+        }
+    };
 
     return (
         <div className="container mt-5 mb-5">
@@ -51,7 +58,7 @@ const CommentsPage: React.FC = () => {
                                     <Button appearance="primary" intent="none" onClick={handleEdit}>
                                         <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
                                     </Button>
-                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={handleDelete}>
+                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(c.id)}>
                                         <FontAwesomeIcon icon={faTrash} />
                                         <span className="ml-1">Delete</span>
                                     </Button>

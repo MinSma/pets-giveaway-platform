@@ -1,7 +1,7 @@
 import { Spinner, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { createLike, getAllPets, removeLike } from '../apiClient';
+import { createLike, deleteLike, getAllPets } from '../apiClient';
 import { PetCard } from '../components';
 import { IPetList } from '../models';
 import { routes } from '../utils/routes';
@@ -32,7 +32,7 @@ const HomePage: React.FC = () => {
             response = await createLike(petId);
             toaster.success('Successfully liked pet.');
         } else {
-            response = await removeLike(petId);
+            response = await deleteLike(petId);
             toaster.success('Successfully unliked pet.');
         }
 

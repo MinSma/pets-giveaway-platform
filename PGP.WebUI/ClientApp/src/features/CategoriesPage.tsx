@@ -1,8 +1,8 @@
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Spinner, Table } from 'evergreen-ui';
+import { Button, Spinner, Table, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
-import { getCategories } from '../apiClient';
+import { deleteCategory, getCategories } from '../apiClient';
 import { IOption } from '../models';
 
 const CategoriesPage: React.FC = () => {
@@ -22,7 +22,14 @@ const CategoriesPage: React.FC = () => {
 
     const handleEdit = async () => {};
 
-    const handleDelete = async () => {};
+    const handleDelete = async (categoryId: number) => {
+        const response = await deleteCategory(categoryId);
+
+        if (response) {
+            setCategories(categories.filter(c => c.id !== categoryId));
+            toaster.success('Category was successfully deleted.');
+        }
+    };
 
     return (
         <div className="container mt-5 mb-5">
@@ -36,15 +43,15 @@ const CategoriesPage: React.FC = () => {
                         <Table.TextHeaderCell>Actions</Table.TextHeaderCell>
                     </Table.Head>
                     <Table.Body>
-                        {categories.map(u => (
-                            <Table.Row key={u.id} border>
-                                <Table.TextCell>{u.id}</Table.TextCell>
-                                <Table.TextCell>{u.text}</Table.TextCell>
+                        {categories.map(c => (
+                            <Table.Row key={c.id} border>
+                                <Table.TextCell>{c.id}</Table.TextCell>
+                                <Table.TextCell>{c.text}</Table.TextCell>
                                 <Table.TextCell>
                                     <Button appearance="primary" intent="none" onClick={handleEdit}>
                                         <FontAwesomeIcon icon={faEdit} /> <span className="ml-1">Edit</span>
                                     </Button>
-                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={handleDelete}>
+                                    <Button appearance="primary" intent="danger" className="ml-1" onClick={() => handleDelete(c.id)}>
                                         <FontAwesomeIcon icon={faTrash} />
                                         <span className="ml-1">Delete</span>
                                     </Button>
