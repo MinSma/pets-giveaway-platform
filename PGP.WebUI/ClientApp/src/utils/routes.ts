@@ -1,5 +1,16 @@
 import { generatePath } from 'react-router';
-import { CategoriesPage, CommentsPage, HomePage, LikedPetsPage, LoginPage, PetPage, PetsPage, RegisterPage, UsersPage } from '../features';
+import {
+    CategoriesPage,
+    CommentsPage,
+    CreateUpdateCategoryPage,
+    HomePage,
+    LikedPetsPage,
+    LoginPage,
+    PetPage,
+    PetsPage,
+    RegisterPage,
+    UsersPage
+} from '../features';
 
 export const routePaths = {
     HOME: {
@@ -30,6 +41,14 @@ export const routePaths = {
         path: '/comments',
         component: CommentsPage
     },
+    CREATE_CATEGORY_PAGE: {
+        path: '/categories/create',
+        component: CreateUpdateCategoryPage
+    },
+    UPDATE_CATEGORY_PAGE: {
+        path: '/categories/:categoryId/edit',
+        component: CreateUpdateCategoryPage
+    },
     CATEGORIES_PAGE: {
         path: '/categories',
         component: CategoriesPage
@@ -48,6 +67,8 @@ export const routes = {
     PETS_PAGE: () => generatePath(routePaths.PETS_PAGE.path),
     LIKED_PETS_PAGE: () => generatePath(routePaths.LIKED_PETS_PAGE.path),
     COMMENTS_PAGE: () => generatePath(routePaths.COMMENTS_PAGE.path),
+    CREATE_CATEGORY_PAGE: () => generatePath(routePaths.CREATE_CATEGORY_PAGE.path),
+    UPDATE_CATEGORY_PAGE: (categoryId: number) => generatePath(routePaths.UPDATE_CATEGORY_PAGE.path, { categoryId }),
     CATEGORIES_PAGE: () => generatePath(routePaths.CATEGORIES_PAGE.path),
     USERS_PAGE: () => generatePath(routePaths.USERS_PAGE.path)
 };

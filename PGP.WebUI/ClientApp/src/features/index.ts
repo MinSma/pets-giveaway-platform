@@ -1,5 +1,6 @@
 export { default as CategoriesPage } from './CategoriesPage';
 export { default as CommentsPage } from './CommentsPage';
+export { default as CreateUpdateCategoryPage } from './CreateUpdateCategoryPage';
 export { default as HomePage } from './HomePage';
 export { default as LikedPetsPage } from './LikedPetsPage';
 export { default as LoginPage } from './LoginPage';

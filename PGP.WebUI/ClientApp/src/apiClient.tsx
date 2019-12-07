@@ -1,4 +1,5 @@
 import { toaster } from 'evergreen-ui';
+import { ICategory } from './models';
 
 interface IUserLoginResponse {
     jwtToken: string;
@@ -192,6 +193,57 @@ export const getCategories = async () => {
             });
         } else {
             toaster.danger('A failure occured during categories pull from server.');
+        }
+    });
+};
+
+export const getCategoryById = async (categoryId: number) => {
+    return await fetch(`${url}/api/categories/${categoryId}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            toaster.danger('A failure occured during category pull from server.');
+        }
+    });
+};
+
+export const createCategory = async (values: ICategory) => {
+    return await fetch(`${url}/api/categories`, {
+        method: 'POST',
+        body: JSON.stringify(values),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during category create.');
+        }
+    });
+};
+
+export const updateCategory = async (values: ICategory) => {
+    return await fetch(`${url}/api/categories/${values.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(values),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            toaster.danger('A failure occured during category update.');
         }
     });
 };
