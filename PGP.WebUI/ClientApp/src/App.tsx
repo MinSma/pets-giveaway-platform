@@ -26,6 +26,7 @@ const App: React.FC = () => {
                         <Route exact {...routePaths.UPDATE_USER_PAGE} />
                         <Route exact {...routePaths.USER_PAGE} />
                         <Route exact {...routePaths.USERS_PAGE} />
+                        <Route exact {...routePaths.NOT_FOUND_PAGE} />
                     </Switch>
                 </DeleteConfirmationServiceProvider>
             </Layout>

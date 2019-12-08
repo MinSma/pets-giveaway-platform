@@ -7,6 +7,7 @@ import {
     HomePage,
     LikedPetsPage,
     LoginPage,
+    NotFoundPage,
     PetPage,
     PetsPage,
     RegisterPage,
@@ -80,6 +81,10 @@ export const routePaths = {
     USERS_PAGE: {
         path: '/users',
         component: UsersPage
+    },
+    NOT_FOUND_PAGE: {
+        path: '*',
+        component: NotFoundPage
     }
 };
 
@@ -99,5 +104,6 @@ export const routes = {
     CATEGORIES_PAGE: () => generatePath(routePaths.CATEGORIES_PAGE.path),
     UPDATE_USER_PAGE: (userId: number) => generatePath(routePaths.UPDATE_USER_PAGE.path, { userId }),
     USER_PAGE: (userId: number) => generatePath(routePaths.USER_PAGE.path, { userId }),
-    USERS_PAGE: () => generatePath(routePaths.USERS_PAGE.path)
+    USERS_PAGE: () => generatePath(routePaths.USERS_PAGE.path),
+    NOT_FOUND_PAGE: () => generatePath(routePaths.NOT_FOUND_PAGE.path)
 };

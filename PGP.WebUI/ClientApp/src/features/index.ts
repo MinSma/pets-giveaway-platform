@@ -5,6 +5,7 @@ export { default as CreateUpdatePetPage } from './CreateUpdatePetPage';
 export { default as HomePage } from './HomePage';
 export { default as LikedPetsPage } from './LikedPetsPage';
 export { default as LoginPage } from './LoginPage';
+export { default as NotFoundPage } from './NotFoundPage';
 export { default as PetPage } from './PetPage';
 export { default as PetsPage } from './PetsPage';
 export { default as RegisterPage } from './RegisterPage';
