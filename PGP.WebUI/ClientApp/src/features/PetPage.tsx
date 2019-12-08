@@ -1,11 +1,12 @@
-import { faBirthdayCake, faHome, faSearch, faSignature, faTextHeight, faVenusMars, faWeight } from '@fortawesome/free-solid-svg-icons';
+import { faBirthdayCake, faHome, faSearch, faSignature, faTextHeight, faTrash, faVenusMars, faWeight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, Button, Spinner, TextInput, toaster } from 'evergreen-ui';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import * as Yup from 'yup';
-import { createComment, getPetById, getToken } from '../apiClient';
+import { createComment, deleteComment, getPetById, getToken, getTokenDecoded } from '../apiClient';
+import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import * as enums from '../enums';
 import { dateToFormattedString } from '../utils';
 
@@ -53,7 +54,9 @@ const formValidationSchema = Yup.object<ICreateCommentFormProps>().shape({
 const PetPage: React.FC = () => {
     const [pet, setPet] = useState<IPetProps>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const { petId } = useParams<IPetPageRoute>();
+    const confirm = useDeleteConfirmation();
 
     useEffect(() => {
         const init = async () => {
@@ -76,6 +79,20 @@ const PetPage: React.FC = () => {
             });
             toaster.success('Comment was successfully created.');
         }
+    };
+
+    const handleDelete = async (commentId: number) => {
+        confirm().then(async () => {
+            const response = await deleteComment(commentId);
+
+            if (response && pet) {
+                setPet({
+                    ...pet,
+                    comments: pet.comments.filter(c => c.id !== commentId)
+                });
+                toaster.success('Comment was successfully deleted.');
+            }
+        });
     };
 
     return (
@@ -122,6 +139,9 @@ const PetPage: React.FC = () => {
                         {pet.comments.map((c, i) => (
                             <div key={i} className="row border mt-1 p-2 text-center">
                                 <div className="col-lg-2 col-md-4 col-xs-12 align-vertical-center">
+                                    {getTokenDecoded().role === 'Admin' && (
+                                        <FontAwesomeIcon icon={faTrash} color="red" className="mr-2" onClick={() => handleDelete(c.id)} />
+                                    )}
                                     <Avatar name={`${c.createdByUser.firstName} ${c.createdByUser.lastName}`} />
                                     <span className="ml-2">
                                         {c.createdByUser.firstName} {c.createdByUser.lastName}
