@@ -63,6 +63,11 @@ const HomePage: React.FC = () => {
                                 </button>
                             </div>
                         ))}
+                        <div className="col-lg-2 col-md-2 col-xs-6 p-3 w-100 mx-auto">
+                            <button className="btn text-center bg-purple-color w-100" onClick={() => history.push(routes.HOME())}>
+                                All
+                            </button>
+                        </div>
                     </div>
                     {pets.length > 0 ? (
                         <div className="row">
