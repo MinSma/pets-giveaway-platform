@@ -50,6 +50,23 @@ export const getAllPets = async () => {
     });
 };
 
+export const getAllPetsByCategoryId = async (categoryId: number) => {
+    return await fetch(`${url}/api/pets/category/${categoryId}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            toaster.danger('A failure occured during pets pull from server.');
+        }
+    });
+};
+
 export const getPetById = async (petId: number) => {
     debugger;
     return await fetch(`${url}/api/pets/${petId}`, {

@@ -1,27 +1,28 @@
 import { Spinner, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import { createLike, deleteLike, getAllPets, getCategories } from '../apiClient';
+import { useHistory, useParams } from 'react-router';
+import { createLike, deleteLike, getAllPetsByCategoryId } from '../apiClient';
 import { PetCard, ThereIsNoResultsToShow } from '../components';
-import { ICategory, IPetList } from '../models';
-import { routes } from '../utils/routes';
+import { IPetList } from '../models';
+import { routes } from '../utils';
 
-const HomePage: React.FC = () => {
+interface ICategoryPetsPageRoute {
+    categoryId: string | undefined;
+}
+
+const CategoryPetsPage: React.FC = () => {
     const [pets, setPets] = useState<IPetList[]>([]);
-    const [categories, setCategories] = useState<ICategory[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const history = useHistory();
+    const { categoryId } = useParams<ICategoryPetsPageRoute>();
 
     useEffect(() => {
         const init = async () => {
             setIsLoading(true);
 
-            const response = await getAllPets();
+            const response = await getAllPetsByCategoryId(Number(categoryId));
             setPets(response);
-
-            const categoriesResponse = await getCategories();
-            setCategories(categoriesResponse);
 
             setIsLoading(false);
         };
@@ -52,18 +53,6 @@ const HomePage: React.FC = () => {
                 <Spinner className="mx-auto" />
             ) : (
                 <>
-                    <div className="row">
-                        {categories.map(c => (
-                            <div key={c.id} className="col-lg-2 col-md-2 col-xs-6 p-3 w-100 mx-auto">
-                                <button
-                                    className="btn text-center bg-purple-color w-100"
-                                    onClick={() => history.push(routes.CATEGORY_PETS_PAGE(c.id))}
-                                >
-                                    {c.title}
-                                </button>
-                            </div>
-                        ))}
-                    </div>
                     {pets.length > 0 ? (
                         <div className="row">
                             {pets.map((p, i) => (
@@ -85,4 +74,4 @@ const HomePage: React.FC = () => {
     );
 };
 
-export default HomePage;
+export default CategoryPetsPage;

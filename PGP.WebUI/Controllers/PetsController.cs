@@ -6,6 +6,7 @@ using PGP.Application.Pets.Commands.CreatePet;
 using PGP.Application.Pets.Commands.DeletePet;
 using PGP.Application.Pets.Commands.UpdatePet;
 using PGP.Application.Pets.Queries.GetAllPets;
+using PGP.Application.Pets.Queries.GetAllPetsByCategoryId;
 using PGP.Application.Pets.Queries.GetPetById;
 using System.Threading.Tasks;
 
@@ -37,6 +38,14 @@ namespace PGP.WebUI.Controllers
             {
                 return NotFound(ex.Message);
             }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("category/{categoryId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetAllByCategoryId(int categoryId)
+        {
+            return Ok(await Mediator.Send(new GetAllPetsByCategoryIdQuery { CategoryId = categoryId }));
         }
 
         [HttpPost]

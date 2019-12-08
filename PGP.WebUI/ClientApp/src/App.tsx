@@ -16,6 +16,7 @@ const App: React.FC = () => {
                         <Route exact {...routePaths.HOME} />
                         <Route exact {...routePaths.LOGIN_PAGE} />
                         <Route exact {...routePaths.REGISTER_PAGE} />
+                        <Route exact {...routePaths.CATEGORY_PETS_PAGE} />
 
                         {decodedToken ? (
                             <Switch>
