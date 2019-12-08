@@ -2,14 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using PGP.Application.Common.Interfaces;
 using PGP.Application.Exceptions;
+using PGP.Application.Users;
 using PGP.Domain.Entities;
 using PGP.Persistence;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace PGP.Application.Comments.Commands.CreateComment
 {
-    public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, Unit>
+    public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, CreateCommentCommandResponse>
     {
         private readonly IPGPDbContext _context;
         private readonly ICurrentUserService _currentUserService;
@@ -20,7 +22,7 @@ namespace PGP.Application.Comments.Commands.CreateComment
             _currentUserService = currentUserService;
         }
 
-        public async Task<Unit> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
+        public async Task<CreateCommentCommandResponse> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
         {
             var userExists = await _context.Users.AnyAsync(x => x.Id == request.UserId);
 
@@ -45,6 +47,7 @@ namespace PGP.Application.Comments.Commands.CreateComment
             {
                 Text = request.Text,
                 PetId = request.PetId,
+                CreatedAt = DateTime.Now,
                 CreatedByUserId = request.UserId
             };
 
@@ -52,7 +55,23 @@ namespace PGP.Application.Comments.Commands.CreateComment
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return Unit.Value;
+            var user = await _context.Users.FindAsync(comment.CreatedByUserId);
+
+            return new CreateCommentCommandResponse
+            {
+                Id = comment.Id,
+                CreatedAt = comment.CreatedAt,
+                Text = comment.Text,
+                CreatedByUser = new UserDto
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber,
+                    RoleId = user.RoleId
+                }
+            };
         }
     }
 }

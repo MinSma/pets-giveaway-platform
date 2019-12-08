@@ -2,7 +2,7 @@
 
 namespace PGP.Application.Comments.Commands.CreateComment
 {
-    public class CreateCommentCommand : IRequest
+    public class CreateCommentCommand : IRequest<CreateCommentCommandResponse>
     {
         public int PetId { get; set; }
         public int UserId { get; set; }

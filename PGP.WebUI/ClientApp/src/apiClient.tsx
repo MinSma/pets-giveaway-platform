@@ -380,6 +380,25 @@ export const getCommentById = async (commentId: number) => {
     });
 };
 
+export const createComment = async (text: string, petId: number) => {
+    return await fetch(`${url}/api/comments`, {
+        method: 'POST',
+        body: JSON.stringify({ text, userId: getTokenDecoded().nameid, petId }),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getToken()}`
+        }
+    }).then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            toaster.danger('A failure occured during comment create.');
+        }
+    });
+};
+
 export const updateComment = async (values: IComment) => {
     return await fetch(`${url}/api/comments/${values.id}`, {
         method: 'PUT',

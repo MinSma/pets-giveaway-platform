@@ -92,3 +92,15 @@ main {
 .cursor-pointer {
     cursor: pointer;
 }
+
+#pet_page_photo {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.align-vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
