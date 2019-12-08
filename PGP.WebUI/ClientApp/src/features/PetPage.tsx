@@ -1,14 +1,27 @@
-import { faBirthdayCake, faHome, faSearch, faSignature, faTextHeight, faTrash, faVenusMars, faWeight } from '@fortawesome/free-solid-svg-icons';
+import {
+    faAsterisk,
+    faBirthdayCake,
+    faCalendar,
+    faCheck,
+    faHome,
+    faMinus,
+    faSearch,
+    faSignature,
+    faTextHeight,
+    faTrash,
+    faVenusMars,
+    faWeight
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, Button, Spinner, TextInput, toaster } from 'evergreen-ui';
 import { ErrorMessage, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import * as Yup from 'yup';
 import { createComment, deleteComment, getPetById, getToken, getTokenDecoded } from '../apiClient';
 import { useDeleteConfirmation } from '../components/DeleteConfirmationService';
 import * as enums from '../enums';
-import { dateToFormattedString } from '../utils';
+import { dateToFormattedString, routes } from '../utils';
 
 interface IPetPageRoute {
     petId: string | undefined;
@@ -40,6 +53,13 @@ interface IPetProps {
     dateAdded: Date;
     state: number;
     photoCode: string;
+    createdByUser: {
+        id: number;
+        email: string;
+        phoneNumber: string;
+        firstName: string;
+        lastName: string;
+    };
     comments: ICommentProps[];
 }
 
@@ -56,7 +76,9 @@ const PetPage: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const { petId } = useParams<IPetPageRoute>();
+    const history = useHistory();
     const confirm = useDeleteConfirmation();
+    const decodedToken = getTokenDecoded();
 
     useEffect(() => {
         const init = async () => {
@@ -121,6 +143,13 @@ const PetPage: React.FC = () => {
                                 <FontAwesomeIcon icon={faVenusMars} /> Gender: {enums.Gender.parse(pet.gender)}
                             </div>
                             <div>
+                                <FontAwesomeIcon icon={faAsterisk} /> Sterilized:{' '}
+                                {pet.isSterilized ? <FontAwesomeIcon icon={faCheck} color="green" /> : <FontAwesomeIcon icon={faMinus} color="red" />}
+                            </div>
+                            <div>
+                                <FontAwesomeIcon icon={faCalendar} /> Added: {dateToFormattedString(pet.dateAdded)}
+                            </div>
+                            <div>
                                 {pet.state === enums.State.NotGivenAway && (
                                     <>
                                         <FontAwesomeIcon icon={faSearch} /> {enums.State.parse(pet.state)}
@@ -132,6 +161,14 @@ const PetPage: React.FC = () => {
                                     </>
                                 )}
                             </div>
+                            <div className="align-vertical-center">
+                                Created by:{' '}
+                                <Avatar
+                                    name={`${pet.createdByUser.firstName} ${pet.createdByUser.lastName}`}
+                                    className="ml-2 cursor-pointer"
+                                    onClick={() => history.push(routes.USER_PAGE(pet.createdByUser.id))}
+                                />
+                            </div>
                         </div>
                     </div>
                     <h3 className="text-center mt-2">Comments ({pet.comments.length})</h3>
@@ -139,16 +176,19 @@ const PetPage: React.FC = () => {
                         {pet.comments.map((c, i) => (
                             <div key={i} className="row border mt-1 p-2 text-center">
                                 <div className="col-lg-2 col-md-4 col-xs-12 align-vertical-center">
-                                    {getTokenDecoded().role === 'Admin' && (
+                                    {decodedToken && decodedToken.role === 'Admin' && (
                                         <FontAwesomeIcon icon={faTrash} color="red" className="mr-2" onClick={() => handleDelete(c.id)} />
                                     )}
-                                    <Avatar name={`${c.createdByUser.firstName} ${c.createdByUser.lastName}`} />
-                                    <span className="ml-2">
-                                        {c.createdByUser.firstName} {c.createdByUser.lastName}
-                                    </span>
+                                    <Avatar
+                                        name={`${c.createdByUser.firstName} ${c.createdByUser.lastName}`}
+                                        className="ml-2 cursor-pointer"
+                                        onClick={() => history.push(routes.USER_PAGE(c.createdByUser.id))}
+                                    />
                                 </div>
                                 <div className="col-lg-2 col-md-4 col-xs-12 align-vertical-center">
-                                    <span className="ml-2">{c.createdByUser.email}</span>
+                                    <span className="ml-2 cursor-pointer" onClick={() => history.push(routes.USER_PAGE(c.createdByUser.id))}>
+                                        {c.createdByUser.email}
+                                    </span>
                                 </div>
                                 <div className="col-lg-2 col-md-4 col-xs-12 align-vertical-center">{dateToFormattedString(c.createdAt)}</div>
                                 <div className="col-lg-6 col-md-12 col-xs-12 align-vertical-center">{c.text}</div>

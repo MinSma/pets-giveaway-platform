@@ -39,6 +39,14 @@ namespace PGP.Application.Pets.Queries.GetPetById
                     PhotoCode = x.PhotoCode,
                     State = x.State,
                     CategoryId = x.CategoryId,
+                    CreatedByUser = new UserDto
+                    {
+                        Id = x.User.Id,
+                        Email = x.User.Email,
+                        PhoneNumber = x.User.PhoneNumber,
+                        FirstName = x.User.FirstName,
+                        LastName = x.User.LastName
+                    },
                     Comments = x.Comments.Select(c => new CommentDto
                     {
                         Id = c.Id,

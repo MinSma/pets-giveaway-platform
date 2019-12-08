@@ -10,4 +10,5 @@ export { default as PetsPage } from './PetsPage';
 export { default as RegisterPage } from './RegisterPage';
 export { default as UpdateCommentPage } from './UpdateCommentPage';
 export { default as UpdateUserPage } from './UpdateUserPage';
+export { default as UserPage } from './UserPage';
 export { default as UsersPage } from './UsersPage';

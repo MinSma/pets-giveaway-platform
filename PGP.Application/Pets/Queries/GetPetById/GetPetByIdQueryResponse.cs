@@ -1,4 +1,5 @@
 ﻿using PGP.Application.Comments;
+using PGP.Application.Users;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +13,7 @@ namespace PGP.Application.Pets.Queries.GetPetById
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
         public int CategoryId { get; set; }
+        public UserDto CreatedByUser { get; set; }
 
         public ICollection<CommentDto> Comments { get; set; }
     }
