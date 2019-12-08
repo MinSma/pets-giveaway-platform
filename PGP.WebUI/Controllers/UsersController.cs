@@ -23,11 +23,11 @@ namespace PGP.WebUI.Controllers
             return Ok(await Mediator.Send(query));
         }
 
-        [HttpGet("pets")]
+        [HttpGet("{id}/pets")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> GetAllUserCreatedPets([FromQuery] GetAllUserCreatedPetsQuery query)
+        public async Task<ActionResult> GetAllUserCreatedPets(int id)
         {
-            return Ok(await Mediator.Send(query));
+            return Ok(await Mediator.Send(new GetAllUserCreatedPetsQuery { UserId = id }));
         }
 
         [HttpGet("{id}")]

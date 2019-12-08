@@ -83,8 +83,12 @@ const PetPage: React.FC = () => {
     useEffect(() => {
         const init = async () => {
             setIsLoading(true);
-            const pet = await getPetById(Number(petId));
-            setPet(pet);
+
+            if (petId) {
+                const pet = await getPetById(Number(petId));
+                setPet(pet);
+            }
+
             setIsLoading(false);
         };
 

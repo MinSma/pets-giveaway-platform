@@ -51,6 +51,7 @@ export const getAllPets = async () => {
 };
 
 export const getPetById = async (petId: number) => {
+    debugger;
     return await fetch(`${url}/api/pets/${petId}`, {
         method: 'GET'
     }).then(response => {
@@ -431,8 +432,8 @@ export const deleteComment = async (commentId: number) => {
     });
 };
 
-export const getAllUserCreatedPet = async () => {
-    return await fetch(`${url}/api/users/pets`, {
+export const getAllUserCreatedPet = async (userId?: number) => {
+    return await fetch(`${url}/api/users/${userId ? userId : getTokenDecoded().nameid}/pets`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${getToken()}`

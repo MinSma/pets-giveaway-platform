@@ -25,7 +25,7 @@ const UserPage: React.FC = () => {
             const userResponse = await getUserById(Number(userId));
             setUser(userResponse);
 
-            const response = await getAllUserCreatedPet();
+            const response = await getAllUserCreatedPet(Number(userId));
             response && setUserCreatedPets(response);
 
             setIsLoading(false);

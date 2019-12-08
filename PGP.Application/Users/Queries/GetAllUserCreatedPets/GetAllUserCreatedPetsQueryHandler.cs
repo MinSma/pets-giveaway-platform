@@ -24,7 +24,7 @@ namespace PGP.Application.Users.Queries.GetAllUserCreatedPets
         public async Task<List<GetAllUserCreatedPetsQueryResponse>> Handle(GetAllUserCreatedPetsQuery request, CancellationToken cancellationToken)
         {
             return await _context.Pets
-                .Where(x => x.UserId == _currentUserService.UserId)
+                .Where(x => x.UserId == request.UserId)
                 .Select(x => new GetAllUserCreatedPetsQueryResponse
                 {
                     Id = x.Id,

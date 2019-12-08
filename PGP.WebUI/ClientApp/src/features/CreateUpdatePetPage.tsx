@@ -96,14 +96,14 @@ const CreateUpdatePetPage: React.FC = () => {
                         name: pet ? pet.name : '',
                         city: pet ? pet.city : '',
                         age: pet ? pet.age : undefined,
-                        gender: pet ? pet.gender : 0,
+                        gender: pet ? pet.gender : 1,
                         weight: pet ? pet.weight : undefined,
                         height: pet ? pet.height : undefined,
                         isSterilized: pet ? pet.isSterilized : false,
                         description: pet ? pet.description : '',
-                        state: pet ? pet.state : 0,
+                        state: pet ? pet.state : 2,
                         photoCode: pet ? pet.photoCode : '',
-                        categoryId: pet ? pet.categoryId : 0
+                        categoryId: pet ? pet.categoryId : 1
                     }}
                     onSubmit={onSubmit}
                 >
