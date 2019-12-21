@@ -1,24 +1,34 @@
 import { Spinner, toaster } from 'evergreen-ui';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import { createLike, deleteLike, getAllPets, getCategories } from '../apiClient';
+import { useHistory, useParams } from 'react-router';
+import { createLike, deleteLike, getAllPets, getAllPetsByCategoryId, getCategories } from '../apiClient';
 import { PetCard, ThereIsNoResultsToShow } from '../components';
 import { IOption, IPetList } from '../models';
 import { routes } from '../utils/routes';
+
+interface IHomePageProps {
+    categoryId: string | undefined;
+}
 
 const HomePage: React.FC = () => {
     const [pets, setPets] = useState<IPetList[]>([]);
     const [categories, setCategories] = useState<IOption[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
+    const { categoryId } = useParams<IHomePageProps>();
     const history = useHistory();
 
     useEffect(() => {
         const init = async () => {
             setIsLoading(true);
 
-            const response = await getAllPets();
-            setPets(response);
+            if (categoryId) {
+                const response = await getAllPetsByCategoryId(Number(categoryId));
+                setPets(response);
+            } else {
+                const response = await getAllPets();
+                setPets(response);
+            }
 
             const categoriesResponse = await getCategories();
             setCategories(categoriesResponse);
@@ -27,7 +37,7 @@ const HomePage: React.FC = () => {
         };
 
         init();
-    }, []);
+    }, [categoryId, history.location.key]);
 
     const handleLikeClick = async (e: any, petId: number) => {
         e.stopPropagation();
