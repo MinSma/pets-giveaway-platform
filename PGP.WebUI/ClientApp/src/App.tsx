@@ -16,7 +16,6 @@ const App: React.FC = () => {
                         <Route exact {...routePaths.HOME} />
                         <Route exact {...routePaths.LOGIN_PAGE} />
                         <Route exact {...routePaths.REGISTER_PAGE} />
-                        <Route exact {...routePaths.CATEGORY_PETS_PAGE} />
 
                         {decodedToken ? (
                             <Switch>
@@ -27,6 +26,7 @@ const App: React.FC = () => {
                                         <Route exact {...routePaths.CREATE_PET_PAGE} />
                                         <Route exact {...routePaths.UPDATE_PET_PAGE} />
                                         <Route exact {...routePaths.PET_PAGE} />
+                                        <Route exact {...routePaths.CATEGORY_PETS_PAGE} />
                                         <Route exact {...routePaths.PETS_PAGE} />
 
                                         {decodedToken.role === 'Admin' && (
@@ -45,7 +45,8 @@ const App: React.FC = () => {
                                 )}
                             </Switch>
                         ) : (
-                            <Switch>
+                                <Switch>
+                                <Route exact {...routePaths.CATEGORY_PETS_PAGE} />
                                 <Route exact {...routePaths.PET_PAGE} />
                                 <Route exact {...routePaths.USER_PAGE} />
                             </Switch>

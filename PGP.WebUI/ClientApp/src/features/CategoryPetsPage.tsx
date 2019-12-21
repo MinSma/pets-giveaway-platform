@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { createLike, deleteLike, getAllPetsByCategoryId, getCategories } from '../apiClient';
 import { PetCard, ThereIsNoResultsToShow } from '../components';
-import { ICategory, IPetList } from '../models';
+import { IOption, IPetList } from '../models';
 import { routes } from '../utils';
 
 interface ICategoryPetsPageRoute {
@@ -12,7 +12,7 @@ interface ICategoryPetsPageRoute {
 
 const CategoryPetsPage: React.FC = () => {
     const [pets, setPets] = useState<IPetList[]>([]);
-    const [categories, setCategories] = useState<ICategory[]>([]);
+    const [categories, setCategories] = useState<IOption[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const history = useHistory();
@@ -64,7 +64,7 @@ const CategoryPetsPage: React.FC = () => {
                                     className="btn text-center bg-purple-color w-100"
                                     onClick={() => history.push(routes.CATEGORY_PETS_PAGE(c.id))}
                                 >
-                                    {c.title}
+                                    {c.text}
                                 </button>
                             </div>
                         ))}

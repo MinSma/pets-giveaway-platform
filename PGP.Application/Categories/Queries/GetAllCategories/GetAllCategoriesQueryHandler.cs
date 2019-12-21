@@ -23,7 +23,7 @@ namespace PGP.Application.Categories.Queries.GetAllCategories
                 .Select(x => new GetAllCategoriesByUserIdQueryResponse
                 {
                     Id = x.Id,
-                    Title = x.Title
+                    Text = x.Title
                 })
                 .ToListAsync(cancellationToken);
         }
